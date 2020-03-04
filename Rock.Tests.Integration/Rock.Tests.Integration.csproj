@@ -77,9 +77,14 @@
   <ItemGroup>
     <Compile Include="Achievement\AccumulativeAchievementTests.cs" />
     <Compile Include="Achievement\StreakAchievementTests.cs" />
+    <Compile Include="Attendances\AttendanceCodeTests.cs" />
+    <Compile Include="Communications\Transport\MailgunTests.cs" />
+    <Compile Include="Communications\Transport\TwilioTests.cs" />
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Core\FieldTypesListing.cs" />
+    <Compile Include="DotLiquid\TemplateTests.cs" />
     <Compile Include="Interactions\PageViewTests.cs" />
+    <Compile Include="Lava\LegacyLavaUpdaterTest.cs" />
     <Compile Include="Utility\HttpSimulator.cs" />
     <Compile Include="Utility\ReflectionHelper.cs" />
     <Compile Include="Utility\SimulatedHttpRequest.cs" />
@@ -116,6 +121,7 @@
     <Compile Include="Crm\ConnectionStatusChangeReportTests.cs" />
     <Compile Include="TestData\TestDataHelper.cs" />
     <Compile Include="Utility\ArrayExtensions.cs" />
+    <Compile Include="Workflow\Action\BackgroundCheckRequestTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -45,7 +45,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rock.Version", "Rock.Versio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rock.SignNow", "Rock.SignNow\Rock.SignNow.csproj", "{1F5956F2-2B0F-49B8-AAF1-2CC28F01426A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rock.Tests", "Rock.Tests\Rock.Tests.csproj", "{F6BEC5AC-D8E1-48ED-921F-D7D2EB58BF7D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rock.Tests.UnitTests", "Rock.Tests.UnitTests\Rock.Tests.UnitTests.csproj", "{F6BEC5AC-D8E1-48ED-921F-D7D2EB58BF7D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignNowSDK", "SignNowSDK\SignNowSDK.csproj", "{69AC175C-3997-4514-8C9E-5D24811928C2}"
 EndProject
