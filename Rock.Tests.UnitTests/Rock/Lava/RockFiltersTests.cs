@@ -753,21 +753,19 @@ a comment --> sit amet</p>";
         }
 
         /// <summary>
-        /// For use in Lava -- should return the IP address of the Client using the HTTP_X_FORWARDED_FOR header value
+        /// For use in Lava -- should return the IP address of the Client using the "x-forwarded-for" header value
         /// </summary>
-        [Fact] //( Skip = "Need to figure out how to properly set a Server Variable with this HttpSimulator" )]
+        [Fact]
         public void Client_IP_ForwardedFor()
         {
             InitWebContentFolder();
 
-            //NameValueCollection headers = new NameValueCollection();
-            //headers.Add( "HTTP_X_FORWARDED_FOR", "77.7.7.77" );
-
+            NameValueCollection headers = new NameValueCollection();
+            headers.Add( "x-forwarded-for", "77.7.7.77" );
 
             using ( var simulator = new HttpSimulator( "/", webContentFolder ) )
             {
-                simulator.SetServerVariable( "HTTP_X_FORWARDED_FOR", "77.7.7.77" );
-                simulator.SimulateRequest( new Uri( "http://localhost/" ), new NameValueCollection(), new NameValueCollection() );
+                simulator.SimulateRequest( new Uri( "http://localhost/" ), new NameValueCollection(), headers );
 
                 var output = RockFilters.Client( "Global", "ip" );
                 Assert.Equal( "77.7.7.77", output );
