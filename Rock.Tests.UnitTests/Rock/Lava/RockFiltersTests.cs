@@ -1465,8 +1465,8 @@ a comment --> sit amet</p>";
         [Fact]
         public void DateAdd_AddDaysDefaultToGivenDate()
         {
-            var output = RockFilters.DateAdd( "5/1/2018", 3 );
-            DateTimeAssert.AreEqual( output, DateTime.Parse("5/4/2018") );
+            var output = RockFilters.DateAdd( "2018-5-1", 3 );
+            DateTimeAssert.AreEqual( output, DateTime.Parse("2018-5-4") );
         }
 
         /// <summary>
@@ -1475,8 +1475,8 @@ a comment --> sit amet</p>";
         [Fact]
         public void DateAdd_AddDaysIntervalToGivenDate()
         {
-            var output = RockFilters.DateAdd( "5/1/2018", 3, "d" );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "5/4/2018" ) );
+            var output = RockFilters.DateAdd( "2018-5-1", 3, "d" );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-5-4" ) );
         }
 
         /// <summary>
@@ -1485,8 +1485,8 @@ a comment --> sit amet</p>";
         [Fact]
         public void DateAdd_AddHoursIntervalToGivenDate()
         {
-            var output = RockFilters.DateAdd( "5/1/2018 3:00 PM", 1, "h" );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "5/1/2018 4:00 PM" ) );
+            var output = RockFilters.DateAdd( "2018-5-1 3:00 PM", 1, "h" );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-5-1 4:00 PM" ) );
         }
 
         /// <summary>
@@ -1495,8 +1495,8 @@ a comment --> sit amet</p>";
         [Fact]
         public void DateAdd_AddMinutesIntervalToGivenDate()
         {
-            var output = RockFilters.DateAdd( "5/1/2018 3:00 PM", 120, "m" );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "5/1/2018 5:00 PM" ) );
+            var output = RockFilters.DateAdd( "2018-5-1 3:00 PM", 120, "m" );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-5-1 5:00 PM" ) );
         }
 
         /// <summary>
@@ -1505,8 +1505,8 @@ a comment --> sit amet</p>";
         [Fact]
         public void DateAdd_AddSecondsIntervalToGivenDate()
         {
-            var output = RockFilters.DateAdd( "5/1/2018 3:00 PM", 300, "s" );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "5/1/2018 3:05 PM" ) );
+            var output = RockFilters.DateAdd( "2018-5-1 3:00 PM", 300, "s" );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-5-1 3:05 PM" ) );
         }
 
         /// <summary>
@@ -1515,8 +1515,8 @@ a comment --> sit amet</p>";
         [Fact]
         public void DateAdd_AddYearsIntervalToGivenDate()
         {
-            var output = RockFilters.DateAdd( "5/1/2018 3:00 PM", 2, "y" );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "5/1/2020 3:00 PM" ) );
+            var output = RockFilters.DateAdd( "2018-5-1 3:00 PM", 2, "y" );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2020-5-1 3:00 PM" ) );
         }
 
         /// <summary>
@@ -1525,8 +1525,8 @@ a comment --> sit amet</p>";
         [Fact]
         public void DateAdd_AddYearsIntervalToGivenLeapDate()
         {
-            var output = RockFilters.DateAdd( "2/29/2016 3:00 PM", 1, "y" );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "2/28/2017 3:00 PM" ) );
+            var output = RockFilters.DateAdd( "2016-2-29 3:00 PM", 1, "y" );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2017-2-28 3:00 PM" ) );
         }
 
         /// <summary>
@@ -1535,8 +1535,8 @@ a comment --> sit amet</p>";
         [Fact]
         public void DateAdd_AddMonthsIntervalToGivenDate()
         {
-            var output = RockFilters.DateAdd( "5/1/2018 3:00 PM", 1, "M" );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "6/1/2018 3:00 PM" ) );
+            var output = RockFilters.DateAdd( "2018-5-1 3:00 PM", 1, "M" );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-6-1 3:00 PM" ) );
         }
 
         /// <summary>
@@ -1546,8 +1546,8 @@ a comment --> sit amet</p>";
         [Fact]
         public void DateAdd_AddMonthsIntervalToGivenLongerMonthDate()
         {
-            var output = RockFilters.DateAdd( "5/31/2018 3:00 PM", 1, "M" );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "6/30/2018 3:00 PM" ) );
+            var output = RockFilters.DateAdd( "2018-5-31 3:00 PM", 1, "M" );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-6-30 3:00 PM" ) );
         }
 
         /// <summary>
@@ -1556,8 +1556,8 @@ a comment --> sit amet</p>";
         [Fact]
         public void DateAdd_AddWeeksIntervalToGivenDate()
         {
-            var output = RockFilters.DateAdd( "5/1/2018 3:00 PM", 2, "w" );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "5/15/2018 3:00 PM" ) );
+            var output = RockFilters.DateAdd( "2018-5-1 3:00 PM", 2, "w" );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-5-15 3:00 PM" ) );
         }
 
         /// <summary>
@@ -1568,20 +1568,20 @@ a comment --> sit amet</p>";
         public void NextDayOfTheWeek_NextWeekdate()
         {
             // Since we're not including the current day, we advance to next week's Tuesday, 5/8
-            var output = RockFilters.NextDayOfTheWeek( "5/1/2018 3:00 PM", "Tuesday" );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "5/8/2018 3:00 PM" ) );
+            var output = RockFilters.NextDayOfTheWeek( "2018-5-1 3:00 PM", "Tuesday" );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-5-8 3:00 PM" ) );
 
             // Since Wednesday has not happened, we advance to it -- which is Wed, 5/2
-            output = RockFilters.NextDayOfTheWeek( "5/1/2018 3:00 PM", "Wednesday" );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "5/2/2018 3:00 PM" ) );
+            output = RockFilters.NextDayOfTheWeek( "2018-5-1 3:00 PM", "Wednesday" );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-5-2 3:00 PM" ) );
 
             // Since Monday has passed, we advance to next week's Monday, 5/7
-            output = RockFilters.NextDayOfTheWeek( "5/1/2018 3:00 PM", "Monday" );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "5/7/2018 3:00 PM" ) );
+            output = RockFilters.NextDayOfTheWeek( "2018-5-1 3:00 PM", "Monday" );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-5-7 3:00 PM" ) );
 
             // From the Lava documentation
-            output = RockFilters.NextDayOfTheWeek( "2/9/2011 3:00 PM", "Friday" );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "2/11/2011 3:00 PM" ) );
+            output = RockFilters.NextDayOfTheWeek( "2011-2-9 3:00 PM", "Friday" );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2011-2-11 3:00 PM" ) );
         }
 
         /// <summary>
@@ -1599,14 +1599,14 @@ a comment --> sit amet</p>";
         [Fact]
         public void NextDayOfTheWeek_NextWeekdateIncludeCurrentDay()
         {
-            var output = RockFilters.NextDayOfTheWeek( "5/1/2018 3:00 PM", "Tuesday", true );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "5/1/2018 3:00 PM" ) );
+            var output = RockFilters.NextDayOfTheWeek( "2018-5-1 3:00 PM", "Tuesday", true );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-5-1 3:00 PM" ) );
 
-            output = RockFilters.NextDayOfTheWeek( "5/1/2018 3:00 PM", "Wednesday", true );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "5/2/2018 3:00 PM" ) );
+            output = RockFilters.NextDayOfTheWeek( "2018-5-1 3:00 PM", "Wednesday", true );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-5-2 3:00 PM" ) );
 
-            output = RockFilters.NextDayOfTheWeek( "5/1/2018 3:00 PM", "Monday", true );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "5/7/2018 3:00 PM" ) );
+            output = RockFilters.NextDayOfTheWeek( "2018-5-1 3:00 PM", "Monday", true );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-5-7 3:00 PM" ) );
         }
 
         /// <summary>
@@ -1625,16 +1625,16 @@ a comment --> sit amet</p>";
         public void NextDayOfTheWeek_NextWeekdateTwoWeeks()
         {
             // Since we're not including the current day, we advance to next two week's out to Tuesday, 5/15
-            var output = RockFilters.NextDayOfTheWeek( "5/1/2018 3:00 PM", "Tuesday", false, 2 );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "5/15/2018 3:00 PM" ) );
+            var output = RockFilters.NextDayOfTheWeek( "2018-5-1 3:00 PM", "Tuesday", false, 2 );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-5-15 3:00 PM" ) );
 
             // Since Wednesday has not happened, we advance two Wednesdays -- which is Wed, 5/9
-            output = RockFilters.NextDayOfTheWeek( "5/1/2018 3:00 PM", "Wednesday", false, 2 );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "5/9/2018 3:00 PM" ) );
+            output = RockFilters.NextDayOfTheWeek( "2018-5-1 3:00 PM", "Wednesday", false, 2 );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-5-9 3:00 PM" ) );
 
             // Since Monday has passed, we advance to two week's out Monday, 5/14
-            output = RockFilters.NextDayOfTheWeek( "5/1/2018 3:00 PM", "Monday", false, 2 );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "5/14/2018 3:00 PM" ) );
+            output = RockFilters.NextDayOfTheWeek( "2018-5-1 3:00 PM", "Monday", false, 2 );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-5-14 3:00 PM" ) );
         }
 
         /// <summary>
@@ -1661,21 +1661,21 @@ a comment --> sit amet</p>";
         {
             // In this case, since it's Tuesday (and we're not including current day), then
             // the current day counts as the *previous* week's Tuesday.
-            var output = RockFilters.NextDayOfTheWeek( "5/1/2018 3:00 PM", "Tuesday", false, -1 );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "5/1/2018 3:00 PM" ) );
+            var output = RockFilters.NextDayOfTheWeek( "2018-5-1 3:00 PM", "Tuesday", false, -1 );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-5-1 3:00 PM" ) );
 
             // If we include the current day (so it counts as *this* week), then one week ago would be
             // last Tuesday, April 24.
-            output = RockFilters.NextDayOfTheWeek( "5/1/2018 3:00 PM", "Tuesday", true, -1 );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "4/24/2018 3:00 PM" ) );
+            output = RockFilters.NextDayOfTheWeek( "2018-5-1 3:00 PM", "Tuesday", true, -1 );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-4-24 3:00 PM" ) );
 
             // Get previous week's Wednesday, 4/25
-            output = RockFilters.NextDayOfTheWeek( "5/1/2018 3:00 PM", "Wednesday", false, -1 );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "4/25/2018 3:00 PM" ) );
+            output = RockFilters.NextDayOfTheWeek( "2018-5-1 3:00 PM", "Wednesday", false, -1 );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-4-25 3:00 PM" ) );
 
             // Since Monday has just passed, we get this past Monday, 4/30
-            output = RockFilters.NextDayOfTheWeek( "5/1/2018 3:00 PM", "Monday", false, -1 );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "4/30/2018 3:00 PM" ) );
+            output = RockFilters.NextDayOfTheWeek( "2018-5-1 3:00 PM", "Monday", false, -1 );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-4-30 3:00 PM" ) );
         }
 
         /// <summary>
@@ -1684,8 +1684,8 @@ a comment --> sit amet</p>";
         [Fact]
         public void ToMidnight_TextString()
         {
-            var output = RockFilters.ToMidnight( "5/1/2018 3:00 PM" );
-            DateTimeAssert.AreEqual( output, DateTime.Parse( "5/1/2018 12:00 AM" ) );
+            var output = RockFilters.ToMidnight( "2018-5-1 3:00 PM" );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-5-1 12:00 AM" ) );
         }
 
         /// <summary>
@@ -1713,14 +1713,14 @@ a comment --> sit amet</p>";
         /// <summary>
         /// For use in Lava -- should return next occurrence for Rock's standard Saturday 4:30PM service datetime.
         /// </summary>
-        [Fact( Skip = "Not including the right timestamp" )]
+        [Fact]
         public void DatesFromICal_OneNextSaturday()
         {
             DateTime today = RockDateTime.Today;
             int daysUntilSaturday = ( ( int ) DayOfWeek.Saturday - ( int ) today.DayOfWeek + 7 ) % 7;
             DateTime nextSaturday = today.AddDays( daysUntilSaturday );
 
-            List<DateTime> expected = new List<DateTime>() { DateTime.Parse( nextSaturday.ToShortDateString() + " 4:30:00 PM" ) };
+            List<DateTime> expected = new List<DateTime>() { nextSaturday.AddHours( 16.5 ) }; // 4:30:00 PM
 
             var output = RockFilters.DatesFromICal( iCalStringSaturday430, 1 );
             Assert.Equal( expected, output );
@@ -1729,25 +1729,29 @@ a comment --> sit amet</p>";
         /// <summary>
         /// For use in Lava -- should return the current Saturday for next year's occurrence for Rock's standard Saturday 4:30PM service datetime.
         /// </summary>
-        [Fact( Skip = "Not including the right timestamp" )]
+        [Fact]
         public void DatesFromICal_NextYearSaturday()
         {
-            // Next year's Saturday (from right now)
+            // Get the previous Saturday from today's date, one year on.
+            // The DatesFromICal function only returns occurrences for a maximum of 1 year, so this ensures that our test date will be in the sequence.
             DateTime today = RockDateTime.Today;
-            int daysUntilSaturday = ( ( int ) DayOfWeek.Saturday - ( int ) today.DayOfWeek + 7 ) % 7;
-            DateTime nextSaturday = today.AddDays( daysUntilSaturday );
-            DateTime nextYearSaturday = nextSaturday.AddDays( 7 * 52 );
 
-            DateTime expected = DateTime.Parse( nextYearSaturday.ToShortDateString() + " 4:30:00 PM" );
+            int daysAfterSaturday = ( int ) today.DayOfWeek + 1;
+            DateTime previousSaturday = today.AddDays( -daysAfterSaturday );
+            DateTime nextYearSaturday = previousSaturday.AddDays( 7 * 52 );
 
-            var output = RockFilters.DatesFromICal( iCalStringSaturday430, 53 ).LastOrDefault();
-            Assert.Equal( expected, output );
+            DateTime expected = nextYearSaturday.AddHours( 16.5 ); // 4:30:00 PM
+
+            var output = RockFilters.DatesFromICal( iCalStringSaturday430, "all" );
+
+            // Test if the output exists in the list of dates, because it may be entry 52 or 53 in the sequence.
+            Assert.Contains( expected, output );
         }
 
         /// <summary>
         /// For use in Lava -- should return the end datetime for the next occurrence for Rock's standard Saturday 4:30PM service datetime (which ends at 5:30PM).
         /// </summary>
-        [Fact( Skip = "Not including the right timestamp" )]
+        [Fact]
         public void DatesFromICal_NextEndOccurrenceSaturday()
         {
             DateTime today = RockDateTime.Today;
@@ -1763,17 +1767,18 @@ a comment --> sit amet</p>";
         /// <summary>
         /// For use in Lava -- should find the end datetime (10 AM) occurrence for the fictitious, first Saturday of the month event for Saturday a year from today.
         /// </summary>
-        [Fact( Skip = "Not including the right timestamp" )]
+        [Fact]
         public void DatesFromICal_NextYearsEndOccurrenceSaturday()
         {
             // Next year's Saturday (from right now)
             DateTime today = RockDateTime.Today;
             int daysUntilSaturday = ( ( int ) DayOfWeek.Saturday - ( int ) today.DayOfWeek + 7 ) % 7;
-            DateTime firstSaturdayThisMonth = today.AddDays( daysUntilSaturday - ( ( today.Day / 7 ) * 7 ) );
+            DateTime firstSaturdayThisMonth = today.AddDays( daysUntilSaturday - ( ( ( today.Day - 1 ) / 7 ) * 7 ) );
             DateTime nextYearSaturday = firstSaturdayThisMonth.AddDays( 7 * 52 );
 
-            DateTime expected = DateTime.Parse( nextYearSaturday.ToShortDateString() + " 10:00:00 AM" );
+            DateTime expected = nextYearSaturday.AddHours( 10 );
 
+            // Get the end datetime of the 13th event in the "First Saturday of the Month" schedule.
             var output = RockFilters.DatesFromICal( iCalStringFirstSaturdayOfMonth, 13, "enddatetime" ).LastOrDefault();
             Assert.Equal( expected, output );
         }
