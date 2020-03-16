@@ -23,7 +23,7 @@ using Rock.Web.Cache;
 namespace Rock.Tests.Integration.RockTests.Model
 {
     [TestClass]
-    [Ignore()]
+    [Ignore( "Need a mock for Global Attributes" )]
     public class PersonTests
     {
         /// <summary>
@@ -52,11 +52,58 @@ namespace Rock.Tests.Integration.RockTests.Model
             Assert.IsTrue( Person.GraduationYear == RockDateTime.Now.AddYears( 1 ).Year );
         }
 
+        [TestMethod]
+        [Ignore( "Need a mock for Global Attributes" )]
+        public void OffsetGraduatesToday()
+        {
+            InitGlobalAttributesCache();
+            var person = new Person();
+            person.GraduationYear = RockDateTime.Now.Year; // the "year" the person graduates.
+
+            Assert.IsTrue( 0 == person.GradeOffset );
+        }
+
+        [TestMethod]
+        [Ignore( "Need a mock for Global Attributes" )]
+        public void OffsetGraduatesTomorrow()
+        {
+            InitGlobalAttributesCache();
+
+            DateTime tomorrow = RockDateTime.Now.AddDays( 1 );
+            SetGradeTransitionDateGlobalAttribute( tomorrow.Month, tomorrow.Day );
+
+            var Person = new Person();
+            Person.GraduationYear = RockDateTime.Now.Year; // the "year" the person graduates.
+
+            Assert.IsTrue( 1 == Person.GradeOffset );
+        }
+
+        [TestMethod]
+
+        public void GraduatesNextYear()
+        {
+            InitGlobalAttributesCache();
+
+            DateTime tomorrow = RockDateTime.Now.AddDays( 1 );
+            SetGradeTransitionDateGlobalAttribute( tomorrow.Month, tomorrow.Day );
+
+            var Person = new Person();
+            Person.GradeOffset = 1;
+
+            Assert.IsTrue( Person.GraduationYear == RockDateTime.Now.Year );
+        }
+
         private static void InitGlobalAttributesCache()
         {
             DateTime today = RockDateTime.Now;
             GlobalAttributesCache globalAttributes = GlobalAttributesCache.Get();
             globalAttributes.SetValue( "GradeTransitionDate", string.Format( "{0}/{1}", today.Month, today.Day ), false );
+        }
+
+        private static void SetGradeTransitionDateGlobalAttribute( int month, int day )
+        {
+            GlobalAttributesCache globalAttributes = GlobalAttributesCache.Get();
+            globalAttributes.SetValue( "GradeTransitionDate", string.Format( "{0}/{1}", month, day ), false );
         }
     }
 }
