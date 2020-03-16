@@ -13,8 +13,15 @@ Use [this example](https://github.com/SparkDevNetwork/Rock/blob/develop/Rock.Tes
 
 If you don't see a Test Explorer tab next to your Solution Explorer, select the "Test" option
       from the main VS menu. Then select Windows > Test Explorer. You should then see the tab. Once
-      build the test project, each test method (marked with a [Fact] attribute) should appear in the
-      explorer.
+      you build the test project, each test method should appear in the
+      explorer. Test methods must be annotated with the [TestMethod] Attribute, and must exist in a class with a [TestClass] Attribute.
 
 > NOTE: If you don't see them you may need to delete your `%TEMP%\VisualStudioTestExplorerExtensions`
 folder (while VS is shut down) to get the tests to show up.
+
+## Test Methods
+
+Tests in this project use the "Assert.That.[Assertion]" pattern in preference to the standard "Assert.[Assertion]" pattern.
+eg. "Assert.That.AreEqual(a, b);" is preferred to "Assert.AreEqual(a, b);
+
+This is because "Assert.That" allows a consistent syntax for accessing both the standard MSBuild Assert methods and any custom extension methods we have added to extend the Assert functionality as needed.
