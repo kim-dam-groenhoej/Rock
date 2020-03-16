@@ -107,6 +107,7 @@
     <Compile Include="Rock\Utility\NcoaApi\TrueNcoaApiTests.cs" />
     <Compile Include="Rock\Utility\RockDynamicTests.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="TestFramework\Assert.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

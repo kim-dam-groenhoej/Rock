@@ -1,16 +1,20 @@
 ﻿using Newtonsoft.Json;
 using Rock.Model;
 using System.Data.Entity.Spatial;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rock.Tests.UnitTests;
 
 namespace Rock.Tests.Rock.Model
 {
+
     public class DeviceTests
     {
         /* These DbGeography calls require the SqlServerTypes package on machines without full SQL Server.
          * However, none of them will actually find the SqlServerSpatial110.dll in the /bin folder. */
 
-        [Fact( Skip = "Need the SqlServerTypes library to resolve" )]
+        [TestMethod]
+        [Ignore( "Need the SqlServerTypes library to resolve" )]
+        
         public void FallsWithinGeoFence()
         {
             var deviceWithGeoFence = BufferedDevice();
@@ -21,10 +25,10 @@ namespace Rock.Tests.Rock.Model
             // NOTE: generate in format: long, lat
             var pointInside = DbGeography.FromText( string.Format( "POINT({0} {1})", aLong, aLat ) );
 
-            Assert.True( pointInside.Intersects( deviceWithGeoFence.Location.GeoFence ) );
+            Assert.IsTrue( pointInside.Intersects( deviceWithGeoFence.Location.GeoFence ) );
         }
 
-        [Fact( Skip = "Need the SqlServerTypes library to resolve" )]
+        [TestMethod] [Ignore( "Need the SqlServerTypes library to resolve" )]
         public void FallsOutsideGeoFence()
         {
             var deviceWithGeoFence = BufferedDevice();
@@ -36,24 +40,24 @@ namespace Rock.Tests.Rock.Model
             var pointOutside = DbGeography.FromText( string.Format( "POINT({0} {1})", farLong, farLat ) );
 
             // point should NOT intersect the location
-            Assert.False( pointOutside.Intersects( deviceWithGeoFence.Location.GeoFence ) );
+            Assert.IsFalse( pointOutside.Intersects( deviceWithGeoFence.Location.GeoFence ) );
         }
 
         /// <summary>
         /// Should verify the device isn't empty.
         /// </summary>
-        [Fact( Skip = "Need the SqlServerTypes library to resolve" )]
+        [TestMethod] [Ignore( "Need the SqlServerTypes library to resolve" )]
         public void NotEmpty()
         {
             var device = StandardDevice();
             var result = device.ToJson();
-            Assert.NotEmpty( result );
+            Assert.That.IsNotEmpty( result );
         }
 
         /// <summary>
         /// Should serialize the Device into a non-empty string.
         /// </summary>
-        [Fact( Skip = "Need the SqlServerTypes library to resolve" )]
+        [TestMethod] [Ignore( "Need the SqlServerTypes library to resolve" )]
         public void ToJson()
         {
             var device = StandardDevice();
@@ -61,14 +65,14 @@ namespace Rock.Tests.Rock.Model
             var result = device.ToJson();
             string key1 = "\"GeoPoint\": {";
             string key2 = "\"WellKnownText\": ";
-            Assert.NotEqual( result.IndexOf( key1 ), -1 );
-            Assert.NotEqual( result.IndexOf( key2 ), -1 );
+            Assert.AreNotEqual( result.IndexOf( key1 ), -1 );
+            Assert.AreNotEqual( result.IndexOf( key2 ), -1 );
         }
 
         /// <summary>
         /// Should take a JSON string and copy its contents to a new Device
         /// </summary>
-        [Fact( Skip = "Need the SqlServerTypes library to resolve" )]
+        [TestMethod] [Ignore( "Need the SqlServerTypes library to resolve" )]
         public void FromJson()
         {
             var device = StandardDevice();
@@ -76,9 +80,9 @@ namespace Rock.Tests.Rock.Model
             var deviceAsJson = device.ToJson();
             var deviceFromJson = JsonConvert.DeserializeObject( deviceAsJson, typeof( Device ) ) as Device;
 
-            Assert.Equal( device.Guid, deviceFromJson.Guid );
-            Assert.Equal( device.Location.GeoPoint.Latitude, deviceFromJson.Location.GeoPoint.Latitude );
-            Assert.Equal( device.Location.GeoPoint.Longitude, deviceFromJson.Location.GeoPoint.Longitude );
+            Assert.AreEqual( device.Guid, deviceFromJson.Guid );
+            Assert.AreEqual( device.Location.GeoPoint.Latitude, deviceFromJson.Location.GeoPoint.Latitude );
+            Assert.AreEqual( device.Location.GeoPoint.Longitude, deviceFromJson.Location.GeoPoint.Longitude );
         }
 
         /// <summary>

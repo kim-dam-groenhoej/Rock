@@ -1,49 +1,50 @@
 ﻿using Rock.Model;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rock.Tests.UnitTests;
 
 namespace Rock.Tests.Rock.Model
 {
+    [TestClass]
     public class BlockTests
     {
         /// <summary>
         /// Should perform a shallow copy of a Block object, resulting in a new Block.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ShallowClone()
         {
             var block = new Block { Name = "Foo" };
             var result = block.Clone( false );
-            Assert.Equal( result.Name, block.Name );
+            Assert.AreEqual( result.Name, block.Name );
         }
 
         /// <summary>
         /// Should perform a shallow copy of a Block, including its BlockType.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void Clone()
         {
             var block = new Block { BlockType = new BlockType() };
             var result = block.Clone() as Block;
-            Assert.NotNull( result );
-            Assert.NotNull( result.BlockType );
+            Assert.IsNotNull( result );
+            Assert.IsNotNull( result.BlockType );
         }
 
         /// <summary>
         /// Should serialize a Block into a non-empty string.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ToJson()
         {
             var block = new Block { Name = "Foo" };
             var result = block.ToJson();
-            Assert.NotNull( result );
-            Assert.NotEmpty( result );
+            Assert.That.IsNotEmpty( result );
         }
 
         /// <summary>
         /// Should serialize a HtmlContent into a JSON string.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ExportJson()
         {
             var block = new Block
@@ -53,13 +54,13 @@ namespace Rock.Tests.Rock.Model
 
             var result = block.ToJson();
             const string key = "\"Name\":\"Foo\"";
-            Assert.NotEqual( result.IndexOf( key ), -1 );
+            Assert.AreNotEqual( result.IndexOf( key ), -1 );
         }
 
         /// <summary>
         /// Should take a JSON string and copy its contents to a new Block, including its BlockType
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ImportJson()
         {
             var obj = new
@@ -83,8 +84,8 @@ namespace Rock.Tests.Rock.Model
             var json = obj.ToJson();
             var block = Block.FromJson( json );
             var blockType = block.BlockType;
-            Assert.NotNull( blockType );
-            Assert.Equal( blockType.Name, obj.BlockType.Name );
+            Assert.IsNotNull( blockType );
+            Assert.AreEqual( blockType.Name, obj.BlockType.Name );
         }
     }
 }

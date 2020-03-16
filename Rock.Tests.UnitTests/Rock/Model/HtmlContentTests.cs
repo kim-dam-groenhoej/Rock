@@ -1,25 +1,27 @@
 ﻿using Rock.Model;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rock.Tests.UnitTests;
 
 namespace Rock.Tests.Rock.Model
 {
+    [TestClass]
     public class HtmlContentTests
     {
         /// <summary>
         /// Should perform a shallow copy of a HtmlContent object, resulting in a new HtmlContent.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ShallowClone()
         {
             var html = new HtmlContent { Content = "Foo" };
             var result = html.Clone( false );
-            Assert.Equal( result.Content, html.Content );
+            Assert.AreEqual( result.Content, html.Content );
         }
 
         /// <summary>
         /// Should take a JSON string and copy its contents to a Rock.Model.HtmlContent instance
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void Clone()
         {
             var obj = new HtmlContent
@@ -30,25 +32,25 @@ namespace Rock.Tests.Rock.Model
 
             var json = obj.ToJson();
             var htmlContent = HtmlContent.FromJson( json );
-            Assert.Equal( obj.EntityValue, htmlContent.EntityValue );
-            Assert.Equal( obj.IsApproved, htmlContent.IsApproved );
+            Assert.AreEqual( obj.EntityValue, htmlContent.EntityValue );
+            Assert.AreEqual( obj.IsApproved, htmlContent.IsApproved );
         }
 
         /// <summary>
         /// Should serialize a HtmlContent into a non-empty string.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ToJson()
         {
             var html = new HtmlContent { Content = "Foo" };
             var result = html.ToJson();
-            Assert.NotEmpty( result );
+            Assert.That.IsNotEmpty( result );
         }
 
         /// <summary>
         /// Shoulds serialize a HtmlContent into a JSON string.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ExportJson()
         {
             var html = new HtmlContent
@@ -58,7 +60,7 @@ namespace Rock.Tests.Rock.Model
 
             var result = html.ToJson();
             const string key = "\"Content\":\"Foo\"";
-            Assert.NotEqual( result.IndexOf( key ), -1 );
+            Assert.AreNotEqual( result.IndexOf( key ), -1 );
         }
     }
 }

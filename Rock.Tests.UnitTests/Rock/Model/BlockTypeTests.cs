@@ -1,65 +1,67 @@
 ﻿using Rock.Model;
 using System.Collections.Generic;
 using System.Linq;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rock.Tests.UnitTests;
 
 namespace Rock.Tests.Rock.Model
 {
+    [TestClass]
     public class BlockTypeTests
     {
         /// <summary>
         /// Should perform a shallow copy of a BlockType object, resulting in a new BlockType.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ShallowClone()
         {
             var blockType = new BlockType { Name = "some block type" };
             var result = blockType.Clone( false );
-            Assert.Equal( result.Name, blockType.Name );
+            Assert.AreEqual( result.Name, blockType.Name );
         }
 
         /// <summary>
         /// Should perform a copy of a BlockType, including its collection of Blocks.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void Clone()
         {
             var blockType = new BlockType();
             blockType.Blocks.Add( new Block() );
             var result = blockType.Clone() as BlockType;
-            Assert.NotNull( result );
+            Assert.IsNotNull( result );
             // TODO: Fix Clone() to include all child objects
-            //Assert.NotNull( result.Blocks );
-            //Assert.NotEmpty( result.Blocks );
+            //Assert.IsNotNull( result.Blocks );
+            //Assert.That.IsNotEmpty( result.Blocks );
         }
 
         /// <summary>
         /// Should serialize a BlockType into a non-empty string.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ToJson()
         {
             var blockType = new BlockType { Name = "some block type" };
             var result = blockType.ToJson();
-            Assert.NotEmpty( result );
+            Assert.That.IsNotEmpty( result );
         }
 
         /// <summary>
         /// Should serialize a BlockType into a JSON string.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ExportJson()
         {
             var blockType = new BlockType { Name = "Foo" };
             var result = blockType.ToJson();
             const string key = "\"Name\":\"Foo\"";
-            Assert.NotEqual( result.IndexOf( key ), -1 );
+            Assert.AreNotEqual( result.IndexOf( key ), -1 );
         }
 
         /// <summary>
         /// Should deserialize a JSON string and restore a BlockType, including its Blocks
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ImportBlocks()
         {
             var obj = new
@@ -85,11 +87,11 @@ namespace Rock.Tests.Rock.Model
             var json = obj.ToJson();
             var blockType = BlockType.FromJson( json );
             var blocks = blockType.Blocks;
-            Assert.NotNull( blockType );
+            Assert.IsNotNull( blockType );
             // TODO: Fix Clone() to include all child objects
-            //Assert.NotNull( blocks );
-            //Assert.NotEmpty( blocks );
-            //Assert.Equal( blocks.First().Name, obj.Blocks[0].Name );
+            //Assert.IsNotNull( blocks );
+            //Assert.That.IsNotEmpty( blocks );
+            //Assert.AreEqual( blocks.First().Name, obj.Blocks[0].Name );
         }
     }
 }

@@ -3,39 +3,41 @@ using Rock.Web.Cache;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rock.Tests.UnitTests;
 
 namespace Rock.Tests.Rock.Model
 {
+    [TestClass]
     public class PageTests
     {
         /// <summary>
         /// Should perform a shallow copy of a Page object, resulting in a new Page.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ShallowClone()
         {
             var page = new Page { InternalName = "SomePage" };
             var result = page.Clone( false );
-            Assert.Equal( result.InternalName, page.InternalName );
+            Assert.AreEqual( result.InternalName, page.InternalName );
         }
 
         /// <summary>
         /// Should perform a copy of a Page, including its collection of child Pages.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void CloneChildren()
         {
             var children = new List<Page> { new Page() };
             var parent = new Page { Pages = children };
             var result = parent.Clone() as Page;
-            Assert.NotEmpty( result.Pages );
+            Assert.That.IsNotEmpty( result.Pages );
         }
 
         /// <summary>
         /// Should perform a copy of a Page, including any child Pages, recursively.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void CloneChildrenRecursively()
         {
             var parent = new Page();
@@ -44,64 +46,64 @@ namespace Rock.Tests.Rock.Model
             parent.Pages = new List<Page> { child };
             child.Pages = new List<Page> { grandchild };
             var result = parent.Clone() as Page;
-            Assert.NotEmpty( result.Pages );
-            Assert.NotEmpty( result.Pages.FirstOrDefault().Pages );
+            Assert.That.IsNotEmpty( result.Pages );
+            Assert.That.IsNotEmpty( result.Pages.FirstOrDefault().Pages );
         }
 
         /// <summary>
         /// Should perform a copy of a Page, including its collection of Blocks.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void CloneBlocks()
         {
             var page = new Page { Blocks = new List<Block>() };
             page.Blocks.Add( new Block() );
             var result = page.Clone() as Page;
-            Assert.NotNull( result.Blocks );
-            Assert.NotEmpty( result.Blocks );
+            Assert.IsNotNull( result.Blocks );
+            Assert.That.IsNotEmpty( result.Blocks );
         }
 
         /// <summary>
         /// Should perform a copy of a Page, including its collection of PageRoutes.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ClonePageRoutes()
         {
             var page = new Page { PageRoutes = new List<PageRoute>() };
             page.PageRoutes.Add( new PageRoute() );
             var result = page.Clone() as Page;
-            Assert.NotNull( result.PageRoutes );
-            Assert.NotEmpty( result.PageRoutes );
+            Assert.IsNotNull( result.PageRoutes );
+            Assert.That.IsNotEmpty( result.PageRoutes );
         }
 
         /// <summary>
         /// Should perform a copy of a Page, including its collection of PageContexts.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ClonePageContexts()
         {
             var page = new Page { PageContexts = new List<PageContext>() };
             page.PageContexts.Add( new PageContext() );
             var result = page.Clone() as Page;
-            Assert.NotNull( result.PageContexts );
-            Assert.NotEmpty( result.PageContexts );
+            Assert.IsNotNull( result.PageContexts );
+            Assert.That.IsNotEmpty( result.PageContexts );
         }
 
         /// <summary>
         /// Should serialize a Page into a non-empty string.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ToJson()
         {
             var page = new Page();
             var result = page.ToJson();
-            Assert.NotEmpty( result );
+            Assert.That.IsNotEmpty( result );
         }
 
         /// <summary>
         /// Shoulds serialize a Page into a JSON string.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ExportJson()
         {
             var page = new Page
@@ -111,13 +113,13 @@ namespace Rock.Tests.Rock.Model
 
             var result = page.ToJson();
             const string key = "\"PageTitle\":\"FooPage\"";
-            Assert.NotEqual( result.IndexOf( key ), -1 );
+            Assert.AreNotEqual( result.IndexOf( key ), -1 );
         }
 
         /// <summary>
         /// Should serialize a Pages collection of child Pages in the JSON string.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ExportChildPages()
         {
             var page = new Page
@@ -129,13 +131,13 @@ namespace Rock.Tests.Rock.Model
             var result = page.ToJson();
             result = result.Substring( result.IndexOf( "\"Pages\":" ) + 7 );
             const string key = "\"PageTitle\":\"BarPage\"";
-            Assert.NotEqual( result.IndexOf( key ), -1 );
+            Assert.AreNotEqual( result.IndexOf( key ), -1 );
         }
 
         /// <summary>
         /// Should recursively serialize a Pages collection of child Pages in the JSON string.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ExportChildPagesRecursively()
         {
             var parent = new Page { PageTitle = "Parent" };
@@ -147,15 +149,15 @@ namespace Rock.Tests.Rock.Model
             const string parentKey = "\"PageTitle\":\"Parent\"";
             const string childKey = "\"PageTitle\":\"Child\"";
             const string grandChildKey = "\"PageTitle\":\"Grandchild\"";
-            Assert.NotEqual( result.IndexOf( parentKey ), -1 );
-            Assert.NotEqual( result.IndexOf( childKey ), -1 );
-            Assert.NotEqual( result.IndexOf( grandChildKey ), -1 );
+            Assert.AreNotEqual( result.IndexOf( parentKey ), -1 );
+            Assert.AreNotEqual( result.IndexOf( childKey ), -1 );
+            Assert.AreNotEqual( result.IndexOf( grandChildKey ), -1 );
         }
 
         /// <summary>
         /// Should take a JSON string and copy its contents to a Rock.Model.Page instance
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void FromJson()
         {
             var obj = new Page
@@ -166,14 +168,14 @@ namespace Rock.Tests.Rock.Model
 
             string json = obj.ToJson();
             var page = Page.FromJson( json );
-            Assert.Equal( obj.InternalName, page.InternalName );
-            Assert.Equal( obj.IsSystem, page.IsSystem );
+            Assert.AreEqual( obj.InternalName, page.InternalName );
+            Assert.AreEqual( obj.IsSystem, page.IsSystem );
         }
 
         /// <summary>
         /// Should deserialize a JSON string and restore a Page's collection of child Pages.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ImportJson()
         {
             var obj = new Page { InternalName = "Parent" };
@@ -181,15 +183,15 @@ namespace Rock.Tests.Rock.Model
 
             var json = obj.ToJson();
             var page = Page.FromJson( json );
-            Assert.NotNull( page.Pages );
-            Assert.NotEmpty( page.Pages );
-            Assert.Equal( page.Pages.First().InternalName, obj.Pages.First().InternalName );
+            Assert.IsNotNull( page.Pages );
+            Assert.That.IsNotEmpty( page.Pages );
+            Assert.AreEqual( page.Pages.First().InternalName, obj.Pages.First().InternalName );
         }
 
         /// <summary>
         /// Should deserialize a JSON string and restore a Page's collection of child Pages, recursively.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ImportJsonRecursively()
         {
             const string PAGE_NAME = "Child Page";
@@ -204,45 +206,45 @@ namespace Rock.Tests.Rock.Model
             var json = grandparentPage.ToJson();
             var page = Page.FromJson( json );
             var childPages = page.Pages.First().Pages;
-            Assert.NotNull( childPages );
-            Assert.NotEmpty( childPages );
-            Assert.Equal( childPages.First().InternalName, PAGE_NAME );
+            Assert.IsNotNull( childPages );
+            Assert.That.IsNotEmpty( childPages );
+            Assert.AreEqual( childPages.First().InternalName, PAGE_NAME );
         }
 
         /// <summary>
         /// Should deserialize a JSON string and restore a Page's collection of child Blocks.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ImportBlocks()
         {
             var obj = new Page { InternalName = "Some Page" };
             obj.Blocks.Add( new Block { Name = "Some Block" } );
             var json = obj.ToJson();
             var page = Page.FromJson( json );
-            Assert.NotNull( page.Blocks );
-            Assert.NotEmpty( page.Blocks );
-            Assert.Equal( page.Blocks.First().Name, obj.Blocks.First().Name );
+            Assert.IsNotNull( page.Blocks );
+            Assert.That.IsNotEmpty( page.Blocks );
+            Assert.AreEqual( page.Blocks.First().Name, obj.Blocks.First().Name );
         }
 
         /// <summary>
         /// Should deserialize a JSON string and restore a Page's collection of child PageRoutes.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ImportPageRoutes()
         {
             var obj = new Page { InternalName = "Some Page" };
             obj.PageRoutes.Add( new PageRoute { Route = "/some/route" } );
             var json = obj.ToJson();
             var page = Page.FromJson( json );
-            Assert.NotNull( page.PageRoutes );
-            Assert.NotEmpty( page.PageRoutes );
-            Assert.Equal( page.PageRoutes.First().Route, obj.PageRoutes.First().Route );
+            Assert.IsNotNull( page.PageRoutes );
+            Assert.That.IsNotEmpty( page.PageRoutes );
+            Assert.AreEqual( page.PageRoutes.First().Route, obj.PageRoutes.First().Route );
         }
 
         /// <summary>
         /// Should deserialize a JSON string and restore a Page's collection of child PageContexts.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ImportPageContexts()
         {
             Random random = new Random();
@@ -251,15 +253,15 @@ namespace Rock.Tests.Rock.Model
             obj.PageContexts.Add( new PageContext { PageId = id } );
             var json = obj.ToJson();
             var page = Page.FromJson( json );
-            Assert.NotNull( page.PageContexts );
-            Assert.NotEmpty( page.PageContexts );
-            Assert.Equal( page.PageContexts.First().PageId, id );
+            Assert.IsNotNull( page.PageContexts );
+            Assert.That.IsNotEmpty( page.PageContexts );
+            Assert.AreEqual( page.PageContexts.First().PageId, id );
         }
 
         /// <summary>
         /// Should deserialize a JSON string and restore a Page's collection of Attributes.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ImportAttributes()
         {
             var obj = new Page
@@ -272,14 +274,14 @@ namespace Rock.Tests.Rock.Model
             var json = obj.ToJson().Replace( "\"foobar\":null", "\"foobar\":{}" );
 
             var page = Page.FromJson( json );
-            Assert.NotNull( page.Attributes );
-            Assert.NotEmpty( page.Attributes );
+            Assert.IsNotNull( page.Attributes );
+            Assert.That.IsNotEmpty( page.Attributes );
         }
 
         /// <summary>
         /// Should deserialize a JSON string and restore a Page's collection of AttributeValues.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ImportAttributeValues()
         {
             var obj = new Page
@@ -293,9 +295,9 @@ namespace Rock.Tests.Rock.Model
 
             var json = obj.ToJson();
             var page = Page.FromJson( json );
-            Assert.NotNull( page.AttributeValues );
-            Assert.NotEmpty( page.AttributeValues );
-            Assert.Equal( "baz", page.AttributeValues.First().Value.Value );
+            Assert.IsNotNull( page.AttributeValues );
+            Assert.That.IsNotEmpty( page.AttributeValues );
+            Assert.AreEqual( "baz", page.AttributeValues.First().Value.Value );
         }
     }
 }

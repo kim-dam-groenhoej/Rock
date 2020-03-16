@@ -1,37 +1,39 @@
 ﻿using Rock.Model;
 using System;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rock.Tests.UnitTests;
 
 namespace Rock.Tests.Rock.Model
 {
+    [TestClass]
     public class PageRouteTests
     {
         /// <summary>
         /// Should perform a shallow copy of a PageRoute object, resulting in a new PageRoute.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ShallowClone()
         {
             var pageRoute = new PageRoute { Guid = Guid.NewGuid() };
             var result = pageRoute.Clone( false );
-            Assert.Equal( result.Guid, pageRoute.Guid );
+            Assert.AreEqual( result.Guid, pageRoute.Guid );
         }
 
         /// <summary>
         /// Should serialize a PageRoute into a non-empty string.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ToJson()
         {
             var pageRoute = new PageRoute { Guid = Guid.NewGuid() };
             dynamic result = pageRoute.ToJson();
-            Assert.NotEmpty( result );
+            Assert.That.IsNotEmpty( result as string );
         }
 
         /// <summary>
         /// Shoulds serialize a PageRoute into a JSON string.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ExportJson()
         {
             var guid = Guid.NewGuid();
@@ -42,13 +44,13 @@ namespace Rock.Tests.Rock.Model
 
             var result = pageRoute.ToJson();
             var key = string.Format( "\"Guid\":\"{0}\"", guid );
-            Assert.NotEqual( result.IndexOf( key ), -1 );
+            Assert.AreNotEqual( result.IndexOf( key ), -1 );
         }
 
         /// <summary>
         /// Should take a JSON string and copy its contents to a Rock.Model.PageRoute instance
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ImportJson()
         {
             var obj = new PageRoute
@@ -59,8 +61,8 @@ namespace Rock.Tests.Rock.Model
 
             var json = obj.ToJson();
             var pageRoute = PageRoute.FromJson( json );
-            Assert.Equal( obj.Route, pageRoute.Route );
-            Assert.Equal( obj.IsSystem, pageRoute.IsSystem );
+            Assert.AreEqual( obj.Route, pageRoute.Route );
+            Assert.AreEqual( obj.IsSystem, pageRoute.IsSystem );
         }
     }
 }

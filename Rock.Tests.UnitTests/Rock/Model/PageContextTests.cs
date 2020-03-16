@@ -1,37 +1,39 @@
 ﻿using Rock.Model;
 using System;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rock.Tests.UnitTests;
 
 namespace Rock.Tests.Rock.Model
 {
+    [TestClass]
     public class PageContextTests
     {
         /// <summary>
         /// Should perform a shallow copy of a PageContext object, resulting in a new PageContext.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ShallowClone()
         {
             var pageContext = new PageContext { Guid = Guid.NewGuid() };
             var result = pageContext.Clone( false );
-            Assert.Equal( result.Guid, pageContext.Guid );
+            Assert.AreEqual( result.Guid, pageContext.Guid );
         }
 
         /// <summary>
         /// Should serialize a PageContext into a non-empty string.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ToJson()
         {
             var pageContext = new PageContext { Guid = Guid.NewGuid() };
             var result = pageContext.ToJson();
-            Assert.NotEmpty( result );
+            Assert.That.IsNotEmpty( result );
         }
 
         /// <summary>
         /// Shoulds serialize a PageContext into a JSON string.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ExportJson()
         {
             var guid = Guid.NewGuid();
@@ -42,13 +44,13 @@ namespace Rock.Tests.Rock.Model
 
             var result = pageContext.ToJson();
             var key = string.Format( "\"Guid\":\"{0}\"", guid );
-            Assert.NotEqual( result.IndexOf( key ), -1 );
+            Assert.AreNotEqual( result.IndexOf( key ), -1 );
         }
 
         /// <summary>
         /// Should take a JSON string and copy its contents to a Rock.Model.PageContext instance
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void ImportJson()
         {
             var obj = new PageContext
@@ -59,8 +61,8 @@ namespace Rock.Tests.Rock.Model
 
             var json = obj.ToJson();
             var pageContext = PageContext.FromJson( json );
-            Assert.Equal( obj.Guid, pageContext.Guid );
-            Assert.Equal( obj.IsSystem, pageContext.IsSystem );
+            Assert.AreEqual( obj.Guid, pageContext.Guid );
+            Assert.AreEqual( obj.IsSystem, pageContext.IsSystem );
         }
     }
 }

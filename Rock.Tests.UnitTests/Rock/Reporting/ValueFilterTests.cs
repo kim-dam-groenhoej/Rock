@@ -1,9 +1,10 @@
-﻿using Xunit;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rock.Model;
 using Rock.Web.UI.Controls;
 
 namespace Rock.Tests.Rock.Reporting
 {
+    [TestClass]
     public class ValueFilterTests
     {
         private readonly SampleData Sample = new SampleData
@@ -20,7 +21,7 @@ namespace Rock.Tests.Rock.Reporting
         /// <summary>
         /// Filter Test: String contains value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringContains()
         {
             var filter = new ComparisonFilterExpression
@@ -29,13 +30,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "brown"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// Filter Test: String contains value of differing case
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringContainsInsensitive()
         {
             var filter = new ComparisonFilterExpression
@@ -44,13 +45,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "BROWN"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// Filter Test: String does not contain value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringDoesNotContain()
         {
             var filter = new ComparisonFilterExpression
@@ -59,13 +60,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "jason"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// Filter Test: String does not contain value of differing case
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringDoesNotContainInsensitive()
         {
             var filter = new ComparisonFilterExpression
@@ -74,13 +75,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "JASON"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// Filter Test: String ends with value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringEndsWith()
         {
             var filter = new ComparisonFilterExpression
@@ -89,13 +90,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "dog"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// Filter Test: String ends with value of differing case
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringEndsWithInsensitive()
         {
             var filter = new ComparisonFilterExpression
@@ -104,13 +105,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "DOG"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// Filter Test: String equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringEqualTo()
         {
             var filter = new ComparisonFilterExpression
@@ -119,13 +120,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = Sample.Text
             };
 
-            Assert.True( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// Filter Test: String equal to value of differing case
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringEqualToInsensitive()
         {
             var filter = new ComparisonFilterExpression
@@ -134,13 +135,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = Sample.Text.ToUpper()
             };
 
-            Assert.True( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// Filter Test: String is blank
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringIsBlank()
         {
             var filter = new ComparisonFilterExpression
@@ -149,13 +150,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = string.Empty
             };
 
-            Assert.True( filter.Evaluate( Sample, "EmptyText" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "EmptyText" ) );
         }
 
         /// <summary>
         /// Filter Test: String is blank (null string check)
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringIsBlankNull()
         {
             var filter = new ComparisonFilterExpression
@@ -164,13 +165,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = string.Empty
             };
 
-            Assert.True( filter.Evaluate( Sample, "NullText" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "NullText" ) );
         }
 
         /// <summary>
         /// Filter Test: String is not blank
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringIsNotBlank()
         {
             var filter = new ComparisonFilterExpression
@@ -179,13 +180,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = string.Empty
             };
 
-            Assert.True( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// Filter Test: String is not equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringNotEqualTo()
         {
             var filter = new ComparisonFilterExpression
@@ -194,13 +195,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "Jim Bob"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// Filter Test: String is not equal to value of differing case
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringNotEqualToInsensitive()
         {
             var filter = new ComparisonFilterExpression
@@ -209,13 +210,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "JIM BOB"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// Filter Test: String matches regular expression
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringRegularExpression()
         {
             var filter = new ComparisonFilterExpression
@@ -224,13 +225,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "^The.*dog$"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// Filter Test: String matches regular expression of differing case
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringRegularExpressionInsensitive()
         {
             var filter = new ComparisonFilterExpression
@@ -239,13 +240,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "^THE.*DOG$"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// Filter Test: String starts with value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringStartsWith()
         {
             var filter = new ComparisonFilterExpression
@@ -254,13 +255,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "The quick"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// Filter Test: String starts with value of differing case
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringStartsWithInsensitive()
         {
             var filter = new ComparisonFilterExpression
@@ -269,7 +270,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "THE QUICK"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         #endregion
@@ -279,7 +280,7 @@ namespace Rock.Tests.Rock.Reporting
         /// <summary>
         /// False Filter Test: String NOT contains value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringContainsFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -288,13 +289,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "invaliddata"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// False Filter Test: String NOT contains value of differing case
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringContainsInsensitiveFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -303,13 +304,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "INVALIDDATA"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// False Filter Test: String DOES contain value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringDoesNotContainFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -318,13 +319,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "quick"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// False Filter Test: String DOES contain value of differing case
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringDoesNotContainInsensitiveFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -333,13 +334,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "QUICK"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// False Filter Test: String NOT ends with value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringEndsWithFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -348,13 +349,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "invaliddata"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// False Filter Test: String NOT ends with value of differing case
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringEndsWithInsensitiveFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -363,13 +364,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "INVALIDDATA"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// False Filter Test: String NOT equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringEqualToFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -378,13 +379,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "invaliddata"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// False Filter Test: String NOT equal to value of differing case
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringEqualToInsensitiveFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -393,13 +394,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "invaliddata"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// False Filter Test: String is NOT blank
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringIsBlankFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -408,13 +409,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = string.Empty
             };
 
-            Assert.False( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// False Filter Test: String IS blank
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringIsNotBlankFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -423,13 +424,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = string.Empty
             };
 
-            Assert.False( filter.Evaluate( Sample, "EmptyText" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "EmptyText" ) );
         }
 
         /// <summary>
         /// False Filter Test: String IS blank (null string check)
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringIsNotBlankNullFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -438,13 +439,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = string.Empty
             };
 
-            Assert.False( filter.Evaluate( Sample, "NullText" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "NullText" ) );
         }
 
         /// <summary>
         /// False Filter Test: String IS equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringNotEqualToFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -453,13 +454,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = Sample.Text
             };
 
-            Assert.False( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// False Filter Test: String IS equal to value of differing case
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringNotEqualToInsensitiveFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -468,13 +469,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = Sample.Text.ToUpper()
             };
 
-            Assert.False( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// False Filter Test: String NOT matches regular expression
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringRegularExpressionFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -483,13 +484,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "^Dog.*the$"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// False Filter Test: String NOT matches regular expression of differing case
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringRegularExpressionInsensitiveFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -498,13 +499,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "^DOG.*THE$"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// False Filter Test: String NOT starts with value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringStartsWithFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -513,13 +514,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "brown fox"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
         /// False Filter Test: String NOT starts with value of differing case
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void StringStartsWithInsensitiveFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -528,7 +529,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "BROWN FOX"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Text" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         #endregion
@@ -538,7 +539,7 @@ namespace Rock.Tests.Rock.Reporting
         /// <summary>
         /// Filter Test: Integer is between two values
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void IntegerBetween()
         {
             var filter = new ComparisonFilterExpression
@@ -548,13 +549,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value2 = "50"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Integer" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
         /// Filter Test: Integer is equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void IntegerEqualTo()
         {
             var filter = new ComparisonFilterExpression
@@ -563,13 +564,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Integer" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
         /// Filter Test: Integer is greater than value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void IntegerGreaterThan()
         {
             var filter = new ComparisonFilterExpression
@@ -578,13 +579,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "30"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Integer" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
         /// Filter Test: Integer is greater than or equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void IntegerGreaterThanOrEqualTo()
         {
             var filter = new ComparisonFilterExpression
@@ -593,13 +594,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "30"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Integer" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
         /// Filter Test: Integer is greater than or equal to value (value == integer)
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void IntegerGreaterThanOrEqualToEquals()
         {
             var filter = new ComparisonFilterExpression
@@ -608,13 +609,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Integer" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
         /// Filter Test: Integer is less than value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void IntegerLessThan()
         {
             var filter = new ComparisonFilterExpression
@@ -623,13 +624,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "50"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Integer" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
         /// Filter Test: Integer is less than or equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void IntegerLessThanOrEqualTo()
         {
             var filter = new ComparisonFilterExpression
@@ -638,13 +639,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "50"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Integer" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
         /// Filter Test: Integer is less than or equal to value (value == integer)
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void IntegerLessThanOrEqualToEquals()
         {
             var filter = new ComparisonFilterExpression
@@ -653,13 +654,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Integer" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
         /// Filter Test: Integer is not equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void IntegerNotEqualTo()
         {
             var filter = new ComparisonFilterExpression
@@ -668,7 +669,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "30"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Integer" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Integer" ) );
         }
 
         #endregion
@@ -678,7 +679,7 @@ namespace Rock.Tests.Rock.Reporting
         /// <summary>
         /// False Filter Test: Integer is NOT between two values
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void IntegerBetweenFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -688,13 +689,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value2 = "50"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Integer" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
         /// False Filter Test: Integer is NOT equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void IntegerEqualToFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -703,13 +704,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "30"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Integer" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
         /// False Filter Test: Integer is NOT greater than value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void IntegerGreaterThanFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -718,13 +719,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "50"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Integer" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
         /// False Filter Test: Integer is NOT greater than or equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void IntegerGreaterThanOrEqualToFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -733,13 +734,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "50"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Integer" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
         /// False Filter Test: Integer is NOT less than value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void IntegerLessThanFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -748,13 +749,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "30"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Integer" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
         /// False Filter Test: Integer is NOT less than or equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void IntegerLessThanOrEqualToFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -763,13 +764,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "30"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Integer" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
         /// False Filter Test: Integer IS equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void IntegerNotEqualToFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -778,7 +779,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Integer" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Integer" ) );
         }
 
         #endregion
@@ -788,7 +789,7 @@ namespace Rock.Tests.Rock.Reporting
         /// <summary>
         /// Filter Test: Double is between two values
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void DoubleBetween()
         {
             var filter = new ComparisonFilterExpression
@@ -798,13 +799,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value2 = "42.6"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Double" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
         /// Filter Test: Double is equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void DoubleEqualTo()
         {
             var filter = new ComparisonFilterExpression
@@ -813,13 +814,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42.42"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Double" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
         /// Filter Test: Double is greater than value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void DoubleGreaterThan()
         {
             var filter = new ComparisonFilterExpression
@@ -828,13 +829,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42.1"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Double" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
         /// Filter Test: Double is greater than or equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void DoubleGreaterThanOrEqualTo()
         {
             var filter = new ComparisonFilterExpression
@@ -843,13 +844,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42.1"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Double" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
         /// Filter Test: Double is greater than or equal to value (value == Double)
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void DoubleGreaterThanOrEqualToEquals()
         {
             var filter = new ComparisonFilterExpression
@@ -858,13 +859,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42.42"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Double" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
         /// Filter Test: Double is less than value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void DoubleLessThan()
         {
             var filter = new ComparisonFilterExpression
@@ -873,13 +874,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42.6"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Double" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
         /// Filter Test: Double is less than or equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void DoubleLessThanOrEqualTo()
         {
             var filter = new ComparisonFilterExpression
@@ -888,13 +889,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42.6"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Double" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
         /// Filter Test: Double is less than or equal to value (value == Double)
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void DoubleLessThanOrEqualToEquals()
         {
             var filter = new ComparisonFilterExpression
@@ -903,13 +904,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42.42"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Double" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
         /// Filter Test: Double is not equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void DoubleNotEqualTo()
         {
             var filter = new ComparisonFilterExpression
@@ -918,7 +919,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42.1"
             };
 
-            Assert.True( filter.Evaluate( Sample, "Double" ) );
+            Assert.IsTrue( filter.Evaluate( Sample, "Double" ) );
         }
 
         #endregion
@@ -928,7 +929,7 @@ namespace Rock.Tests.Rock.Reporting
         /// <summary>
         /// False Filter Test: Double is NOT between two values
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void DoubleBetweenFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -938,13 +939,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value2 = "48.6"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Double" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
         /// False Filter Test: Double is NOT equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void DoubleEqualToFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -953,13 +954,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "45.1"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Double" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
         /// False Filter Test: Double is NOT greater than value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void DoubleGreaterThanFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -968,13 +969,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "45.1"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Double" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
         /// False Filter Test: Double is NOT greater than or equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void DoubleGreaterThanOrEqualToFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -983,13 +984,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "45.1"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Double" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
         /// False Filter Test: Double is NOT less than value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void DoubleLessThanFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -998,13 +999,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "41.4"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Double" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
         /// False Filter Test: Double is NOT less than or equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void DoubleLessThanOrEqualToFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -1013,13 +1014,13 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "41.4"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Double" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
         /// False Filter Test: Double IS equal to value
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void DoubleNotEqualToFalse()
         {
             var filter = new ComparisonFilterExpression
@@ -1028,7 +1029,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42.42"
             };
 
-            Assert.False( filter.Evaluate( Sample, "Double" ) );
+            Assert.IsFalse( filter.Evaluate( Sample, "Double" ) );
         }
 
         #endregion

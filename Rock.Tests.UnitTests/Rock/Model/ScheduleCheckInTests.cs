@@ -3,70 +3,71 @@ using Rock.Model;
 using System;
 using System.Data.Entity.Spatial;
 using System.IO;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Rock.Tests.Rock.Model
 {
+    [TestClass]
     public class ScheduleCheckInTests
     {
         /// <summary>
         /// Checks for valid CheckOut condition involving a schedule that has a start time at 11PM
         /// with an end time on 2AM the next day.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void CheckOutTimeIsWithinWindowOnAScheduleThatSpillsToASecondDay()
         {
             // Sunday, Thursday 11AM to 2AM
             var schedule = ScheduleWithCheckOut11PMto2AM();
 
-            Assert.True( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "8/8/2019 11:01PM" ) ) );
-            Assert.True( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "8/8/2019 1:00AM" ) ) );
+            Assert.IsTrue( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "2019-08-08 11:01PM" ) ) );
+            Assert.IsTrue( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "2019-08-08 1:00AM" ) ) );
         }
 
         /// <summary>
         /// Checks for no CheckOut condition involving a schedule that has a start time at 11PM
         /// with an end time on 2AM the next day.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void CheckOutTimeIsOutsideWindowOnAScheduleThatSpillsToASecondDay()
         {
             // Sunday, Thursday 11AM to 2AM
             var schedule = ScheduleWithCheckOut11PMto2AM();
 
-            Assert.False( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "8/8/2019 10:45PM" ) ) );
-            Assert.False( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "8/8/2019 3:00AM" ) ) );
+            Assert.IsFalse( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "2019-08-08 10:45PM" ) ) );
+            Assert.IsFalse( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "2019-08-08 3:00AM" ) ) );
         }
 
         /// <summary>
         /// Checks for valid CheckOut condition involving a standard 9AM to 10AM schedule with a check-in
         /// that starts 30 minutes before start of schedule and *check-in* ends 30 minutes after start of schedule.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void CheckOutTimeIsWithinWindowOnASameDay()
         {
             // Sunday 9AM to 10AM (check-in starts 30 min before start time and ends 30 minutes after start time)
             var schedule = Standard9AMto10AMSchedule();
 
-            Assert.True( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "8/4/2019 8:31 AM" ) ) );
-            Assert.True( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "8/4/2019 9:00 AM" ) ) );
-            Assert.True( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "8/4/2019 10:00:00 AM" ) ) ); // hurry!!!
-            Assert.True( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "8/4/2019 9:55 AM" ) ) );
-            Assert.True( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "8/4/2019 9:59:59AM" ) ) );
+            Assert.IsTrue( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "2019-08-04 8:31 AM" ) ) );
+            Assert.IsTrue( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "2019-08-04 9:00 AM" ) ) );
+            Assert.IsTrue( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "2019-08-04 10:00:00 AM" ) ) ); // hurry!!!
+            Assert.IsTrue( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "2019-08-04 9:55 AM" ) ) );
+            Assert.IsTrue( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "2019-08-04 9:59:59AM" ) ) );
         }
 
         /// <summary>
         /// Checks for no CheckOut condition involving a standard 9AM to 10AM schedule with a check-in
         /// that starts 30 minutes before start of schedule and *check-in* ends 30 minutes after start of schedule.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void CheckOutTimeIsOutsideWindowOnASameDay()
         {
             // Sunday 9AM to 10AM (check-in starts 30 min before start time and ends 30 minutes after start time)
             var schedule = Standard9AMto10AMSchedule();
 
-            Assert.False( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "8/4/2019 8:29:59 AM" ) ) );
-            Assert.False( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "8/4/2019 10:00:01 AM" ) ) ); // just missed it!
-            Assert.False( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "8/4/2019 9:05 PM" ) ) );
+            Assert.IsFalse( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "2019-08-04 8:29:59 AM" ) ) );
+            Assert.IsFalse( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "2019-08-04 10:00:01 AM" ) ) ); // just missed it!
+            Assert.IsFalse( schedule.WasScheduleOrCheckInActiveForCheckOut( DateTime.Parse( "2019-08-04 9:05 PM" ) ) );
         }
 
         #region Helper Methods - Sample Schedules

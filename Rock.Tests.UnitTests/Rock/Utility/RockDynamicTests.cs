@@ -1,99 +1,102 @@
 ﻿using System;
+using Microsoft.CSharp.RuntimeBinder;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rock.Utility;
-using Xunit;
 
 namespace Rock.Tests.Rock.Utility
 {
+    [TestClass]
     public class RockDynamicTests
     {
-        [Fact]
+        [TestMethod]
         public void StoreKeyGetKeyValueMatches()
         {
             dynamic rockDynamic = new RockDynamic();
             rockDynamic["A"] = 123;
-            Assert.Equal( 123, rockDynamic["A"] );
+            Assert.AreEqual( 123, rockDynamic["A"] );
         }
 
-        [Fact]
+        [TestMethod]
         public void SetPropertyGetKeyValueMatches()
         {
             dynamic rockDynamic = new RockDynamic();
             rockDynamic.A = 123;
-            Assert.Equal( 123, rockDynamic["A"] );
+            Assert.AreEqual( 123, rockDynamic["A"] );
         }
 
-        [Fact]
+        [TestMethod]
         public void StoreKeyGetPropertyValueMatches()
         {
             dynamic rockDynamic = new RockDynamic();
             rockDynamic["A"] = 123;
-            Assert.Equal( 123, rockDynamic.A );
+            Assert.AreEqual( 123, rockDynamic.A );
         }
 
-        [Fact]
+        [TestMethod]
         public void GetUnsetPropertyFails()
         {
             dynamic rockDynamic = new RockDynamic();
-            Assert.ThrowsAny<Exception>( () => rockDynamic.NotSet );
+
+            Assert.ThrowsException<RuntimeBinderException>( () => rockDynamic.NotSet );
         }
 
-        [Fact]
+        [TestMethod]
         public void SetPropertyContainsKey()
         {
             dynamic rockDynamic = new RockDynamic();
             rockDynamic.A = 123;
-            Assert.True( rockDynamic.ContainsKey( "A" ) );
+            Assert.IsTrue( rockDynamic.ContainsKey( "A" ) );
         }
 
-        [Fact]
+        [TestMethod]
         public void StoreKeyContainsKey()
         {
             dynamic rockDynamic = new RockDynamic();
             rockDynamic["A"] = 123;
 
-            Assert.True( rockDynamic.ContainsKey( "A" ) );
+            Assert.IsTrue( rockDynamic.ContainsKey( "A" ) );
         }
 
-        [Fact]
+        [TestMethod]
         public void ContainsKeyFailsForUnsetKey()
         {
             dynamic rockDynamic = new RockDynamic();
 
-            Assert.False( rockDynamic.ContainsKey( "A" ) );
+            Assert.IsFalse( rockDynamic.ContainsKey( "A" ) );
         }
 
-        [Fact]
+        [TestMethod]
         public void ContainsKeyValuePair()
         {
             dynamic rockDynamic = new RockDynamic();
             rockDynamic["A"] = 123;
 
-            Assert.True( rockDynamic.Contains( new System.Collections.Generic.KeyValuePair<string, object>( "A", 123 ) ) );
+            Assert.IsTrue( rockDynamic.Contains( new System.Collections.Generic.KeyValuePair<string, object>( "A", 123 ) ) );
         }
 
-        [Fact]
+        [TestMethod]
         public void ContainsKeyValuePairForDifferentValue()
         {
             dynamic rockDynamic = new RockDynamic();
             rockDynamic["A"] = 123;
 
-            Assert.False( rockDynamic.Contains( new System.Collections.Generic.KeyValuePair<string, object>( "A", 456 ) ) );
+            Assert.IsFalse( rockDynamic.Contains( new System.Collections.Generic.KeyValuePair<string, object>( "A", 456 ) ) );
         }
 
-        [Fact]
+        [TestMethod]
         public void StoreKeyIsCaseSensitive()
         {
             dynamic rockDynamic = new RockDynamic();
             rockDynamic["a"] = 123;
-            Assert.False( rockDynamic.ContainsKey( "A" ) );
+            Assert.IsFalse( rockDynamic.ContainsKey( "A" ) );
         }
 
-        [Fact]
+        [TestMethod]
         public void SetPropertyIsCaseSensitive()
         {
             dynamic rockDynamic = new RockDynamic();
             rockDynamic.a = 123;
-            Assert.ThrowsAny<Exception>( () => rockDynamic.A );
+            Assert.ThrowsException<RuntimeBinderException>( () => rockDynamic.A );
         }
     }
 }
