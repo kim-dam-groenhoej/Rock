@@ -85,6 +85,7 @@
     <Compile Include="DotLiquid\TemplateTests.cs" />
     <Compile Include="Interactions\PageViewTests.cs" />
     <Compile Include="Lava\LegacyLavaUpdaterTest.cs" />
+    <Compile Include="ThirdPartyIntegrations\NcoaApi\TrueNcoaApiTests.cs" />
     <Compile Include="Utility\HttpSimulator.cs" />
     <Compile Include="Utility\ReflectionHelper.cs" />
     <Compile Include="Utility\SimulatedHttpRequest.cs" />
