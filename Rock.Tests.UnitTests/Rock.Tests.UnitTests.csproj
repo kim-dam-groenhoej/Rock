@@ -88,7 +88,6 @@
     <Compile Include="ExternalSupportClasses\ReflectionHelper.cs" />
     <Compile Include="ExternalSupportClasses\SimulatedHttpRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rock.Rest\Controllers\CodeGenerated\CommunicationControllerTests.cs" />
     <Compile Include="Rock\Lava\RockFiltersTests.cs" />
     <Compile Include="Rock\Lava\ShortcodeTests.cs" />
     <Compile Include="Rock\Model\BlockTests.cs" />
@@ -96,7 +95,6 @@
     <Compile Include="Rock\Model\StreakTypeServiceTests.cs" />
     <Compile Include="Rock\Model\ScheduleCheckInTests.cs" />
     <Compile Include="Rock\Model\HtmlContentTests.cs" />
-    <Compile Include="Rock\Model\DeviceTests.cs" />
     <Compile Include="Rock\Model\PageContextTests.cs" />
     <Compile Include="Rock\Model\PageRouteTests.cs" />
     <Compile Include="Rock\Model\PageTests.cs" />

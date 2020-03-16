@@ -4,7 +4,7 @@ using System.Data.Entity.Spatial;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rock.Tests.UnitTests;
 
-namespace Rock.Tests.Rock.Model
+namespace Rock.Tests.Integration.Model
 {
 
     public class DeviceTests
