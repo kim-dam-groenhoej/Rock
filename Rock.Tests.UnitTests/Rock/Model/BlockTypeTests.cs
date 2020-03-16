@@ -1,13 +1,12 @@
 ﻿using Rock.Model;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Rock.Tests.UnitTests;
+using Rock.Tests.Shared;
 
 namespace Rock.Tests.Rock.Model
 {
     [TestClass]
-    public class BlockTypeTests
+    public class BlockTypeTests : TestClassBase
     {
         /// <summary>
         /// Should perform a shallow copy of a BlockType object, resulting in a new BlockType.
@@ -43,7 +42,7 @@ namespace Rock.Tests.Rock.Model
         {
             var blockType = new BlockType { Name = "some block type" };
             var result = blockType.ToJson();
-            Assert.That.IsNotEmpty( result );
+            Assert.IsNotEmpty( result );
         }
 
         /// <summary>

@@ -1,10 +1,11 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rock.Tests.Shared;
 
 namespace Rock.Tests.Utility.ExtensionMethods
 {
     [TestClass]
-    public class StringExtensionsTest
+    public class StringExtensionsTest : TestClassBase
     {
         #region AsDoubleOrNull
 
@@ -35,7 +36,7 @@ namespace Rock.Tests.Utility.ExtensionMethods
         public void AsDouble_ValidDouble()
         {
             var output = @"3.141592".AsDoubleOrNull();
-            Assert.AreEqual( (double)3.141592d, output );
+            Assert.AreEqual( ( double ) 3.141592d, output );
         }
 
         /// <summary>
@@ -45,7 +46,7 @@ namespace Rock.Tests.Utility.ExtensionMethods
         public void AsDouble_ValidString()
         {
             var output = @"$3.14".AsDoubleOrNull();
-            Assert.AreEqual( (double)3.14d, output );
+            Assert.AreEqual( ( double ) 3.14d, output );
         }
 
         /// <summary>
@@ -120,7 +121,7 @@ namespace Rock.Tests.Utility.ExtensionMethods
             bool isValidUrl = url.IsValidUrl();
             Assert.IsFalse( isValidUrl );
         }
-        
+
         [TestMethod]
         public void IsValidUrl_DotChurch()
         {

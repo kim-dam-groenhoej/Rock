@@ -1,14 +1,12 @@
-﻿using Newtonsoft.Json;
-using Rock.Model;
+﻿using Rock.Model;
 using System;
-using System.Data.Entity.Spatial;
-using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rock.Tests.Shared;
 
 namespace Rock.Tests.Rock.Model
 {
     [TestClass]
-    public class ScheduleCheckInTests
+    public class ScheduleCheckInTests : TestClassBase
     {
         /// <summary>
         /// Checks for valid CheckOut condition involving a schedule that has a start time at 11PM

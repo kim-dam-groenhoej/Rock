@@ -12,12 +12,12 @@ using Newtonsoft.Json.Converters;
 using Rock.Lava;
 using Rock.Model;
 using Subtext.TestLibrary;
-using Rock.Tests.UnitTests;
+using Rock.Tests.Shared;
 
 namespace Rock.Tests.Rock.Lava
 {
     [TestClass]
-    public class RockFiltersTest
+    public class RockFiltersTest : TestClassBase
     {
         // A fake web-root Content folder for any tests that use the HTTP Context simulator
         private static string webContentFolder = string.Empty;
@@ -123,7 +123,7 @@ namespace Rock.Tests.Rock.Lava
         public void Text_RegExMatchValues_ShouldReturnMatchValues()
         {
             var output = RockFilters.RegExMatchValues( "Group 12345 has 54321 members", @"\d+" );
-            Assert.That.AreEqual( new List<string> { "12345", "54321" }, output );
+            Assert.AreEqual( new List<string> { "12345", "54321" }, output );
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Rock.Tests.Rock.Lava
         public void Text_RegExMatchValues_ShouldNotMatchValues()
         {
             var output = RockFilters.RegExMatchValues( "Group Decker has no members", @"\d+" );
-            Assert.That.AreEqual( new List<string>(), output );
+            Assert.AreEqual( new List<string>(), output );
         }
 
         /// <summary>
@@ -349,7 +349,7 @@ a comment --> sit amet</p>";
             var expectedOutput = Enumerable.Repeat( "Food", 2 ).ToList();
             var output = RockFilters.Times( "Food", 2 ) as IEnumerable<string>;
 
-            Assert.That.AreEqual( expectedOutput, output );
+            Assert.AreEqual( expectedOutput, output );
         }
 
         #endregion
@@ -639,7 +639,7 @@ a comment --> sit amet</p>";
         public void AsString_ValidTrueBoolean()
         {
             var output = RockFilters.AsString( true );
-            Assert.AreEqual(  "True", output );
+            Assert.AreEqual( "True", output );
         }
 
         /// <summary>
@@ -786,9 +786,9 @@ a comment --> sit amet</p>";
             using ( new HttpSimulator( "/", webContentFolder ).SimulateRequest() )
             {
                 dynamic output = RockFilters.Client( "Global", "browser" );
-                Assert.AreEqual( "Chrome", output.UserAgent.Family );
-                Assert.AreEqual( "68", output.UserAgent.Major );
-                Assert.AreEqual( "Windows 10", output.OS.Family );
+                Assert.AreEqual( "Chrome", output.UserAgent.Family as string );
+                Assert.AreEqual( "68", output.UserAgent.Major as string );
+                Assert.AreEqual( "Windows 10", output.OS.Family as string );
             }
         }
 
@@ -876,7 +876,7 @@ a comment --> sit amet</p>";
             var input = JsonConvert.DeserializeObject<List<ExpandoObject>>( json, converter );
             var output = ( List<object> ) StandardFilters.Sort( input, "Order" );
             var sortedTitles = output.Cast<dynamic>().Select( x => x.Title );
-            Assert.That.AreEqual( expected, sortedTitles );
+            Assert.AreEqual( expected, sortedTitles );
         }
 
         /// <summary>
@@ -1207,7 +1207,7 @@ a comment --> sit amet</p>";
                new Dictionary<string, object> { { "Id", (int)2 } }
             };
             var output = RockFilters.Where( input, "Id", 1 );
-            Assert.IsTrue( ( ( List<object> ) output).Count() == 1 );
+            Assert.IsTrue( ( ( List<object> ) output ).Count() == 1 );
         }
 
         /// <summary>
@@ -1221,7 +1221,7 @@ a comment --> sit amet</p>";
                new Dictionary<string, object> { { "Id", (long)1 } },
                new Dictionary<string, object> { { "Id", (long)2 } }
             };
-            var output = RockFilters.Where( input, "Id", (int)1 );
+            var output = RockFilters.Where( input, "Id", ( int ) 1 );
             Assert.IsTrue( ( ( List<object> ) output ).Count == 1 );
         }
 
@@ -1469,7 +1469,7 @@ a comment --> sit amet</p>";
         public void DateAdd_AddDaysDefaultToGivenDate()
         {
             var output = RockFilters.DateAdd( "2018-5-1", 3 );
-            DateTimeAssert.AreEqual( output, DateTime.Parse("2018-5-4") );
+            DateTimeAssert.AreEqual( output, DateTime.Parse( "2018-5-4" ) );
         }
 
         /// <summary>
@@ -1727,7 +1727,7 @@ a comment --> sit amet</p>";
 
             var output = RockFilters.DatesFromICal( iCalStringSaturday430, 1 );
 
-            Assert.That.AreEqual( expected, output );
+            Assert.AreEqual( expected, output );
         }
 
         /// <summary>
@@ -1947,7 +1947,9 @@ a comment --> sit amet</p>";
 
         private static void AssertTemplateResult( string expected, string template, Hash localVariables )
         {
-            Assert.AreEqual( expected, Template.Parse( template ).Render( localVariables ) );
+            var rockAssert = new RockAssert();
+
+            rockAssert.AreEqual( expected, Template.Parse( template ).Render( localVariables ) );
         }
         #endregion
     }

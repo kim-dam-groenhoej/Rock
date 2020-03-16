@@ -1,11 +1,12 @@
 ﻿using System;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rock.Tests.Shared;
 
 namespace Rock.Tests.Rock.Utility.ExtensionMethods
 {
     [TestClass]
-    public class TypeExtensionsTests
+    public class TypeExtensionsTests : TestClassBase
     {
         #region IsDescendentOf
 

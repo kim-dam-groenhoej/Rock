@@ -1,12 +1,12 @@
 ﻿using Rock.Model;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Rock.Tests.UnitTests;
+using Rock.Tests.Shared;
 
 namespace Rock.Tests.Rock.Model
 {
     [TestClass]
-    public class PageRouteTests
+    public class PageRouteTests : TestClassBase
     {
         /// <summary>
         /// Should perform a shallow copy of a PageRoute object, resulting in a new PageRoute.
@@ -27,7 +27,7 @@ namespace Rock.Tests.Rock.Model
         {
             var pageRoute = new PageRoute { Guid = Guid.NewGuid() };
             dynamic result = pageRoute.ToJson();
-            Assert.That.IsNotEmpty( result as string );
+            Assert.IsNotEmpty( result as string );
         }
 
         /// <summary>

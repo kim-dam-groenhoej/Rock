@@ -1,12 +1,12 @@
 ﻿using Rock.Model;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Rock.Tests.UnitTests;
+using Rock.Tests.Shared;
 
 namespace Rock.Tests.Rock.Model
 {
     [TestClass]
-    public class PageContextTests
+    public class PageContextTests : TestClassBase
     {
         /// <summary>
         /// Should perform a shallow copy of a PageContext object, resulting in a new PageContext.
@@ -27,7 +27,7 @@ namespace Rock.Tests.Rock.Model
         {
             var pageContext = new PageContext { Guid = Guid.NewGuid() };
             var result = pageContext.ToJson();
-            Assert.That.IsNotEmpty( result );
+            Assert.IsNotEmpty( result );
         }
 
         /// <summary>

@@ -1,11 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rock.Model;
+using Rock.Tests.Shared;
 using Rock.Web.UI.Controls;
 
 namespace Rock.Tests.Rock.Reporting
 {
     [TestClass]
-    public class ValueFilterTests
+    public class ValueFilterTests : TestClassBase
     {
         private readonly SampleData Sample = new SampleData
         {

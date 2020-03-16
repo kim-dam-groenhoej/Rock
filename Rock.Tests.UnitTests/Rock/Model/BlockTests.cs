@@ -1,11 +1,11 @@
 ﻿using Rock.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Rock.Tests.UnitTests;
+using Rock.Tests.Shared;
 
 namespace Rock.Tests.Rock.Model
 {
     [TestClass]
-    public class BlockTests
+    public class BlockTests : TestClassBase
     {
         /// <summary>
         /// Should perform a shallow copy of a Block object, resulting in a new Block.
@@ -38,7 +38,7 @@ namespace Rock.Tests.Rock.Model
         {
             var block = new Block { Name = "Foo" };
             var result = block.ToJson();
-            Assert.That.IsNotEmpty( result );
+            Assert.IsNotEmpty( result );
         }
 
         /// <summary>

@@ -1,8 +1,6 @@
-﻿using System;
-using Rock.Data;
-using Rock.Model;
-using Rock.Web.Cache;
+﻿using Rock.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rock.Tests.Shared;
 
 namespace Rock.Tests.Rock.Model
 {
@@ -10,7 +8,7 @@ namespace Rock.Tests.Rock.Model
     /// Tests for the Streak Type Service methods
     /// </summary>
     [TestClass]
-    public class StreakTypeServiceTests
+    public class StreakTypeServiceTests : TestClassBase
     {
         #region GetMapFromHexDigitString
 

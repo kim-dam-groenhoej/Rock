@@ -1,19 +1,20 @@
 ﻿using System;
 using Microsoft.CSharp.RuntimeBinder;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rock.Tests.Shared;
 using Rock.Utility;
 
 namespace Rock.Tests.Rock.Utility
 {
     [TestClass]
-    public class RockDynamicTests
+    public class RockDynamicTests: TestClassBase
     {
         [TestMethod]
         public void StoreKeyGetKeyValueMatches()
         {
             dynamic rockDynamic = new RockDynamic();
             rockDynamic["A"] = 123;
-            Assert.AreEqual( 123, rockDynamic["A"] );
+            Assert.AreEqual( 123, (int)rockDynamic["A"] );
         }
 
         [TestMethod]
@@ -21,7 +22,7 @@ namespace Rock.Tests.Rock.Utility
         {
             dynamic rockDynamic = new RockDynamic();
             rockDynamic.A = 123;
-            Assert.AreEqual( 123, rockDynamic["A"] );
+            Assert.AreEqual( 123, (int)rockDynamic["A"] );
         }
 
         [TestMethod]
@@ -29,7 +30,7 @@ namespace Rock.Tests.Rock.Utility
         {
             dynamic rockDynamic = new RockDynamic();
             rockDynamic["A"] = 123;
-            Assert.AreEqual( 123, rockDynamic.A );
+            Assert.AreEqual( 123, (int)rockDynamic.A );
         }
 
         [TestMethod]
@@ -45,7 +46,7 @@ namespace Rock.Tests.Rock.Utility
         {
             dynamic rockDynamic = new RockDynamic();
             rockDynamic.A = 123;
-            Assert.IsTrue( rockDynamic.ContainsKey( "A" ) );
+            Assert.IsTrue( ( bool ) rockDynamic.ContainsKey( "A" ) );
         }
 
         [TestMethod]
@@ -54,7 +55,7 @@ namespace Rock.Tests.Rock.Utility
             dynamic rockDynamic = new RockDynamic();
             rockDynamic["A"] = 123;
 
-            Assert.IsTrue( rockDynamic.ContainsKey( "A" ) );
+            Assert.IsTrue( (bool) rockDynamic.ContainsKey( "A" ) );
         }
 
         [TestMethod]
@@ -62,7 +63,7 @@ namespace Rock.Tests.Rock.Utility
         {
             dynamic rockDynamic = new RockDynamic();
 
-            Assert.IsFalse( rockDynamic.ContainsKey( "A" ) );
+            Assert.IsFalse( (bool)rockDynamic.ContainsKey( "A" ) );
         }
 
         [TestMethod]
@@ -71,7 +72,7 @@ namespace Rock.Tests.Rock.Utility
             dynamic rockDynamic = new RockDynamic();
             rockDynamic["A"] = 123;
 
-            Assert.IsTrue( rockDynamic.Contains( new System.Collections.Generic.KeyValuePair<string, object>( "A", 123 ) ) );
+            Assert.IsTrue( (bool)rockDynamic.Contains( new System.Collections.Generic.KeyValuePair<string, object>( "A", 123 ) ) );
         }
 
         [TestMethod]
@@ -80,7 +81,7 @@ namespace Rock.Tests.Rock.Utility
             dynamic rockDynamic = new RockDynamic();
             rockDynamic["A"] = 123;
 
-            Assert.IsFalse( rockDynamic.Contains( new System.Collections.Generic.KeyValuePair<string, object>( "A", 456 ) ) );
+            Assert.IsFalse( (bool)rockDynamic.Contains( new System.Collections.Generic.KeyValuePair<string, object>( "A", 456 ) ) );
         }
 
         [TestMethod]
@@ -88,7 +89,7 @@ namespace Rock.Tests.Rock.Utility
         {
             dynamic rockDynamic = new RockDynamic();
             rockDynamic["a"] = 123;
-            Assert.IsFalse( rockDynamic.ContainsKey( "A" ) );
+            Assert.IsFalse( (bool)rockDynamic.ContainsKey( "A" ) );
         }
 
         [TestMethod]

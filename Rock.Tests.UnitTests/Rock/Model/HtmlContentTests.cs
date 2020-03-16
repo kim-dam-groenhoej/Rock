@@ -1,11 +1,11 @@
 ﻿using Rock.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Rock.Tests.UnitTests;
+using Rock.Tests.Shared;
 
 namespace Rock.Tests.Rock.Model
 {
     [TestClass]
-    public class HtmlContentTests
+    public class HtmlContentTests : TestClassBase
     {
         /// <summary>
         /// Should perform a shallow copy of a HtmlContent object, resulting in a new HtmlContent.
@@ -44,7 +44,7 @@ namespace Rock.Tests.Rock.Model
         {
             var html = new HtmlContent { Content = "Foo" };
             var result = html.ToJson();
-            Assert.That.IsNotEmpty( result );
+            Assert.IsNotEmpty( result );
         }
 
         /// <summary>

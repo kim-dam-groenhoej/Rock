@@ -1,26 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Dynamic;
-using System.Linq;
-using DDay.iCal;
-using DDay.iCal.Serialization.iCalendar;
-using DotLiquid;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Scripturize = Rock.Utility.Scripturize;
-
-using Rock.Lava;
-using Rock.Model;
-using Subtext.TestLibrary;
+﻿using Scripturize = Rock.Utility.Scripturize;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rock.Tests.Shared;
 
 namespace Rock.Tests.Rock.Lava
 {
     /// <summary>
     /// A test class for testing any Rock Shortcode Lava.
     /// </summary>
-    public class ShortcodeTests
+    [TestClass]
+    public class ShortcodeTests : TestClassBase
     {
         #region Scripturize Tests
         /// <summary>
@@ -75,7 +63,7 @@ namespace Rock.Tests.Rock.Lava
         [TestMethod]
         public void Scripturize_YouVersion_Multiple()
         {
-            var output = Scripturize.Parse( "John 3:16-18, 1 Peter 1:1-10" ).Replace("  ", " " );
+            var output = Scripturize.Parse( "John 3:16-18, 1 Peter 1:1-10" ).Replace( "  ", " " );
             var expected = "<a href=\"https://www.bible.com/bible/116/JHN.3.16-18.NLT\"  title=\"YouVersion\">John 3:16-18</a>, <a href=\"https://www.bible.com/bible/116/1PE.1.1-10.NLT\"  title=\"YouVersion\">1 Peter 1:1-10</a>".Replace( "  ", " " );
             Assert.AreEqual( expected, output );
         }

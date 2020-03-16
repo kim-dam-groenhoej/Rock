@@ -4,12 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Rock.Tests.UnitTests;
+using Rock.Tests.Shared;
 
 namespace Rock.Tests.Rock.Model
 {
     [TestClass]
-    public class PageTests
+    public class PageTests : TestClassBase
     {
         /// <summary>
         /// Should perform a shallow copy of a Page object, resulting in a new Page.
@@ -31,7 +31,7 @@ namespace Rock.Tests.Rock.Model
             var children = new List<Page> { new Page() };
             var parent = new Page { Pages = children };
             var result = parent.Clone() as Page;
-            Assert.That.IsNotEmpty( result.Pages );
+            Assert.IsNotEmpty( result.Pages );
         }
 
         /// <summary>
@@ -46,8 +46,8 @@ namespace Rock.Tests.Rock.Model
             parent.Pages = new List<Page> { child };
             child.Pages = new List<Page> { grandchild };
             var result = parent.Clone() as Page;
-            Assert.That.IsNotEmpty( result.Pages );
-            Assert.That.IsNotEmpty( result.Pages.FirstOrDefault().Pages );
+            Assert.IsNotEmpty( result.Pages );
+            Assert.IsNotEmpty( result.Pages.FirstOrDefault().Pages );
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Rock.Tests.Rock.Model
             page.Blocks.Add( new Block() );
             var result = page.Clone() as Page;
             Assert.IsNotNull( result.Blocks );
-            Assert.That.IsNotEmpty( result.Blocks );
+            Assert.IsNotEmpty( result.Blocks );
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Rock.Tests.Rock.Model
             page.PageRoutes.Add( new PageRoute() );
             var result = page.Clone() as Page;
             Assert.IsNotNull( result.PageRoutes );
-            Assert.That.IsNotEmpty( result.PageRoutes );
+            Assert.IsNotEmpty( result.PageRoutes );
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Rock.Tests.Rock.Model
             page.PageContexts.Add( new PageContext() );
             var result = page.Clone() as Page;
             Assert.IsNotNull( result.PageContexts );
-            Assert.That.IsNotEmpty( result.PageContexts );
+            Assert.IsNotEmpty( result.PageContexts );
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Rock.Tests.Rock.Model
         {
             var page = new Page();
             var result = page.ToJson();
-            Assert.That.IsNotEmpty( result );
+            Assert.IsNotEmpty( result );
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace Rock.Tests.Rock.Model
             var json = obj.ToJson();
             var page = Page.FromJson( json );
             Assert.IsNotNull( page.Pages );
-            Assert.That.IsNotEmpty( page.Pages );
+            Assert.IsNotEmpty( page.Pages );
             Assert.AreEqual( page.Pages.First().InternalName, obj.Pages.First().InternalName );
         }
 
@@ -207,7 +207,7 @@ namespace Rock.Tests.Rock.Model
             var page = Page.FromJson( json );
             var childPages = page.Pages.First().Pages;
             Assert.IsNotNull( childPages );
-            Assert.That.IsNotEmpty( childPages );
+            Assert.IsNotEmpty( childPages );
             Assert.AreEqual( childPages.First().InternalName, PAGE_NAME );
         }
 
@@ -222,7 +222,7 @@ namespace Rock.Tests.Rock.Model
             var json = obj.ToJson();
             var page = Page.FromJson( json );
             Assert.IsNotNull( page.Blocks );
-            Assert.That.IsNotEmpty( page.Blocks );
+            Assert.IsNotEmpty( page.Blocks );
             Assert.AreEqual( page.Blocks.First().Name, obj.Blocks.First().Name );
         }
 
@@ -237,7 +237,7 @@ namespace Rock.Tests.Rock.Model
             var json = obj.ToJson();
             var page = Page.FromJson( json );
             Assert.IsNotNull( page.PageRoutes );
-            Assert.That.IsNotEmpty( page.PageRoutes );
+            Assert.IsNotEmpty( page.PageRoutes );
             Assert.AreEqual( page.PageRoutes.First().Route, obj.PageRoutes.First().Route );
         }
 
@@ -254,7 +254,7 @@ namespace Rock.Tests.Rock.Model
             var json = obj.ToJson();
             var page = Page.FromJson( json );
             Assert.IsNotNull( page.PageContexts );
-            Assert.That.IsNotEmpty( page.PageContexts );
+            Assert.IsNotEmpty( page.PageContexts );
             Assert.AreEqual( page.PageContexts.First().PageId, id );
         }
 
@@ -275,7 +275,7 @@ namespace Rock.Tests.Rock.Model
 
             var page = Page.FromJson( json );
             Assert.IsNotNull( page.Attributes );
-            Assert.That.IsNotEmpty( page.Attributes );
+            Assert.IsNotEmpty( page.Attributes );
         }
 
         /// <summary>
@@ -296,7 +296,7 @@ namespace Rock.Tests.Rock.Model
             var json = obj.ToJson();
             var page = Page.FromJson( json );
             Assert.IsNotNull( page.AttributeValues );
-            Assert.That.IsNotEmpty( page.AttributeValues );
+            Assert.IsNotEmpty( page.AttributeValues );
             Assert.AreEqual( "baz", page.AttributeValues.First().Value.Value );
         }
     }
