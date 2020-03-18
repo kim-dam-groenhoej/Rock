@@ -86,11 +86,13 @@
     <Compile Include="Communications\Transport\TwilioTests.cs" />
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Core\FieldTypesListing.cs" />
+    <Compile Include="TestFramework\DatabaseIntegrationTestClassBase.cs" />
     <Compile Include="DotLiquid\TemplateTests.cs" />
     <Compile Include="Interactions\PageViewTests.cs" />
     <Compile Include="Lava\LegacyLavaUpdaterTest.cs" />
     <Compile Include="Model\DeviceTests.cs" />
-    <Compile Include="TestFramework\Assert.cs" />
+    <Compile Include="TestFramework\Shared\RockAssert.cs" />
+    <Compile Include="TestFramework\Shared\TestClassBase.cs" />
     <Compile Include="ThirdPartyIntegrations\NcoaApi\TrueNcoaApiTests.cs" />
     <Compile Include="Utility\HttpSimulator.cs" />
     <Compile Include="Utility\ReflectionHelper.cs" />
