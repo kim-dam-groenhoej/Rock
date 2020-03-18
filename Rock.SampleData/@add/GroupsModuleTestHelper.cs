@@ -116,7 +116,7 @@ namespace Rock.Tests.Integration.Reporting.DataFilter.Group
 
             Debug.Print( $"Adding Data View Category \"{ categoryDataViewName }\"..." );
 
-            var entityTypeId = EntityTypeCache.Get( typeof( global::Rock.Model.DataView ) ).Id;
+            var entityTypeId = EntityTypeCache.Get( typeof( Rock.Model.DataView ) ).Id;
 
             var coreHelper = new CoreModuleTestHelper( _SampleDataForeignKey );
 
@@ -144,7 +144,7 @@ namespace Rock.Tests.Integration.Reporting.DataFilter.Group
 
             dataViewInside.Name = dataViewLocationsInsideArizona;
             dataViewInside.Description = "Locations that are within the state of Arizona.";
-            dataViewInside.EntityTypeId = EntityTypeCache.GetId( typeof( global::Rock.Model.Location ) );
+            dataViewInside.EntityTypeId = EntityTypeCache.GetId( typeof( Rock.Model.Location ) );
             dataViewInside.CategoryId = categoryId;
             dataViewInside.Guid = Constants.DataViewLocationsInsideArizonaGuid;
             dataViewInside.ForeignKey = _SampleDataForeignKey;
@@ -174,7 +174,7 @@ namespace Rock.Tests.Integration.Reporting.DataFilter.Group
 
             dataViewOutside.Name = dataViewLocationsOutsideArizona;
             dataViewOutside.Description = "Locations that are not within the state of Arizona.";
-            dataViewOutside.EntityTypeId = EntityTypeCache.GetId( typeof( global::Rock.Model.Location ) );
+            dataViewOutside.EntityTypeId = EntityTypeCache.GetId( typeof( Rock.Model.Location ) );
             dataViewOutside.CategoryId = categoryId;
             dataViewOutside.Guid = Constants.DataViewLocationsOutsideArizonaGuid;
             dataViewOutside.ForeignKey = _SampleDataForeignKey;

@@ -39,13 +39,13 @@ namespace Rock.Tests.Integration.Reporting.DataFilter.Group
         {
             var settingsSource = new global::Rock.Reporting.DataFilter.Group.LocationDataViewFilter.FilterSettings();
 
-            settingsSource.DataViewGuid = GroupsModuleTestHelper.Constants.DataViewLocationsOutsideArizonaGuid;
+            settingsSource.DataViewGuid = TestGuids.Groups.DataViewLocationsOutsideArizonaGuid;
 
             var settingsString = settingsSource.ToSelectionString();
 
             var settingsTarget = new global::Rock.Reporting.DataFilter.Group.LocationDataViewFilter.FilterSettings( settingsString );
 
-            Assert.AreEqual( GroupsModuleTestHelper.Constants.DataViewLocationsOutsideArizonaGuid, settingsTarget.DataViewGuid );
+            Assert.AreEqual( TestGuids.Groups.DataViewLocationsOutsideArizonaGuid, settingsTarget.DataViewGuid );
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Rock.Tests.Integration.Reporting.DataFilter.Group
         {
             var settings = new global::Rock.Reporting.DataFilter.Group.LocationDataViewFilter.FilterSettings();
 
-            settings.DataViewGuid = GroupsModuleTestHelper.Constants.DataViewLocationsInsideArizonaGuid;
+            settings.DataViewGuid = TestGuids.Groups.DataViewLocationsInsideArizonaGuid;
 
             var groupQuery = GetGroupQueryWithLocationDataViewFilter( settings );
 
@@ -82,7 +82,7 @@ namespace Rock.Tests.Integration.Reporting.DataFilter.Group
         {
             var settings = new global::Rock.Reporting.DataFilter.Group.LocationDataViewFilter.FilterSettings();
 
-            settings.DataViewGuid = GroupsModuleTestHelper.Constants.DataViewLocationsOutsideArizonaGuid;
+            settings.DataViewGuid = TestGuids.Groups.DataViewLocationsOutsideArizonaGuid;
 
             var groupQuery = GetGroupQueryWithLocationDataViewFilter( settings );
 

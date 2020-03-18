@@ -29,8 +29,6 @@ namespace Rock.Tests.Integration.Communications.Sms
     [TestClass]
     public class SmsTests
     {
-        private CommunicationsModuleTestHelper _Helper = new CommunicationsModuleTestHelper();
-
         public static class Constants
         {
             // Constants
@@ -71,7 +69,7 @@ namespace Rock.Tests.Integration.Communications.Sms
             dataContext = new RockContext();
             personService = new PersonService( dataContext );
 
-            _Helper.DeleteNamelessPersonRecord( dataContext, CommunicationsModuleTestHelper.Constants.UnknownPerson1MobileNumber );
+            DeleteNamelessPersonRecord( dataContext, TestGuids.Communications.UnknownPerson1MobileNumber );
 
             dataContext.SaveChanges();
         }
@@ -99,7 +97,7 @@ namespace Rock.Tests.Integration.Communications.Sms
             Assert.AreEqual( unnamedPerson1.Id, unnamedPerson2.Id, "Multiple Unnamed Person records created for the same mobile number." );
 
             // Delete the newly-created unnamed person record.
-            _Helper.DeleteNamelessPersonRecord( dataContext, CommunicationsModuleTestHelper.Constants.UnknownPerson1MobileNumber );
+            DeleteNamelessPersonRecord( dataContext, TestGuids.Communications.UnknownPerson1MobileNumber );
 
             dataContext.SaveChanges();
         }
@@ -184,6 +182,93 @@ namespace Rock.Tests.Integration.Communications.Sms
             message.Message = $"Test Message { RockDateTime.Now:dd-MMM-yy hh:mm:ss}";
 
             return message;
+        }
+
+        /// <summary>
+        /// Delete a Person record associated with the specified mobile phone number.
+        /// </summary>
+        /// <param name="dataContext"></param>
+        /// <param name="mobilePhoneNumber"></param>
+        /// <returns></returns>
+        private bool DeleteNamelessPersonRecord( RockContext dataContext, string mobilePhoneNumber )
+        {
+            var personService = new PersonService( dataContext );
+
+            var namelessPerson = personService.GetPersonFromMobilePhoneNumber( mobilePhoneNumber, createNamelessPersonIfNotFound: false );
+
+            if ( namelessPerson == null )
+            {
+                return false;
+            }
+
+            return DeletePerson( dataContext, namelessPerson.Id );
+        }
+
+        /// <summary>
+        /// Delete a Person record, and all dependent records.
+        /// </summary>
+        /// <param name="dataContext"></param>
+        /// <param name="personId"></param>
+        /// <returns></returns>
+        private bool DeletePerson( RockContext dataContext, int personId )
+        {
+            var personService = new PersonService( dataContext );
+
+            var person = personService.Get( personId );
+
+            if ( person == null )
+            {
+                return false;
+            }
+
+            // Delete Person Views
+            var personViewedService = new PersonViewedService( dataContext );
+
+            var personViewedQuery = personViewedService.Queryable()
+                .Where( x => x.TargetPersonAlias.PersonId == person.Id || x.ViewerPersonAlias.PersonId == person.Id );
+
+            personViewedService.DeleteRange( personViewedQuery );
+
+            // Delete Communications
+            var communicationService = new CommunicationService( dataContext );
+
+            var communicationQuery = communicationService.Queryable()
+                .Where( x => x.SenderPersonAlias.PersonId == person.Id );
+
+            communicationService.DeleteRange( communicationQuery );
+
+            // Delete Communication Recipients
+            var recipientsService = new CommunicationRecipientService( dataContext );
+
+            var recipientsQuery = recipientsService.Queryable()
+                .Where( x => x.PersonAlias.PersonId == person.Id );
+
+            recipientsService.DeleteRange( recipientsQuery );
+
+            // Delete Interactions
+            var interactionService = new InteractionService( dataContext );
+
+            var interactionQuery = interactionService.Queryable()
+                .Where( x => x.PersonAlias.PersonId == person.Id );
+
+            interactionService.DeleteRange( interactionQuery );
+
+            // Delete Person Aliases
+            var personAliasService = new PersonAliasService( dataContext );
+
+            personAliasService.DeleteRange( person.Aliases );
+
+            // Delete Person Search Keys
+            var personSearchKeyService = new PersonSearchKeyService( dataContext );
+
+            var searchKeys = person.GetPersonSearchKeys( dataContext );
+
+            personSearchKeyService.DeleteRange( searchKeys );
+
+            // Delete Person
+            personService.Delete( person );
+
+            return true;
         }
 
         #endregion
