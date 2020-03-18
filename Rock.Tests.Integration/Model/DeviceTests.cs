@@ -2,12 +2,11 @@
 using Rock.Model;
 using System.Data.Entity.Spatial;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Rock.Tests.UnitTests;
+using Rock.Tests.Shared;
 
 namespace Rock.Tests.Integration.Model
 {
-
-    public class DeviceTests
+    public class DeviceTests : TestClassBase
     {
         /* These DbGeography calls require the SqlServerTypes package on machines without full SQL Server.
          * However, none of them will actually find the SqlServerSpatial110.dll in the /bin folder. */
@@ -51,7 +50,7 @@ namespace Rock.Tests.Integration.Model
         {
             var device = StandardDevice();
             var result = device.ToJson();
-            Assert.That.IsNotEmpty( result );
+            Assert.IsNotEmpty( result );
         }
 
         /// <summary>

@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Rock.Communication;
 using Rock.Communication.Transport;
 using Rock.Data;
 using Rock.Model;
+using Rock.Tests.Shared;
 
 namespace Rock.Tests.Integration.Communications
 {
-    public class MailgunTests
+    public class MailgunTests : TestClassBase
     {
-        [Fact( Skip = "need way of mocking RockContext" )]
+        [TestMethod] [Ignore( "need way of mocking RockContext" )]
         public void HttpSendRockMessage()
         {
             var errorMessages = new List<string>();

@@ -37,13 +37,13 @@ namespace Rock.Tests.Integration.Reporting.DataFilter.Group
         [TestProperty( "Feature", TestFeatures.Groups )]
         public void GroupFilters_RelatedDataViewLocation_CanSerializeSettings()
         {
-            var settingsSource = new global::Rock.Reporting.DataFilter.Group.LocationDataViewFilter.FilterSettings();
+            var settingsSource = new Rock.Reporting.DataFilter.Group.LocationDataViewFilter.FilterSettings();
 
             settingsSource.DataViewGuid = TestGuids.Groups.DataViewLocationsOutsideArizonaGuid;
 
             var settingsString = settingsSource.ToSelectionString();
 
-            var settingsTarget = new global::Rock.Reporting.DataFilter.Group.LocationDataViewFilter.FilterSettings( settingsString );
+            var settingsTarget = new Rock.Reporting.DataFilter.Group.LocationDataViewFilter.FilterSettings( settingsString );
 
             Assert.AreEqual( TestGuids.Groups.DataViewLocationsOutsideArizonaGuid, settingsTarget.DataViewGuid );
         }
@@ -56,7 +56,7 @@ namespace Rock.Tests.Integration.Reporting.DataFilter.Group
         [TestProperty( "Feature", TestFeatures.Groups )]
         public void GroupFilters_RelatedDataViewLocation_ShouldReturnGroupsWithAtLeastOneRelatedLocation()
         {
-            var settings = new global::Rock.Reporting.DataFilter.Group.LocationDataViewFilter.FilterSettings();
+            var settings = new Rock.Reporting.DataFilter.Group.LocationDataViewFilter.FilterSettings();
 
             settings.DataViewGuid = TestGuids.Groups.DataViewLocationsInsideArizonaGuid;
 
@@ -80,7 +80,7 @@ namespace Rock.Tests.Integration.Reporting.DataFilter.Group
         [TestProperty( "Feature", TestFeatures.Groups )]
         public void GroupFilters_RelatedDataViewLocation_ShouldNotReturnGroupWithNoRelatedLocations()
         {
-            var settings = new global::Rock.Reporting.DataFilter.Group.LocationDataViewFilter.FilterSettings();
+            var settings = new Rock.Reporting.DataFilter.Group.LocationDataViewFilter.FilterSettings();
 
             settings.DataViewGuid = TestGuids.Groups.DataViewLocationsOutsideArizonaGuid;
 
@@ -103,7 +103,7 @@ namespace Rock.Tests.Integration.Reporting.DataFilter.Group
         /// <returns></returns>
         private IQueryable<Rock.Model.Group> GetGroupQueryWithLocationDataViewFilter( global::Rock.Reporting.DataFilter.Group.LocationDataViewFilter.FilterSettings settings )
         {
-            var settingsFilter = new global::Rock.Reporting.DataFilter.Group.LocationDataViewFilter();
+            var settingsFilter = new Rock.Reporting.DataFilter.Group.LocationDataViewFilter();
 
             var dataContext = new RockContext();
 
@@ -111,9 +111,9 @@ namespace Rock.Tests.Integration.Reporting.DataFilter.Group
 
             var parameterExpression = groupService.ParameterExpression;
 
-            var predicate = settingsFilter.GetExpression( typeof( global::Rock.Model.Group ), groupService, parameterExpression, settings.ToSelectionString() );
+            var predicate = settingsFilter.GetExpression( typeof( Rock.Model.Group ), groupService, parameterExpression, settings.ToSelectionString() );
 
-            var groupQuery = GetFilteredEntityQuery<global::Rock.Model.Group>( dataContext, predicate, parameterExpression );
+            var groupQuery = GetFilteredEntityQuery<Rock.Model.Group>( dataContext, predicate, parameterExpression );
 
             return groupQuery;
         }

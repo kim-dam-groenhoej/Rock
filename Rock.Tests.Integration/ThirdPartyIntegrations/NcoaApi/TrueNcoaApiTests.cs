@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 using RestSharp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Rock.Tests.Rock.Utility.NcoaApi
+namespace Rock.Tests.Integration.Utility.NcoaApi
 {
     /// <summary>
     /// Test if TrueNCOA columns changed.

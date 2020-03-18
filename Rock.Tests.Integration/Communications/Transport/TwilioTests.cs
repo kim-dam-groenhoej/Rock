@@ -1,18 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Rock;
 using Rock.Communication.Medium;
 using Rock.Communication.Transport;
 using Rock.Data;
 using Rock.Model;
+using Rock.Tests.Shared;
 
 namespace Rock.Tests.Integration.Communications
 {
-    public class TwilioTests
+    public class TwilioTests : TestClassBase
     {
-        [Fact(Skip = "Dependant on a DB. Useful for debugging and adding data.")]
+        [TestMethod]
+        [Ignore("Dependant on a DB. Useful for debugging and adding data.")]
         public void ProcessResponseTestToRockWithKnownNumbers()
         {
             string toPhone = "+16237777794";
@@ -20,11 +22,12 @@ namespace Rock.Tests.Integration.Communications
             string message = "Message sent on " + RockDateTime.Now.ToString();
             string errorMessage = "";
 
-            var sms = new Sms();
+            var sms = new Rock.Communication.Medium.Sms();
             sms.ProcessResponse( toPhone, fromPhone, message, out errorMessage );
         }
 
-        [Fact(Skip = "Dependant on a DB. Useful for debugging and adding data.")]
+        [TestMethod]
+        [Ignore("Dependant on a DB. Useful for debugging and adding data.")]
         public void ProcessResponseTestToRockWithUnknownSenderNumber()
         {
             string toPhone = "+16237777794";
@@ -32,7 +35,7 @@ namespace Rock.Tests.Integration.Communications
             string message = "Message from unknown sender sent on " + RockDateTime.Now.ToString();
             string errorMessage = "";
 
-            var sms = new Sms();
+            var sms = new Rock.Communication.Medium.Sms();
             sms.ProcessResponse( toPhone, fromPhone, message, out errorMessage );
         }
 

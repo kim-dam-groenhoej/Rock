@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using Rock;
 using Rock.Data;
 using Rock.Model;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rock.Tests.Shared;
 
-namespace Rock.Tests.Rock.Model
+namespace Rock.Tests.Integration.Attendance
 {
     /// <summary>
     /// Used for testing anything regarding AttendanceCode.
@@ -17,7 +18,7 @@ namespace Rock.Tests.Rock.Model
     /// want to break other teams CI environments that are running these tests w/o a db.
     /// </summary>
     /// <seealso cref="System.IDisposable" />
-    public class AttendanceCodeTests : IDisposable
+    public class AttendanceCodeTests : TestClassBase
     {
         private static List<string> noGood = new List<string> {
             "4NL", "4SS", "5CK", "5HT", "5LT", "5NM", "5TD", "5XX", "666", "BCH", "CLT", "CNT", "D4M", "D5H", "DCK", "DMN", "DSH", "F4G", "FCK", "FGT", "G4Y", "GZZ", "H8R",
@@ -74,7 +75,7 @@ namespace Rock.Tests.Rock.Model
         /// <summary>
         /// Avoids the triple six.  Note: Does not use the database.
         /// </summary>
-        [Fact]
+        [TestMethod]
         public void AvoidTripleSix()
         {
             int alphaNumericLength = 0;
@@ -91,7 +92,7 @@ namespace Rock.Tests.Rock.Model
 
         #region Alpha-numeric codes
 
-        [Fact( Skip = "Requires a db" )]
+        [TestMethod] [Ignore( "Requires a db" )]
         public void AlphaNumericCodesShouldSkipBadCodes()
         {
             Cleanup();
@@ -113,7 +114,7 @@ namespace Rock.Tests.Rock.Model
 
         #region Numeric only codes
 
-        [Fact( Skip = "Requires a db" )]
+        [TestMethod] [Ignore( "Requires a db" )]
         public void CheckThreeChar002Code()
         {
             Cleanup();
@@ -127,7 +128,7 @@ namespace Rock.Tests.Rock.Model
             Assert.Equal( "002", code.Code );
         }
 
-        [Fact( Skip = "Requires a db" )]
+        [TestMethod] [Ignore( "Requires a db" )]
         public void NumericCodesShouldSkip911And666()
         {
             Cleanup();
@@ -140,8 +141,8 @@ namespace Rock.Tests.Rock.Model
                 codeList.Add( code.Code );
             }
 
-            Assert.DoesNotContain( codeList, s => s == "911" );
-            Assert.DoesNotContain( codeList, s => s == "666" );
+            Assert.DoesNotContain( codeList, "911" );
+            Assert.DoesNotContain( codeList, "666" );
         }
 
         /// <summary>
@@ -150,7 +151,7 @@ namespace Rock.Tests.Rock.Model
         /// timeout exception is acceptable to let the admin know there is a
         /// configuration problem.
         /// </summary>
-        [Fact( Skip = "Requires a db" )]
+        [TestMethod] [Ignore( "Requires a db" )]
         public void NumericCodeWithLengthOf2ShouldNotGoBeyond99()
         {
             Cleanup();
@@ -180,7 +181,7 @@ namespace Rock.Tests.Rock.Model
         /// <summary>
         /// Numerics codes should not repeat.  This is/was a known bug in v7.4 and earlier
         /// </summary>
-        [Fact( Skip = "Requires a db" )]
+        [TestMethod] [Ignore( "Requires a db" )]
         public void NumericCodesShouldNotRepeat()
         {
             Cleanup();
@@ -203,7 +204,7 @@ namespace Rock.Tests.Rock.Model
         /// <summary>
         /// Numerics codes should not repeat.  This is/was a known bug in v7.4 and earlier
         /// </summary>
-        [Fact( Skip = "Requires a db" )]
+        [TestMethod] [Ignore( "Requires a db" )]
         public void RandomNumericCodesShouldNotRepeat()
         {
             Cleanup();
@@ -227,7 +228,7 @@ namespace Rock.Tests.Rock.Model
         /// Requestings the more codes than are possible should throw exception...
         /// because there's really nothing else we could do in that situation, right.
         /// </summary>
-        [Fact( Skip = "Requires a db" )]
+        [TestMethod] [Ignore( "Requires a db" )]
         public async void RequestingMoreCodesThanPossibleShouldThrowException()
         {
             Cleanup();
@@ -294,7 +295,7 @@ namespace Rock.Tests.Rock.Model
             }
         }
 
-        [Fact( Skip = "Requires a db" )]
+        [TestMethod] [Ignore( "Requires a db" )]
         public void Increment100SequentialNumericCodes()
         {
             Cleanup();
@@ -312,7 +313,7 @@ namespace Rock.Tests.Rock.Model
 
         #region Alpha only codes
 
-        [Fact( Skip = "Requires a db" )]
+        [TestMethod] [Ignore( "Requires a db" )]
         public void AlphaOnlyCodesShouldSkipBadCodes()
         {
             Cleanup();
@@ -333,7 +334,7 @@ namespace Rock.Tests.Rock.Model
         /// <summary>
         /// Alpha codes should not repeat.
         /// </summary>
-        [Fact( Skip = "Requires a db" )]
+        [TestMethod] [Ignore( "Requires a db" )]
         public void AlphaOnlyCodesShouldNotRepeat()
         {
             Cleanup();
@@ -370,7 +371,7 @@ namespace Rock.Tests.Rock.Model
         /// There should be no bad codes in this list either even though
         /// individually each part has no bad codes.
         /// </summary>
-        [Fact( Skip = "Requires a db" )]
+        [TestMethod] [Ignore( "Requires a db" )]
         public void AlphaNumericWithNumericCodesShouldSkipBadCodes()
         {
             Cleanup();
@@ -404,7 +405,7 @@ namespace Rock.Tests.Rock.Model
 
         #region Alpha only + numeric only codes
 
-        [Fact( Skip = "Requires a db" )]
+        [TestMethod] [Ignore( "Requires a db" )]
         public void AlphaOnlyWithNumericOnlyCodesShouldSkipBadCodes()
         {
             Cleanup();

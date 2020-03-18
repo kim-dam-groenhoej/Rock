@@ -40,7 +40,7 @@ namespace Rock.Tests.Integration.Communications.Sms
         [TestProperty( "Feature", TestFeatures.Communications )]
         public void IncomingSms_FromUnknownMobileNumber_CreatesNamelessPerson()
         {
-            var message = this.GetTestIncomingSmsMessage( CommunicationsModuleTestHelper.Constants.UnknownPerson1MobileNumber );
+            var message = this.GetTestIncomingSmsMessage( TestGuids.Communications.UnknownPerson1MobileNumber );
 
             var dataContext = new RockContext();
 
@@ -59,13 +59,11 @@ namespace Rock.Tests.Integration.Communications.Sms
             Assert.AreEqual( unnamedPersonRecordValueId, unnamedPerson.RecordTypeValueId, "Person Type for Unnamed Person record is invalid." );
 
             // Verify that the correct Phone Number has been recorded.
-            Assert.IsNotNull( unnamedPerson.PhoneNumbers.FirstOrDefault( x => x.Number == CommunicationsModuleTestHelper.Constants.UnknownPerson1MobileNumber ) );
+            Assert.IsNotNull( unnamedPerson.PhoneNumbers.FirstOrDefault( x => x.Number == TestGuids.Communications.UnknownPerson1MobileNumber ) );
 
             //var outcomes = SmsActionService.ProcessIncomingMessage(message);
 
             // Delete the newly-created unnamed person record.
-            var _Helper = new CommunicationsModuleTestHelper();
-
             dataContext = new RockContext();
             personService = new PersonService( dataContext );
 
@@ -81,7 +79,7 @@ namespace Rock.Tests.Integration.Communications.Sms
         [TestProperty( "Feature", TestFeatures.Communications )]
         public void IncomingSms_FromKnownNamelessPerson_ReturnsMatchedPerson()
         {
-            var message = this.GetTestIncomingSmsMessage( CommunicationsModuleTestHelper.Constants.UnknownPerson1MobileNumber );
+            var message = this.GetTestIncomingSmsMessage( TestGuids.Communications.UnknownPerson1MobileNumber );
 
             var dataContext = new RockContext();
 
@@ -109,7 +107,7 @@ namespace Rock.Tests.Integration.Communications.Sms
         [TestProperty( "Feature", TestFeatures.Communications )]
         public void IncomingSms_FromKnownNamedPerson_ReturnsMatchedPerson()
         {
-            var message = this.GetTestIncomingSmsMessage( CommunicationsModuleTestHelper.Constants.MobilePhoneTedDecker );
+            var message = this.GetTestIncomingSmsMessage( TestGuids.Communications.MobilePhoneTedDecker );
 
             var dataContext = new RockContext();
 
@@ -119,7 +117,7 @@ namespace Rock.Tests.Integration.Communications.Sms
             var namedPerson1 = personService.GetPersonFromMobilePhoneNumber( message.FromNumber, createNamelessPersonIfNotFound: false );
 
             // Verify that the correct record has been retrieved.
-            Assert.AreEqual( namedPerson1.Guid, CommunicationsModuleTestHelper.Constants.TedDeckerPersonGuid.AsGuid(), "Incorrect Person record retrieved by mobile phone number." );
+            Assert.AreEqual( namedPerson1.Guid, TestGuids.Communications.TedDeckerPersonGuid.AsGuid(), "Incorrect Person record retrieved by mobile phone number." );
         }
         [TestMethod]
         [TestProperty( "Feature", TestFeatures.Communications )]
@@ -173,7 +171,7 @@ namespace Rock.Tests.Integration.Communications.Sms
             var message = new SmsMessage();
 
             // Get Known SMS Recipient.
-            var smsSenderValue = DefinedValueCache.Get( CommunicationsModuleTestHelper.Constants.TestSmsSenderGuid );
+            var smsSenderValue = DefinedValueCache.Get( TestGuids.Communications.TestSmsSenderGuid );
 
             message.ToNumber = smsSenderValue.Description;
 

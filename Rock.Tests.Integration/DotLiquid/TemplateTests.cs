@@ -2,16 +2,29 @@
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using DotLiquid;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rock.Tests.Shared;
 
-namespace Rock.Tests.DotLiquidTests
+namespace Rock.Tests.Integration.DotLiquidTests
 {
-    public class TemplateTests
+    [TestClass]
+    public class TemplateTests : TestClassBase
     {
-        [Theory( Skip = "Outcome dependent upon system resources" )]
-        [InlineData(false)]
-        [InlineData(true)]
-        public void Render_IsThreadSafePropertyValue_DictatesThreadSafety( bool isThreadSafe )
+        [TestMethod]
+        [Ignore( "Outcome dependent upon system resources" )]
+        public void Render_MakeThreadSafeMethod_ProvidesThreadSafety()
+        {
+            Render_IsThreadSafePropertyValue_DictatesThreadSafety( true );
+        }
+
+        [TestMethod]
+        [Ignore( "Outcome dependent upon system resources" )]
+        public void Render_MakeThreadSafeMethod_IgnoresThreadSafety()
+        {
+            Render_IsThreadSafePropertyValue_DictatesThreadSafety( false );
+        }
+
+        private void Render_IsThreadSafePropertyValue_DictatesThreadSafety( bool isThreadSafe )
         {
             // This test is based on the following:
             // issue: https://github.com/dotliquid/dotliquid/issues/206
