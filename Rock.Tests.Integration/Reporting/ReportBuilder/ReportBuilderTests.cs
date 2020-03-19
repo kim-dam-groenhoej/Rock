@@ -22,6 +22,7 @@ using Rock;
 using Rock.Data;
 using Rock.Model;
 using Rock.Reporting;
+using Rock.Tests.Integration.Constants;
 
 namespace Rock.Tests.Integration.Reporting
 {

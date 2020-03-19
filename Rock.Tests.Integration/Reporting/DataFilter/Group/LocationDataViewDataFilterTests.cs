@@ -18,6 +18,8 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rock.Data;
 using Rock.Model;
+using Rock.SampleData.Constants;
+using Rock.Tests.Integration.Constants;
 
 namespace Rock.Tests.Integration.Reporting.DataFilter.Group
 {
@@ -39,7 +41,7 @@ namespace Rock.Tests.Integration.Reporting.DataFilter.Group
         {
             var settingsSource = new Rock.Reporting.DataFilter.Group.LocationDataViewFilter.FilterSettings();
 
-            settingsSource.DataViewGuid = TestGuids.Groups.DataViewLocationsOutsideArizonaGuid;
+            settingsSource.DataViewGuid = TestGuids.Groups.DataViewLocationsOutsideArizonaGuid.AsGuid();
 
             var settingsString = settingsSource.ToSelectionString();
 
@@ -58,7 +60,7 @@ namespace Rock.Tests.Integration.Reporting.DataFilter.Group
         {
             var settings = new Rock.Reporting.DataFilter.Group.LocationDataViewFilter.FilterSettings();
 
-            settings.DataViewGuid = TestGuids.Groups.DataViewLocationsInsideArizonaGuid;
+            settings.DataViewGuid = TestGuids.Groups.DataViewLocationsInsideArizonaGuid.AsGuid();
 
             var groupQuery = GetGroupQueryWithLocationDataViewFilter( settings );
 
@@ -82,7 +84,7 @@ namespace Rock.Tests.Integration.Reporting.DataFilter.Group
         {
             var settings = new Rock.Reporting.DataFilter.Group.LocationDataViewFilter.FilterSettings();
 
-            settings.DataViewGuid = TestGuids.Groups.DataViewLocationsOutsideArizonaGuid;
+            settings.DataViewGuid = TestGuids.Groups.DataViewLocationsOutsideArizonaGuid.AsGuid();
 
             var groupQuery = GetGroupQueryWithLocationDataViewFilter( settings );
 

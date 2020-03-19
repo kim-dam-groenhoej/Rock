@@ -22,6 +22,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rock.Crm.ConnectionStatusChangeReport;
 using Rock.Data;
 using Rock.Model;
+using Rock.Tests.Integration.Constants;
 using Rock.Tests.Shared;
 using Rock.Web.Cache;
 
