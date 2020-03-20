@@ -27,6 +27,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rock.Storage.AssetStorage;
 using Rock.Model;
 using Rock.Tests.Integration.Utility;
+using Rock.Tests.Shared;
 
 namespace Rock.Tests.Integration.StorageTests
 {

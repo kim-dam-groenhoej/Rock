@@ -9,6 +9,7 @@ using Rock.Model;
 using Rock.Rest.Controllers;
 using Rock.Tests.Integration.TestData;
 using Rock.Tests.Integration.Utility;
+using Rock.Tests.Shared;
 
 namespace Rock.Tests.Integration.Attendances
 {

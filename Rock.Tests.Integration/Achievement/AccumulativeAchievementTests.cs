@@ -7,6 +7,7 @@ using Rock.Achievement;
 using Rock.Data;
 using Rock.Model;
 using Rock.Web.Cache;
+using Rock.Tests.Shared;
 
 namespace Rock.Tests.Integration.RockTests.Model
 {
@@ -44,7 +45,7 @@ namespace Rock.Tests.Integration.RockTests.Model
         /// </summary>
         private static void CreateStreakTypeData()
         {
-            var personAlias = new PersonAliasService( _rockContext ).Queryable().First( pa => pa.Person.Guid == SampleData.Constants.TestGuids.TestPeople.TedDecker.AsGuid() );
+            var personAlias = new PersonAliasService( _rockContext ).Queryable().First( pa => pa.Person.Guid == TestGuids.TestPeople.TedDecker.AsGuid() );
             _personAliasId = personAlias.Id;
             _personId = personAlias.PersonId;
 

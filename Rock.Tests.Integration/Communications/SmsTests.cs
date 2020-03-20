@@ -19,8 +19,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rock.Communication.SmsActions;
 using Rock.Data;
 using Rock.Model;
-using Rock.SampleData.Constants;
-using Rock.Tests.Integration.Constants;
+using Rock.Tests.Shared;
 using Rock.Web.Cache;
 
 namespace Rock.Tests.Integration.Communications.Sms

@@ -18,8 +18,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rock.Data;
 using Rock.Model;
-using Rock.SampleData.Constants;
-using Rock.Tests.Integration.Constants;
+using Rock.Tests.Shared;
 
 namespace Rock.Tests.Integration.Reporting.DataFilter.Group
 {

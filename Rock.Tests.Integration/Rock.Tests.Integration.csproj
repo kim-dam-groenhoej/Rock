@@ -84,20 +84,13 @@
     <Compile Include="Attendances\AttendanceCodeTests.cs" />
     <Compile Include="Communications\Transport\MailgunTests.cs" />
     <Compile Include="Communications\Transport\TwilioTests.cs" />
-    <Compile Include="Constants\Constants.cs" />
-    <Compile Include="Constants\TestGuids.cs" />
     <Compile Include="Core\FieldTypesListing.cs" />
     <Compile Include="TestFramework\DatabaseIntegrationTestClassBase.cs" />
     <Compile Include="DotLiquid\TemplateTests.cs" />
     <Compile Include="Interactions\PageViewTests.cs" />
     <Compile Include="Lava\LegacyLavaUpdaterTest.cs" />
     <Compile Include="Model\DeviceTests.cs" />
-    <Compile Include="TestFramework\Shared\RockAssert.cs" />
-    <Compile Include="TestFramework\Shared\TestClassBase.cs" />
     <Compile Include="ThirdPartyIntegrations\NcoaApi\TrueNcoaApiTests.cs" />
-    <Compile Include="Utility\HttpSimulator.cs" />
-    <Compile Include="Utility\ReflectionHelper.cs" />
-    <Compile Include="Utility\SimulatedHttpRequest.cs" />
     <Compile Include="Rest\ControllersTests\AttendanceControllerTests.cs" />
     <Compile Include="Attendances\AttendanceBulkImportTest.cs" />
     <Compile Include="Communications\SmsTests.cs" />
@@ -126,7 +119,6 @@
     </Compile>
     <Compile Include="Crm\ConnectionStatusChangeReportTests.cs" />
     <Compile Include="TestData\TestDataHelper.cs" />
-    <Compile Include="Utility\ArrayExtensions.cs" />
     <Compile Include="Workflow\Action\BackgroundCheckRequestTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +147,10 @@
     <ProjectReference Include="..\Rock.Rest\Rock.Rest.csproj">
       <Project>{add1edd0-a4cb-4e82-b6ad-6ad1d556deae}</Project>
       <Name>Rock.Rest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rock.Tests.Shared\Rock.Tests.Shared.csproj">
+      <Project>{d8de32c9-25da-4897-a750-7dd8755b3d45}</Project>
+      <Name>Rock.Tests.Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\Rock\Rock.csproj">
       <Project>{185a31d7-3037-4dae-8797-0459849a84bd}</Project>
