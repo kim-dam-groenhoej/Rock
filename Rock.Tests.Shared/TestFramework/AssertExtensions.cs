@@ -5,7 +5,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Rock.Tests.Shared
 {
-
+    /// <summary>
+    /// Extension methods for the MSTest Assert class.
+    /// This class also re-implements the standard Assert methods so that they can be used with the "Assert.This" syntax.
+    /// </summary>
     public static class AssertExtensions
     {
         public static void AreEqual<T>( this Assert assert, T expected, T actual )
