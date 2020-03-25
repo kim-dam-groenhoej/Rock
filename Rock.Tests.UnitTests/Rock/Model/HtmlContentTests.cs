@@ -15,7 +15,7 @@ namespace Rock.Tests.Rock.Model
         {
             var html = new HtmlContent { Content = "Foo" };
             var result = html.Clone( false );
-            Assert.AreEqual( result.Content, html.Content );
+            Assert.That.AreEqual( result.Content, html.Content );
         }
 
         /// <summary>
@@ -32,8 +32,8 @@ namespace Rock.Tests.Rock.Model
 
             var json = obj.ToJson();
             var htmlContent = HtmlContent.FromJson( json );
-            Assert.AreEqual( obj.EntityValue, htmlContent.EntityValue );
-            Assert.AreEqual( obj.IsApproved, htmlContent.IsApproved );
+            Assert.That.AreEqual( obj.EntityValue, htmlContent.EntityValue );
+            Assert.That.AreEqual( obj.IsApproved, htmlContent.IsApproved );
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Rock.Tests.Rock.Model
         {
             var html = new HtmlContent { Content = "Foo" };
             var result = html.ToJson();
-            Assert.IsNotEmpty( result );
+            Assert.That.IsNotEmpty( result );
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Rock.Tests.Rock.Model
 
             var result = html.ToJson();
             const string key = "\"Content\":\"Foo\"";
-            Assert.AreNotEqual( result.IndexOf( key ), -1 );
+            Assert.That.AreNotEqual( result.IndexOf( key ), -1 );
         }
     }
 }

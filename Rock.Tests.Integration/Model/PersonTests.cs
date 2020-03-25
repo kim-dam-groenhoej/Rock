@@ -16,8 +16,8 @@
 //
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 using Rock.Model;
+using Rock.Tests.Shared;
 using Rock.Web.Cache;
 
 namespace Rock.Tests.Integration.RockTests.Model
@@ -49,7 +49,7 @@ namespace Rock.Tests.Integration.RockTests.Model
             var Person = new Person();
             Person.GradeOffset = 1;
 
-            Assert.IsTrue( Person.GraduationYear == RockDateTime.Now.AddYears( 1 ).Year );
+            Assert.That.IsTrue( Person.GraduationYear == RockDateTime.Now.AddYears( 1 ).Year );
         }
 
         [TestMethod]
@@ -60,7 +60,7 @@ namespace Rock.Tests.Integration.RockTests.Model
             var person = new Person();
             person.GraduationYear = RockDateTime.Now.Year; // the "year" the person graduates.
 
-            Assert.IsTrue( 0 == person.GradeOffset );
+            Assert.That.IsTrue( 0 == person.GradeOffset );
         }
 
         [TestMethod]
@@ -75,7 +75,7 @@ namespace Rock.Tests.Integration.RockTests.Model
             var Person = new Person();
             Person.GraduationYear = RockDateTime.Now.Year; // the "year" the person graduates.
 
-            Assert.IsTrue( 1 == Person.GradeOffset );
+            Assert.That.IsTrue( 1 == Person.GradeOffset );
         }
 
         [TestMethod]
@@ -90,7 +90,7 @@ namespace Rock.Tests.Integration.RockTests.Model
             var Person = new Person();
             Person.GradeOffset = 1;
 
-            Assert.IsTrue( Person.GraduationYear == RockDateTime.Now.Year );
+            Assert.That.IsTrue( Person.GraduationYear == RockDateTime.Now.Year );
         }
 
         private static void InitGlobalAttributesCache()

@@ -44,9 +44,7 @@ namespace Rock.Tests.Integration.Crm
 
             var testEntryExists = historyService.Queryable().AsNoTracking().Any( x => x.SourceOfChange == _TestDataSourceTag );
 
-            var assert = new RockAssert();
-
-            assert.IsTrue( testEntryExists, $"History Test Data does not exist in this database. [SourceTag={ _TestDataSourceTag }]" );
+            Assert.That.IsTrue( testEntryExists, $"History Test Data does not exist in this database. [SourceTag={ _TestDataSourceTag }]" );
 
             CreateBaselineReport( dataContext );
 
@@ -76,7 +74,7 @@ namespace Rock.Tests.Integration.Crm
             // Get an unfiltered report and verify that it does not contain PrimaryCampusId=null for any record.
             int hasCampusCount = _BaselineReport.ChangeEvents.Count( x => x.CampusId != null );
 
-            Assert.IsTrue( ( hasCampusCount > 0 ), "Person.CampusId field is not populated. To calculate this value, run the \"Rock Cleanup\" Job for the current database." );
+            Assert.That.IsTrue( ( hasCampusCount > 0 ), "Person.CampusId field is not populated. To calculate this value, run the \"Rock Cleanup\" Job for the current database." );
         }
 
         /// <summary>
@@ -90,7 +88,7 @@ namespace Rock.Tests.Integration.Crm
 
             // Get an unfiltered report and verify that it contains records for Campus "Main".
             // This establishes the baseline for the test.
-            Assert.IsTrue( _BaselineReport.ChangeEvents.Any( x => x.CampusId == _MainCampusId ), "History events expected but not found. [Campus=(unfiltered)" );
+            Assert.That.IsTrue( _BaselineReport.ChangeEvents.Any( x => x.CampusId == _MainCampusId ), "History events expected but not found. [Campus=(unfiltered)" );
 
             // The standard test data set does not currently have data for people in multiple campuses.
             // As an alternative, create a filtered report for a non-existent Campus and verify that no records are returned.
@@ -102,7 +100,7 @@ namespace Rock.Tests.Integration.Crm
 
             var reportFiltered = reportService.CreateReport();
 
-            Assert.IsFalse( reportFiltered.ChangeEvents.Any( x => x.CampusId == _MainCampusId ), "History events found but not expected. [CampusId=999]" );
+            Assert.That.IsFalse( reportFiltered.ChangeEvents.Any( x => x.CampusId == _MainCampusId ), "History events found but not expected. [CampusId=999]" );
         }
 
         /// <summary>
@@ -122,8 +120,8 @@ namespace Rock.Tests.Integration.Crm
             // This establishes the baseline for the test.
             int currentYear = RockDateTime.Now.Year;
 
-            Assert.IsTrue( _BaselineReport.ChangeEvents.Any( x => x.EventDate.Year == currentYear ), "History events expected but not found. [EventDate=(current year)" );
-            Assert.IsTrue( _BaselineReport.ChangeEvents.Any( x => x.EventDate.Year == ( currentYear - 1 ) ), "History events expected but not found. [EventDate=(previous year)" );
+            Assert.That.IsTrue( _BaselineReport.ChangeEvents.Any( x => x.EventDate.Year == currentYear ), "History events expected but not found. [EventDate=(current year)" );
+            Assert.That.IsTrue( _BaselineReport.ChangeEvents.Any( x => x.EventDate.Year == ( currentYear - 1 ) ), "History events expected but not found. [EventDate=(previous year)" );
 
             // Create a filtered report for current year only.
             var settings = new ConnectionStatusChangeReportSettings();
@@ -134,7 +132,7 @@ namespace Rock.Tests.Integration.Crm
 
             var reportFiltered = reportService.CreateReport();
 
-            Assert.IsFalse( reportFiltered.ChangeEvents.Any( x => x.EventDate.Year != currentYear ), "History events found but not expected. [EventDate != (current year)]" );
+            Assert.That.IsFalse( reportFiltered.ChangeEvents.Any( x => x.EventDate.Year != currentYear ), "History events found but not expected. [EventDate != (current year)]" );
         }
 
         /// <summary>
@@ -159,8 +157,8 @@ namespace Rock.Tests.Integration.Crm
             // Get an unfiltered report.
             // The unfiltered data should contain Original Status=[Attendee|Web Prospect].
 
-            Assert.IsTrue( _BaselineReport.ChangeEvents.Any( x => x.OldConnectionStatusId == attendeeConnectionStatusId ), "Status expected but not found. [Status=Attendee]" );
-            Assert.IsTrue( _BaselineReport.ChangeEvents.Any( x => x.OldConnectionStatusId == prospectConnectionStatusId ), "Status expected but not found. [Status=Web Prospect]" );
+            Assert.That.IsTrue( _BaselineReport.ChangeEvents.Any( x => x.OldConnectionStatusId == attendeeConnectionStatusId ), "Status expected but not found. [Status=Attendee]" );
+            Assert.That.IsTrue( _BaselineReport.ChangeEvents.Any( x => x.OldConnectionStatusId == prospectConnectionStatusId ), "Status expected but not found. [Status=Web Prospect]" );
 
             // Get a filtered report: Original Status=Attendee, UpdatedStatus=Member.
             // The filtered data should only contain Original Status=Attendee.
@@ -171,7 +169,7 @@ namespace Rock.Tests.Integration.Crm
 
             report = reportBuilder.CreateReport();
 
-            Assert.IsTrue( !report.ChangeEvents.Any( x => x.OldConnectionStatusId != attendeeConnectionStatusId ), "Status found but not expected." );
+            Assert.That.IsTrue( !report.ChangeEvents.Any( x => x.OldConnectionStatusId != attendeeConnectionStatusId ), "Status found but not expected." );
         }
 
         /// <summary>
@@ -193,7 +191,7 @@ namespace Rock.Tests.Integration.Crm
 
             // Get an unfiltered report.
             // The unfiltered data should contain at least one record that is a transition from Visitor.
-            Assert.IsTrue( _BaselineReport.ChangeEvents.Any( x => x.OldConnectionStatusId == attendeeStatusId ), "Status expected but not found. [Status=Attendee]" );
+            Assert.That.IsTrue( _BaselineReport.ChangeEvents.Any( x => x.OldConnectionStatusId == attendeeStatusId ), "Status expected but not found. [Status=Attendee]" );
 
             // Get a filtered report: Original Status=Attendee, UpdatedStatus=Member.
             reportBuilder = new ConnectionStatusChangeReportBuilder( dataContext, settings );
@@ -203,7 +201,7 @@ namespace Rock.Tests.Integration.Crm
             report = reportBuilder.CreateReport();
 
             // The report should include events for new people, represented by a change from (null) --> (some status).
-            Assert.IsTrue( report.ChangeEvents.Any( x => string.IsNullOrEmpty( x.OldConnectionStatusName ) ), "Status expected but not found. [OldStatus=(empty)]" );
+            Assert.That.IsTrue( report.ChangeEvents.Any( x => string.IsNullOrEmpty( x.OldConnectionStatusName ) ), "Status expected but not found. [OldStatus=(empty)]" );
         }
 
         /// <summary>
@@ -227,7 +225,7 @@ namespace Rock.Tests.Integration.Crm
             // The unfiltered data should contain at least one record that is a transition from Visitor.
             reportBuilder = new ConnectionStatusChangeReportBuilder( dataContext, settings );
 
-            Assert.IsTrue( _BaselineReport.ChangeEvents.Any( x => x.OldConnectionStatusId == attendeeStatusId ), "Status expected but not found. [Status=Attendee]" );
+            Assert.That.IsTrue( _BaselineReport.ChangeEvents.Any( x => x.OldConnectionStatusId == attendeeStatusId ), "Status expected but not found. [Status=Attendee]" );
 
             // Get a filtered report: Original Status=Attendee, UpdatedStatus=Member.
             settings.ToConnectionStatusId = GetStatusValueIdOrThrow( "Member" );
@@ -235,7 +233,7 @@ namespace Rock.Tests.Integration.Crm
             report = reportBuilder.CreateReport();
 
             // The report should include events for new people, represented by a change from (null) --> (some status).
-            Assert.IsTrue( report.ChangeEvents.Any( x => string.IsNullOrEmpty( x.OldConnectionStatusName ) ), "Status expected but not found. [OldStatus=(empty)]" );
+            Assert.That.IsTrue( report.ChangeEvents.Any( x => string.IsNullOrEmpty( x.OldConnectionStatusName ) ), "Status expected but not found. [OldStatus=(empty)]" );
         }
 
         /// <summary>
@@ -322,7 +320,7 @@ namespace Rock.Tests.Integration.Crm
 
             var connectionStatusType = statusType.DefinedValues.FirstOrDefault( x => x.Value == statusName );
 
-            Assert.IsNotNull( connectionStatusType, $"Connection Status Type not found. [TypeName={statusName}]" );
+            Assert.That.IsNotNull( connectionStatusType, $"Connection Status Type not found. [TypeName={statusName}]" );
 
             return connectionStatusType.Id;
         }

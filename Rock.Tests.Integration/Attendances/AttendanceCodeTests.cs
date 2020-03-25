@@ -85,7 +85,7 @@ namespace Rock.Tests.Integration.Attendance
             string lastCode = "0665";
 
             string code = AttendanceCodeService.GetNextNumericCodeAsString( alphaNumericLength, alphaLength, numericLength, isRandomized, lastCode );
-            Assert.Equal( "0667", code );
+            Assert.That.Equal( "0667", code );
         }
 
         #endregion
@@ -107,7 +107,7 @@ namespace Rock.Tests.Integration.Attendance
 
             bool hasMatchIsBad = codeList.Where( c => noGood.Any( ng => c.Contains( ng ) ) ).Any();
 
-            Assert.False( hasMatchIsBad );
+            Assert.That.False( hasMatchIsBad );
         }
 
         #endregion
@@ -125,7 +125,7 @@ namespace Rock.Tests.Integration.Attendance
                 code = AttendanceCodeService.GetNew( 0, 0, 3, false );
             }
 
-            Assert.Equal( "002", code.Code );
+            Assert.That.Equal( "002", code.Code );
         }
 
         [TestMethod] [Ignore( "Requires a db" )]
@@ -141,8 +141,8 @@ namespace Rock.Tests.Integration.Attendance
                 codeList.Add( code.Code );
             }
 
-            Assert.DoesNotContain( codeList, "911" );
-            Assert.DoesNotContain( codeList, "666" );
+            Assert.That.DoesNotContain( codeList, "911" );
+            Assert.That.DoesNotContain( codeList, "666" );
         }
 
         /// <summary>
@@ -168,13 +168,13 @@ namespace Rock.Tests.Integration.Attendance
 
                 // should not be longer than 4 characters
                 // This is a known bug in v7.4 and earlier, and possibly fixed via PR #3071
-                Assert.True( codeList.Last().Length == 4 );
+                Assert.That.True( codeList.Last().Length == 4 );
             }
             catch ( TimeoutException )
             {
                 // An exception in this case is considered better than hanging (since there is 
                 // no actual solution).
-                Assert.True( true );
+                Assert.That.True( true );
             }
         }
 
@@ -198,7 +198,7 @@ namespace Rock.Tests.Integration.Attendance
                                     .Where( group => group.Count() > 1 )
                                     .Select( group => group.Key );
 
-            Assert.True( duplicates.Count() == 0 );
+            Assert.That.True( duplicates.Count() == 0 );
         }
 
         /// <summary>
@@ -221,7 +221,7 @@ namespace Rock.Tests.Integration.Attendance
                                     .Where( group => group.Count() > 1 )
                                     .Select( group => group.Key );
 
-            Assert.True( duplicates.Count() == 0 );
+            Assert.That.True( duplicates.Count() == 0 );
         }
 
         /// <summary>
@@ -270,14 +270,14 @@ namespace Rock.Tests.Integration.Attendance
                         // https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/cancel-async-tasks-after-a-period-of-time
                         source.Cancel();
 
-                        Assert.True( task.Status == TaskStatus.Faulted );
+                        Assert.That.True( task.Status == TaskStatus.Faulted );
                     }
                     else
                     {
                         // This should never happen. If it does, it means we're not really 
                         // attempting to generate more codes than are possible -- so it's a Fail
                         // too.
-                        Assert.True( true );
+                        Assert.That.True( true );
                     }
                 }
             }
@@ -285,13 +285,13 @@ namespace Rock.Tests.Integration.Attendance
             {
                 // An exception in this case is considered better than hanging (since there is 
                 // no actual solution).
-                Assert.True( true );
+                Assert.That.True( true );
             }
             catch ( TimeoutException )
             {
                 // An exception in this case is considered better than hanging (since there is 
                 // no actual solution).
-                Assert.True( true );
+                Assert.That.True( true );
             }
         }
 
@@ -306,7 +306,7 @@ namespace Rock.Tests.Integration.Attendance
                 code = AttendanceCodeService.GetNew( 0, 0, 3, false );
             }
 
-            Assert.Equal( "100", code.Code );
+            Assert.That.Equal( "100", code.Code );
         }
 
         #endregion
@@ -328,7 +328,7 @@ namespace Rock.Tests.Integration.Attendance
 
             bool hasMatchIsBad = codeList.Where( c => noGood.Any( ng => c.Contains( ng ) ) ).Any();
 
-            Assert.False( hasMatchIsBad );
+            Assert.That.False( hasMatchIsBad );
         }
 
         /// <summary>
@@ -355,7 +355,7 @@ namespace Rock.Tests.Integration.Attendance
                                     .Where( group => group.Count() > 1 )
                                     .Select( group => group.Key );
 
-            Assert.True( duplicates.Count() == 0 );
+            Assert.That.True( duplicates.Count() == 0 );
         }
 
         #endregion
@@ -390,14 +390,14 @@ namespace Rock.Tests.Integration.Attendance
 
                 bool hasMatchIsBad = codeList.Where( c => noGood.Any( ng => c.Contains( ng ) ) ).Any();
 
-                Assert.False( hasMatchIsBad );
+                Assert.That.False( hasMatchIsBad );
 
             }
             catch( TimeoutException )
             {
                 // If an infinite loop was detected, but we tried at least 616 codes then
                 // we'll consider this a pass.
-                Assert.True( attemptCombination >= 616 );
+                Assert.That.True( attemptCombination >= 616 );
             }
         }
 
@@ -420,7 +420,7 @@ namespace Rock.Tests.Integration.Attendance
 
             bool hasMatchIsBad = codeList.Where( c => noGood.Any( ng => c.Contains( ng ) ) ).Any();
 
-            Assert.False( hasMatchIsBad );
+            Assert.That.False( hasMatchIsBad );
         }
         
         #endregion

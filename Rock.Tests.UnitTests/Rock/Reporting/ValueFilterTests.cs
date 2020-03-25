@@ -31,7 +31,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "brown"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "BROWN"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "jason"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "JASON"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "dog"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "DOG"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = Sample.Text
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = Sample.Text.ToUpper()
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = string.Empty
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "EmptyText" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "EmptyText" ) );
         }
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = string.Empty
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "NullText" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "NullText" ) );
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = string.Empty
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "Jim Bob"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "JIM BOB"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -226,7 +226,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "^The.*dog$"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -241,7 +241,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "^THE.*DOG$"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -256,7 +256,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "The quick"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -271,7 +271,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "THE QUICK"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Text" ) );
         }
 
         #endregion
@@ -290,7 +290,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "invaliddata"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -305,7 +305,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "INVALIDDATA"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -320,7 +320,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "quick"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -335,7 +335,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "QUICK"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -350,7 +350,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "invaliddata"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -365,7 +365,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "INVALIDDATA"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -380,7 +380,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "invaliddata"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -395,7 +395,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "invaliddata"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -410,7 +410,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = string.Empty
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -425,7 +425,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = string.Empty
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "EmptyText" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "EmptyText" ) );
         }
 
         /// <summary>
@@ -440,7 +440,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = string.Empty
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "NullText" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "NullText" ) );
         }
 
         /// <summary>
@@ -455,7 +455,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = Sample.Text
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -470,7 +470,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = Sample.Text.ToUpper()
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -485,7 +485,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "^Dog.*the$"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -500,7 +500,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "^DOG.*THE$"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -515,7 +515,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "brown fox"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         /// <summary>
@@ -530,7 +530,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "BROWN FOX"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Text" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Text" ) );
         }
 
         #endregion
@@ -550,7 +550,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value2 = "50"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Integer" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
@@ -565,7 +565,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Integer" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
@@ -580,7 +580,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "30"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Integer" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
@@ -595,7 +595,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "30"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Integer" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
@@ -610,7 +610,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Integer" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
@@ -625,7 +625,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "50"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Integer" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
@@ -640,7 +640,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "50"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Integer" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
@@ -655,7 +655,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Integer" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
@@ -670,7 +670,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "30"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Integer" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Integer" ) );
         }
 
         #endregion
@@ -690,7 +690,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value2 = "50"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Integer" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
@@ -705,7 +705,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "30"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Integer" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
@@ -720,7 +720,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "50"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Integer" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
@@ -735,7 +735,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "50"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Integer" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
@@ -750,7 +750,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "30"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Integer" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
@@ -765,7 +765,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "30"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Integer" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Integer" ) );
         }
 
         /// <summary>
@@ -780,7 +780,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Integer" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Integer" ) );
         }
 
         #endregion
@@ -800,7 +800,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value2 = "42.6"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Double" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
@@ -815,7 +815,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42.42"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Double" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
@@ -830,7 +830,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42.1"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Double" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
@@ -845,7 +845,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42.1"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Double" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
@@ -860,7 +860,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42.42"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Double" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
@@ -875,7 +875,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42.6"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Double" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
@@ -890,7 +890,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42.6"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Double" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
@@ -905,7 +905,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42.42"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Double" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
@@ -920,7 +920,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42.1"
             };
 
-            Assert.IsTrue( filter.Evaluate( Sample, "Double" ) );
+            Assert.That.IsTrue( filter.Evaluate( Sample, "Double" ) );
         }
 
         #endregion
@@ -940,7 +940,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value2 = "48.6"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Double" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
@@ -955,7 +955,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "45.1"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Double" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
@@ -970,7 +970,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "45.1"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Double" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
@@ -985,7 +985,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "45.1"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Double" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
@@ -1000,7 +1000,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "41.4"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Double" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
@@ -1015,7 +1015,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "41.4"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Double" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Double" ) );
         }
 
         /// <summary>
@@ -1030,7 +1030,7 @@ namespace Rock.Tests.Rock.Reporting
                 Value = "42.42"
             };
 
-            Assert.IsFalse( filter.Evaluate( Sample, "Double" ) );
+            Assert.That.IsFalse( filter.Evaluate( Sample, "Double" ) );
         }
 
         #endregion

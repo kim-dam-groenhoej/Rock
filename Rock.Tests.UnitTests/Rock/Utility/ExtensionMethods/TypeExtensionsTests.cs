@@ -21,7 +21,7 @@ namespace Rock.Tests.Rock.Utility.ExtensionMethods
             var type = typeof( System.Reflection.MethodInfo );
             var baseType = typeof( System.Reflection.MemberInfo );
 
-            Assert.IsTrue( type.IsDescendentOf( baseType ) );
+            Assert.That.IsTrue( type.IsDescendentOf( baseType ) );
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Rock.Tests.Rock.Utility.ExtensionMethods
             var type = typeof( System.Reflection.MethodInfo );
             var baseType = typeof( System.Reflection.PropertyInfo );
 
-            Assert.IsFalse( type.IsDescendentOf( baseType ) );
+            Assert.That.IsFalse( type.IsDescendentOf( baseType ) );
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Rock.Tests.Rock.Utility.ExtensionMethods
             var type = typeof( Web.Cache.DefinedValueCache );
             var baseType = typeof( Web.Cache.EntityCache<,> );
 
-            Assert.IsTrue( type.IsDescendentOf( baseType ) );
+            Assert.That.IsTrue( type.IsDescendentOf( baseType ) );
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Rock.Tests.Rock.Utility.ExtensionMethods
             var type = typeof( System.Reflection.PropertyInfo );
             var baseType = typeof( Web.Cache.EntityCache<,> );
 
-            Assert.IsFalse( type.IsDescendentOf( baseType ) );
+            Assert.That.IsFalse( type.IsDescendentOf( baseType ) );
         }
 
         #endregion
@@ -81,7 +81,7 @@ namespace Rock.Tests.Rock.Utility.ExtensionMethods
             var type = typeof( Web.Cache.DefinedValueCache );
             var baseType = typeof( System.Reflection.PropertyInfo );
 
-            Assert.ThrowsException<ArgumentException>( () => type.GetGenericArgumentsOfBaseType( baseType ) );
+            Assert.That.ThrowsException<ArgumentException>( () => type.GetGenericArgumentsOfBaseType( baseType ) );
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Rock.Tests.Rock.Utility.ExtensionMethods
             var type = typeof( Web.Cache.DefinedValueCache );
             var baseType = typeof( System.Collections.Generic.List<> );
 
-            Assert.ThrowsException<ArgumentException>( () => type.GetGenericArgumentsOfBaseType( baseType ) );
+            Assert.That.ThrowsException<ArgumentException>( () => type.GetGenericArgumentsOfBaseType( baseType ) );
         }
 
         /// <summary>
@@ -110,9 +110,9 @@ namespace Rock.Tests.Rock.Utility.ExtensionMethods
 
             var types = type.GetGenericArgumentsOfBaseType( baseType );
 
-            Assert.AreEqual( 2, types.Length );
-            Assert.AreEqual( typeof( Web.Cache.DefinedValueCache ), types[0] );
-            Assert.AreEqual( typeof( global::Rock.Model.DefinedValue ), types[1] );
+            Assert.That.AreEqual( 2, types.Length );
+            Assert.That.AreEqual( typeof( Web.Cache.DefinedValueCache ), types[0] );
+            Assert.That.AreEqual( typeof( global::Rock.Model.DefinedValue ), types[1] );
         }
 
         #endregion

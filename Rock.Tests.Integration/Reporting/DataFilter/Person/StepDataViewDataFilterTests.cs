@@ -51,7 +51,7 @@ namespace Rock.Tests.Integration.Reporting.DataFilter
 
             var settingsTarget = new StepDataViewFilter.FilterSettings( settingsString );
 
-            Assert.AreEqual( TestGuids.Steps.ProgramSacramentsGuid, settingsTarget.DataViewGuid );
+            Assert.That.AreEqual( TestGuids.Steps.ProgramSacramentsGuid, settingsTarget.DataViewGuid );
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Rock.Tests.Integration.Reporting.DataFilter
             var results = personQuery.ToList();
 
             // Verify Ted Decker found - Baptised in 2001.
-            Assert.IsTrue( results.Any( x => x.Guid == TestGuids.Steps.TedDeckerPersonGuid ) );
+            Assert.That.IsTrue( results.Any( x => x.Guid == TestGuids.Steps.TedDeckerPersonGuid ) );
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Rock.Tests.Integration.Reporting.DataFilter
             var results = personQuery.ToList();
 
             // Verify Ben Jones not found - Alpha Attendee in 2015.
-            Assert.IsFalse( results.Any( x => x.Guid == TestGuids.Steps.BenJonesPersonGuid ) );
+            Assert.That.IsFalse( results.Any( x => x.Guid == TestGuids.Steps.BenJonesPersonGuid ) );
         }
 
         /// <summary>

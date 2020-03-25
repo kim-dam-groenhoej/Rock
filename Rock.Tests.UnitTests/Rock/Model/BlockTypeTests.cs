@@ -16,7 +16,7 @@ namespace Rock.Tests.Rock.Model
         {
             var blockType = new BlockType { Name = "some block type" };
             var result = blockType.Clone( false );
-            Assert.AreEqual( result.Name, blockType.Name );
+            Assert.That.AreEqual( result.Name, blockType.Name );
         }
 
         /// <summary>
@@ -28,9 +28,9 @@ namespace Rock.Tests.Rock.Model
             var blockType = new BlockType();
             blockType.Blocks.Add( new Block() );
             var result = blockType.Clone() as BlockType;
-            Assert.IsNotNull( result );
+            Assert.That.IsNotNull( result );
             // TODO: Fix Clone() to include all child objects
-            //Assert.IsNotNull( result.Blocks );
+            //Assert.That.IsNotNull( result.Blocks );
             //Assert.That.IsNotEmpty( result.Blocks );
         }
 
@@ -42,7 +42,7 @@ namespace Rock.Tests.Rock.Model
         {
             var blockType = new BlockType { Name = "some block type" };
             var result = blockType.ToJson();
-            Assert.IsNotEmpty( result );
+            Assert.That.IsNotEmpty( result );
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Rock.Tests.Rock.Model
             var blockType = new BlockType { Name = "Foo" };
             var result = blockType.ToJson();
             const string key = "\"Name\":\"Foo\"";
-            Assert.AreNotEqual( result.IndexOf( key ), -1 );
+            Assert.That.AreNotEqual( result.IndexOf( key ), -1 );
         }
 
         /// <summary>
@@ -86,11 +86,11 @@ namespace Rock.Tests.Rock.Model
             var json = obj.ToJson();
             var blockType = BlockType.FromJson( json );
             var blocks = blockType.Blocks;
-            Assert.IsNotNull( blockType );
+            Assert.That.IsNotNull( blockType );
             // TODO: Fix Clone() to include all child objects
-            //Assert.IsNotNull( blocks );
+            //Assert.That.IsNotNull( blocks );
             //Assert.That.IsNotEmpty( blocks );
-            //Assert.AreEqual( blocks.First().Name, obj.Blocks[0].Name );
+            //Assert.That.AreEqual( blocks.First().Name, obj.Blocks[0].Name );
         }
     }
 }

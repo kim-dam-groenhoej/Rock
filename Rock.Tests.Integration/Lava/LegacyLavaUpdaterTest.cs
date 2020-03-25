@@ -17,7 +17,7 @@ namespace Rock.Tests.Integration.Lava
             LegacyLavaUpdater legacyLavaUpdater = new LegacyLavaUpdater();
             legacyLavaUpdater.FindLegacyLava();
 
-            Assert.Empty( legacyLavaUpdater.SQLUpdateScripts );
+            Assert.That.Empty( legacyLavaUpdater.SQLUpdateScripts );
 
         }
 
@@ -32,7 +32,7 @@ namespace Rock.Tests.Integration.Lava
 
             string beforeText = @"This should not get changed query_strings_from_url {{ Person | Attribute: ''Facebook'', ''Url'' }}";
             string afterText = legacyLavaUpdater.ReplaceUrl( beforeText, ref isUpdated );
-            Assert.Equal( beforeText, afterText );
+            Assert.That.Equal( beforeText, afterText );
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Rock.Tests.Integration.Lava
             string expectedText = "<p>_url Legacy Lava {{ Person.Facebook,'Url' }} Legacy Lava </p>";
 
             string afterText = legacyLavaUpdater.ReplaceUrl( beforeText, ref isUpdated );
-            Assert.Equal( expectedText, afterText );
+            Assert.That.Equal( expectedText, afterText );
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Rock.Tests.Integration.Lava
             string expectedText = "<p>_url Legacy Lava {{ Person.Facebook,'Url' }} {{ Person.Twitter,'Url' }} {{ Person.SnapChat,'Url' }} {{ Person.Instagram,'Url' }} Legacy Lava </p>";
 
             string afterText = legacyLavaUpdater.ReplaceUrl( beforeText, ref isUpdated );
-            Assert.Equal( expectedText, afterText );
+            Assert.That.Equal( expectedText, afterText );
         }
 
         [TestMethod] [Ignore( "need way of mocking RockContext" )]
@@ -82,7 +82,7 @@ namespace Rock.Tests.Integration.Lava
             string expectedText = "{% for group in GroupType.Groups %}{% for location in group.Locations %}{% for schedule in location.Schedules %}{{schedule.Name}}{% endfor %}{% endfor %}{% endfor %}";
             LegacyLavaUpdater legacyLavaUpdater = new LegacyLavaUpdater();
             string afterText = legacyLavaUpdater.ReplaceDotNotation(beforeText, ref isUpdated );
-            Assert.Equal( expectedText, afterText );
+            Assert.That.Equal( expectedText, afterText );
         }
 
         [TestMethod] [Ignore( "need way of mocking RockContext" )]
@@ -104,7 +104,7 @@ namespace Rock.Tests.Integration.Lava
             string expectedText = "<p>{{ Workflow | Attribute:'ReportedBy' }},</p>";
             LegacyLavaUpdater legacyLavaUpdater = new LegacyLavaUpdater();
             string afterText = legacyLavaUpdater.ReplaceDotNotation( beforeText, ref isUpdated );
-            Assert.Equal( expectedText, afterText );
+            Assert.That.Equal( expectedText, afterText );
         }
     }
 }

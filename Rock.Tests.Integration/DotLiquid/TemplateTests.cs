@@ -57,7 +57,7 @@ namespace Rock.Tests.Integration.DotLiquidTests
                 {
                     try
                     {
-                        Assert.Equal( expected[i % 2], template.Render( Hash.FromAnonymousObject( input[i % 2] ) ) );
+                        Assert.That.Equal( expected[i % 2], template.Render( Hash.FromAnonymousObject( input[i % 2] ) ) );
                     }
                     catch
                     {
@@ -68,11 +68,11 @@ namespace Rock.Tests.Integration.DotLiquidTests
 
             if ( !isThreadSafe )
             {
-                Assert.True( failures.Count > 0 );
+                Assert.That.True( failures.Count > 0 );
             }
             else
             {
-                Assert.True( failures.Count == 0 );
+                Assert.That.True( failures.Count == 0 );
             }
         }
     }

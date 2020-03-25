@@ -16,7 +16,7 @@ namespace Rock.Tests.Rock.Model
         {
             var pageContext = new PageContext { Guid = Guid.NewGuid() };
             var result = pageContext.Clone( false );
-            Assert.AreEqual( result.Guid, pageContext.Guid );
+            Assert.That.AreEqual( result.Guid, pageContext.Guid );
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Rock.Tests.Rock.Model
         {
             var pageContext = new PageContext { Guid = Guid.NewGuid() };
             var result = pageContext.ToJson();
-            Assert.IsNotEmpty( result );
+            Assert.That.IsNotEmpty( result );
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Rock.Tests.Rock.Model
 
             var result = pageContext.ToJson();
             var key = string.Format( "\"Guid\":\"{0}\"", guid );
-            Assert.AreNotEqual( result.IndexOf( key ), -1 );
+            Assert.That.AreNotEqual( result.IndexOf( key ), -1 );
         }
 
         /// <summary>
@@ -61,8 +61,8 @@ namespace Rock.Tests.Rock.Model
 
             var json = obj.ToJson();
             var pageContext = PageContext.FromJson( json );
-            Assert.AreEqual( obj.Guid, pageContext.Guid );
-            Assert.AreEqual( obj.IsSystem, pageContext.IsSystem );
+            Assert.That.AreEqual( obj.Guid, pageContext.Guid );
+            Assert.That.AreEqual( obj.IsSystem, pageContext.IsSystem );
         }
     }
 }

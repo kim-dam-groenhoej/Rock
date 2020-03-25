@@ -72,10 +72,10 @@ namespace Rock.Tests.Rock.Lava
         public void Text_RegExMatch_ShouldMatchSimpleString()
         {
             var output = RockFilters.RegExMatch( "Group 12345 has 5 members", @"\d\d\d\d\d" );
-            Assert.IsTrue( output );
+            Assert.That.IsTrue( output );
 
             output = RockFilters.RegExMatch( "Group Decker has 5 members", @"\d\d\d\d\d" );
-            Assert.IsFalse( output );
+            Assert.That.IsFalse( output );
         }
 
         /// <summary>
@@ -86,13 +86,13 @@ namespace Rock.Tests.Rock.Lava
         {
             var regexEmail = @"\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*";
             var output = RockFilters.RegExMatch( "ted@rocksolidchurchdemo.com", regexEmail );
-            Assert.IsTrue( output );
+            Assert.That.IsTrue( output );
 
             output = RockFilters.RegExMatch( "ted@rocksolidchurchdemo. com", regexEmail );
-            Assert.IsFalse( output );
+            Assert.That.IsFalse( output );
 
             output = RockFilters.RegExMatch( "ted(AT)rocksolidchurchdemo.com", regexEmail );
-            Assert.IsFalse( output );
+            Assert.That.IsFalse( output );
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Rock.Tests.Rock.Lava
         public void Text_RegExMatchValue_ShouldReturnMatchValue()
         {
             var output = RockFilters.RegExMatchValue( "Group 12345 has 54321 members", @"\d+" );
-            Assert.AreEqual( "12345", output );
+            Assert.That.AreEqual( "12345", output );
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace Rock.Tests.Rock.Lava
         public void Text_RegExMatchValue_ShouldNotMatchValue()
         {
             var output = RockFilters.RegExMatchValue( "Group Decker has no members", @"\d+" );
-            Assert.IsNull( output );
+            Assert.That.IsNull( output );
         }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace Rock.Tests.Rock.Lava
         public void Text_RegExMatchValues_ShouldReturnMatchValues()
         {
             var output = RockFilters.RegExMatchValues( "Group 12345 has 54321 members", @"\d+" );
-            Assert.AreEqual( new List<string> { "12345", "54321" }, output );
+            Assert.That.AreEqual( new List<string> { "12345", "54321" }, output );
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace Rock.Tests.Rock.Lava
         public void Text_RegExMatchValues_ShouldNotMatchValues()
         {
             var output = RockFilters.RegExMatchValues( "Group Decker has no members", @"\d+" );
-            Assert.AreEqual( new List<string>(), output );
+            Assert.That.AreEqual( new List<string>(), output );
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace Rock.Tests.Rock.Lava
             var html = "<p>Lorem <a href=\"#\">ipsum</a> <b>dolor</b> sit amet, <strong>consectetur</strong> adipiscing <t>elit</t>.</p>";
             var text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
 
-            Assert.AreEqual( text, DotLiquid.StandardFilters.StripHtml( html ) );
+            Assert.That.AreEqual( text, DotLiquid.StandardFilters.StripHtml( html ) );
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace Rock.Tests.Rock.Lava
 a comment --> sit amet</p>";
             var text = @"Lorem ipsum  sit amet";
 
-            Assert.AreEqual( text, StandardFilters.StripHtml( html ) );
+            Assert.That.AreEqual( text, StandardFilters.StripHtml( html ) );
         }
 
         #endregion
@@ -176,9 +176,9 @@ a comment --> sit amet</p>";
             //string lava = "{{ 3 | Minus: 2 | ToJSON }}";
             //var person = new Person();
             //var o = lava.ResolveMergeFields( mergeObjects, person, "" );
-            //Assert.AreEqual( "1", o);
+            //Assert.That.AreEqual( "1", o);
             var output = RockFilters.Minus( 3, 2 );
-            Assert.AreEqual( 1, output );
+            Assert.That.AreEqual( 1, output );
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ a comment --> sit amet</p>";
         public void MinusTwoDecimals()
         {
             var output = RockFilters.Minus( 3.0M, 2.0M );
-            Assert.AreEqual( 1.0M, output );
+            Assert.That.AreEqual( 1.0M, output );
         }
 
         /// <summary>
@@ -198,7 +198,7 @@ a comment --> sit amet</p>";
         public void MinusTwoStringInts()
         {
             var output = RockFilters.Minus( "3", "2" );
-            Assert.AreEqual( 1, output );
+            Assert.That.AreEqual( 1, output );
         }
 
         /// <summary>
@@ -208,7 +208,7 @@ a comment --> sit amet</p>";
         public void MinusTwoStringDecimals()
         {
             var output = RockFilters.Minus( "3.0", "2.0" );
-            Assert.AreEqual( 1.0M, output );
+            Assert.That.AreEqual( 1.0M, output );
         }
 
         /// <summary>
@@ -218,7 +218,7 @@ a comment --> sit amet</p>";
         public void MinusIntAndDecimal()
         {
             var output = RockFilters.Minus( 3, "2.0" );
-            Assert.AreEqual( 1.0M, output );
+            Assert.That.AreEqual( 1.0M, output );
         }
 
         #endregion
@@ -232,7 +232,7 @@ a comment --> sit amet</p>";
         public void PlusTwoInts()
         {
             var output = RockFilters.Plus( 3, 2 );
-            Assert.AreEqual( 5, output );
+            Assert.That.AreEqual( 5, output );
         }
 
         /// <summary>
@@ -242,7 +242,7 @@ a comment --> sit amet</p>";
         public void PlusTwoDecimals()
         {
             var output = RockFilters.Plus( 3.0M, 2.0M );
-            Assert.AreEqual( 5.0M, output );
+            Assert.That.AreEqual( 5.0M, output );
         }
 
         /// <summary>
@@ -252,7 +252,7 @@ a comment --> sit amet</p>";
         public void PlusTwoStringInts()
         {
             var output = RockFilters.Plus( "3", "2" );
-            Assert.AreEqual( 5, output );
+            Assert.That.AreEqual( 5, output );
         }
 
         /// <summary>
@@ -262,7 +262,7 @@ a comment --> sit amet</p>";
         public void PlusTwoStringDecimals()
         {
             var output = RockFilters.Plus( "3.0", "2.0" );
-            Assert.AreEqual( 5.0M, output );
+            Assert.That.AreEqual( 5.0M, output );
         }
 
         /// <summary>
@@ -272,7 +272,7 @@ a comment --> sit amet</p>";
         public void PlusIntAndDecimal()
         {
             var output = RockFilters.Plus( 3, "2.0" );
-            Assert.AreEqual( 5.0M, output );
+            Assert.That.AreEqual( 5.0M, output );
         }
 
         /// <summary>
@@ -282,7 +282,7 @@ a comment --> sit amet</p>";
         public void PlusStrings()
         {
             var output = RockFilters.Plus( "Food", "Bar" );
-            Assert.AreEqual( "FoodBar", output );
+            Assert.That.AreEqual( "FoodBar", output );
         }
 
         #endregion
@@ -296,7 +296,7 @@ a comment --> sit amet</p>";
         public void TimesTwoInts()
         {
             var output = RockFilters.Times( 3, 2 );
-            Assert.AreEqual( 6, output );
+            Assert.That.AreEqual( 6, output );
         }
 
         /// <summary>
@@ -306,7 +306,7 @@ a comment --> sit amet</p>";
         public void TimesTwoDecimals()
         {
             var output = RockFilters.Times( 3.0M, 2.0M );
-            Assert.AreEqual( 6.0M, output );
+            Assert.That.AreEqual( 6.0M, output );
         }
 
         /// <summary>
@@ -316,7 +316,7 @@ a comment --> sit amet</p>";
         public void TimesTwoStringInts()
         {
             var output = RockFilters.Times( "3", "2" );
-            Assert.AreEqual( 6, output );
+            Assert.That.AreEqual( 6, output );
         }
 
         /// <summary>
@@ -326,7 +326,7 @@ a comment --> sit amet</p>";
         public void TimesTwoStringDecimals()
         {
             var output = RockFilters.Times( "3.0", "2.0" );
-            Assert.AreEqual( 6.0M, output );
+            Assert.That.AreEqual( 6.0M, output );
         }
 
         /// <summary>
@@ -336,7 +336,7 @@ a comment --> sit amet</p>";
         public void TimesIntAndDecimal()
         {
             var output = RockFilters.Times( 3, "2.0" );
-            Assert.AreEqual( 6.0M, output );
+            Assert.That.AreEqual( 6.0M, output );
         }
 
         /// <summary>
@@ -348,7 +348,7 @@ a comment --> sit amet</p>";
             var expectedOutput = Enumerable.Repeat( "Food", 2 ).ToList();
             var output = RockFilters.Times( "Food", 2 ) as IEnumerable<string>;
 
-            Assert.AreEqual( expectedOutput, output );
+            Assert.That.AreEqual( expectedOutput, output );
         }
 
         #endregion
@@ -366,7 +366,7 @@ a comment --> sit amet</p>";
         public void AsInteger_Null()
         {
             var output = RockFilters.AsInteger( null );
-            Assert.IsNull( output );
+            Assert.That.IsNull( output );
         }
 
         /// <summary>
@@ -376,7 +376,7 @@ a comment --> sit amet</p>";
         public void AsInteger_InvalidBoolean()
         {
             var output = RockFilters.AsInteger( true );
-            Assert.IsNull( output );
+            Assert.That.IsNull( output );
         }
 
         /// <summary>
@@ -386,7 +386,7 @@ a comment --> sit amet</p>";
         public void AsInteger_ValidInteger()
         {
             var output = RockFilters.AsInteger( 3 );
-            Assert.AreEqual( 3, output );
+            Assert.That.AreEqual( 3, output );
         }
 
         /// <summary>
@@ -396,7 +396,7 @@ a comment --> sit amet</p>";
         public void AsInteger_ValidDecimal()
         {
             var output = RockFilters.AsInteger( ( decimal ) 3.0d );
-            Assert.AreEqual( 3, output );
+            Assert.That.AreEqual( 3, output );
         }
 
         /// <summary>
@@ -406,7 +406,7 @@ a comment --> sit amet</p>";
         public void AsInteger_ValidDouble()
         {
             var output = RockFilters.AsInteger( 3.0d );
-            Assert.AreEqual( 3, output );
+            Assert.That.AreEqual( 3, output );
         }
 
         /// <summary>
@@ -416,7 +416,7 @@ a comment --> sit amet</p>";
         public void AsInteger_ValidString()
         {
             var output = RockFilters.AsInteger( "3" );
-            Assert.AreEqual( 3, output );
+            Assert.That.AreEqual( 3, output );
         }
 
         /// <summary>
@@ -426,7 +426,7 @@ a comment --> sit amet</p>";
         public void AsInteger_InvalidString()
         {
             var output = RockFilters.AsInteger( "a" );
-            Assert.IsNull( output );
+            Assert.That.IsNull( output );
         }
 
         /// <summary>
@@ -436,7 +436,7 @@ a comment --> sit amet</p>";
         public void AsInteger_ValidDecimalString()
         {
             var output = RockFilters.AsInteger( "3.2" );
-            Assert.AreEqual( 3, output );
+            Assert.That.AreEqual( 3, output );
         }
 
         #endregion
@@ -450,7 +450,7 @@ a comment --> sit amet</p>";
         public void AsDecimal_Null()
         {
             var output = RockFilters.AsDecimal( null );
-            Assert.IsNull( output );
+            Assert.That.IsNull( output );
         }
 
         /// <summary>
@@ -460,7 +460,7 @@ a comment --> sit amet</p>";
         public void AsDecimal_InvalidBoolean()
         {
             var output = RockFilters.AsDecimal( true );
-            Assert.IsNull( output );
+            Assert.That.IsNull( output );
         }
 
         /// <summary>
@@ -470,7 +470,7 @@ a comment --> sit amet</p>";
         public void AsDecimal_ValidInteger()
         {
             var output = RockFilters.AsDecimal( 3 );
-            Assert.AreEqual( output, ( decimal ) 3.0d );
+            Assert.That.AreEqual( output, ( decimal ) 3.0d );
         }
 
         /// <summary>
@@ -480,7 +480,7 @@ a comment --> sit amet</p>";
         public void AsDecimal_ValidDecimal()
         {
             var output = RockFilters.AsDecimal( ( decimal ) 3.2d );
-            Assert.AreEqual( output, ( decimal ) 3.2d );
+            Assert.That.AreEqual( output, ( decimal ) 3.2d );
         }
 
         /// <summary>
@@ -490,7 +490,7 @@ a comment --> sit amet</p>";
         public void AsDecimal_ValidDouble()
         {
             var output = RockFilters.AsDecimal( 3.141592d );
-            Assert.AreEqual( output, ( decimal ) 3.141592d );
+            Assert.That.AreEqual( output, ( decimal ) 3.141592d );
         }
 
         /// <summary>
@@ -500,7 +500,7 @@ a comment --> sit amet</p>";
         public void AsDecimal_ValidString()
         {
             var output = RockFilters.AsDecimal( "3.14" );
-            Assert.AreEqual( output, ( decimal ) 3.14d );
+            Assert.That.AreEqual( output, ( decimal ) 3.14d );
         }
 
         /// <summary>
@@ -510,7 +510,7 @@ a comment --> sit amet</p>";
         public void AsDecimal_InvalidString()
         {
             var output = RockFilters.AsDecimal( "a" );
-            Assert.IsNull( output );
+            Assert.That.IsNull( output );
         }
 
         /// <summary>
@@ -520,7 +520,7 @@ a comment --> sit amet</p>";
         public void AsDecimal_InvalidDecimalString()
         {
             var output = RockFilters.AsInteger( "3.0.2" );
-            Assert.IsNull( output );
+            Assert.That.IsNull( output );
         }
 
         #endregion
@@ -534,7 +534,7 @@ a comment --> sit amet</p>";
         public void AsDouble_Null()
         {
             var output = RockFilters.AsDouble( null );
-            Assert.IsNull( output );
+            Assert.That.IsNull( output );
         }
 
         /// <summary>
@@ -544,7 +544,7 @@ a comment --> sit amet</p>";
         public void AsDouble_InvalidBoolean()
         {
             var output = RockFilters.AsDouble( true );
-            Assert.IsNull( output );
+            Assert.That.IsNull( output );
         }
 
         /// <summary>
@@ -554,7 +554,7 @@ a comment --> sit amet</p>";
         public void AsDouble_ValidInteger()
         {
             var output = RockFilters.AsDouble( 3 );
-            Assert.AreEqual( 3.0d, output );
+            Assert.That.AreEqual( 3.0d, output );
         }
 
         /// <summary>
@@ -564,7 +564,7 @@ a comment --> sit amet</p>";
         public void AsDouble_ValidDecimal()
         {
             var output = RockFilters.AsDouble( ( decimal ) 3.2d );
-            Assert.AreEqual( ( double ) 3.2d, output );
+            Assert.That.AreEqual( ( double ) 3.2d, output );
         }
 
         /// <summary>
@@ -574,7 +574,7 @@ a comment --> sit amet</p>";
         public void AsDouble_ValidDouble()
         {
             var output = RockFilters.AsDouble( 3.141592d );
-            Assert.AreEqual( ( double ) 3.141592d, output );
+            Assert.That.AreEqual( ( double ) 3.141592d, output );
         }
 
         /// <summary>
@@ -584,7 +584,7 @@ a comment --> sit amet</p>";
         public void AsDouble_ValidString()
         {
             var output = RockFilters.AsDouble( "3.14" );
-            Assert.AreEqual( ( double ) 3.14d, output );
+            Assert.That.AreEqual( ( double ) 3.14d, output );
         }
 
         /// <summary>
@@ -594,7 +594,7 @@ a comment --> sit amet</p>";
         public void AsDouble_InvalidString()
         {
             var output = RockFilters.AsDouble( "a" );
-            Assert.IsNull( output );
+            Assert.That.IsNull( output );
         }
 
         /// <summary>
@@ -604,7 +604,7 @@ a comment --> sit amet</p>";
         public void AsDouble_InvalidDecimalString()
         {
             var output = RockFilters.AsDouble( "3.0.2" );
-            Assert.IsNull( output );
+            Assert.That.IsNull( output );
         }
 
         #endregion
@@ -618,7 +618,7 @@ a comment --> sit amet</p>";
         public void AsString_Null()
         {
             var output = RockFilters.AsString( null );
-            Assert.IsNull( output );
+            Assert.That.IsNull( output );
         }
 
         /// <summary>
@@ -628,7 +628,7 @@ a comment --> sit amet</p>";
         public void AsString_ValidFalseBoolean()
         {
             var output = RockFilters.AsString( false );
-            Assert.AreEqual( "False", output );
+            Assert.That.AreEqual( "False", output );
         }
 
         /// <summary>
@@ -638,7 +638,7 @@ a comment --> sit amet</p>";
         public void AsString_ValidTrueBoolean()
         {
             var output = RockFilters.AsString( true );
-            Assert.AreEqual( "True", output );
+            Assert.That.AreEqual( "True", output );
         }
 
         /// <summary>
@@ -648,7 +648,7 @@ a comment --> sit amet</p>";
         public void AsString_ValidInteger()
         {
             var output = RockFilters.AsString( 3 );
-            Assert.AreEqual( "3", output );
+            Assert.That.AreEqual( "3", output );
         }
 
         /// <summary>
@@ -658,7 +658,7 @@ a comment --> sit amet</p>";
         public void AsString_ValidDecimal()
         {
             var output = RockFilters.AsString( ( decimal ) 3.2d );
-            Assert.AreEqual( "3.2", output );
+            Assert.That.AreEqual( "3.2", output );
         }
 
         /// <summary>
@@ -668,7 +668,7 @@ a comment --> sit amet</p>";
         public void AsString_ValidDouble()
         {
             var output = RockFilters.AsString( 3.141592d );
-            Assert.AreEqual( "3.141592", output );
+            Assert.That.AreEqual( "3.141592", output );
         }
 
         /// <summary>
@@ -678,7 +678,7 @@ a comment --> sit amet</p>";
         public void AsString_ValidDoubleString()
         {
             var output = RockFilters.AsString( "3.14" );
-            Assert.AreEqual( "3.14", output );
+            Assert.That.AreEqual( "3.14", output );
         }
 
         /// <summary>
@@ -688,7 +688,7 @@ a comment --> sit amet</p>";
         public void AsString_ValidString()
         {
             var output = RockFilters.AsString( "abc" );
-            Assert.AreEqual( "abc", output );
+            Assert.That.AreEqual( "abc", output );
         }
 
         /// <summary>
@@ -699,7 +699,7 @@ a comment --> sit amet</p>";
         {
             DateTime dt = new DateTime( 2017, 3, 7, 15, 4, 33 );
             var output = RockFilters.AsString( dt );
-            Assert.AreEqual( output, dt.ToString() );
+            Assert.That.AreEqual( output, dt.ToString() );
         }
 
         #endregion
@@ -713,7 +713,7 @@ a comment --> sit amet</p>";
         public void AsDateTime_Null()
         {
             var output = RockFilters.AsDateTime( null );
-            Assert.IsNull( output );
+            Assert.That.IsNull( output );
         }
 
         /// <summary>
@@ -723,7 +723,7 @@ a comment --> sit amet</p>";
         public void AsDateTime_InvalidString()
         {
             var output = RockFilters.AsDateTime( "1/1/1 50:00" );
-            Assert.IsNull( output );
+            Assert.That.IsNull( output );
         }
 
         /// <summary>
@@ -734,7 +734,7 @@ a comment --> sit amet</p>";
         {
             DateTime dt = new DateTime( 2017, 3, 7, 15, 4, 33 );
             var output = RockFilters.AsDateTime( dt.ToString() );
-            Assert.AreEqual( dt, output );
+            Assert.That.AreEqual( dt, output );
         }
 
         #endregion
@@ -750,7 +750,7 @@ a comment --> sit amet</p>";
             using ( new HttpSimulator( "/", webContentFolder ).SimulateRequest() )
             {
                 var output = RockFilters.Client( "Global", "ip" );
-                Assert.AreEqual( "127.0.0.1", output );
+                Assert.That.AreEqual( "127.0.0.1", output );
             }
         }
 
@@ -770,7 +770,7 @@ a comment --> sit amet</p>";
                 simulator.SimulateRequest( new Uri( "http://localhost/" ), new NameValueCollection(), headers );
 
                 var output = RockFilters.Client( "Global", "ip" );
-                Assert.AreEqual( "77.7.7.77", output );
+                Assert.That.AreEqual( "77.7.7.77", output );
             }
         }
 
@@ -785,9 +785,9 @@ a comment --> sit amet</p>";
             using ( new HttpSimulator( "/", webContentFolder ).SimulateRequest() )
             {
                 dynamic output = RockFilters.Client( "Global", "browser" );
-                Assert.AreEqual( "Chrome", output.UserAgent.Family as string );
-                Assert.AreEqual( "68", output.UserAgent.Major as string );
-                Assert.AreEqual( "Windows 10", output.OS.Family as string );
+                Assert.That.AreEqual( "Chrome", output.UserAgent.Family as string );
+                Assert.That.AreEqual( "68", output.UserAgent.Major as string );
+                Assert.That.AreEqual( "Windows 10", output.OS.Family as string );
             }
         }
 
@@ -802,7 +802,7 @@ a comment --> sit amet</p>";
         public void Index_ArrayAndInt()
         {
             var output = RockFilters.Index( new string[] { "value1", "value2", "value3" }, 1 );
-            Assert.AreEqual( "value2", output );
+            Assert.That.AreEqual( "value2", output );
         }
 
         /// <summary>
@@ -812,7 +812,7 @@ a comment --> sit amet</p>";
         public void Index_ArrayAndString()
         {
             var output = RockFilters.Index( new string[] { "value1", "value2", "value3" }, "1" );
-            Assert.AreEqual( "value2", output );
+            Assert.That.AreEqual( "value2", output );
         }
 
         /// <summary>
@@ -822,7 +822,7 @@ a comment --> sit amet</p>";
         public void Index_ArrayAndInvalidString()
         {
             var output = RockFilters.Index( new string[] { "value1", "value2", "value3" }, "a" );
-            Assert.IsNull( output );
+            Assert.That.IsNull( output );
         }
 
         /// <summary>
@@ -832,7 +832,7 @@ a comment --> sit amet</p>";
         public void Index_ArrayAndNegativeInt()
         {
             var output = RockFilters.Index( new string[] { "value1", "value2", "value3" }, -1 );
-            Assert.IsNull( output );
+            Assert.That.IsNull( output );
         }
 
         /// <summary>
@@ -842,7 +842,7 @@ a comment --> sit amet</p>";
         public void Index_ArrayAndHugeInt()
         {
             var output = RockFilters.Index( new string[] { "value1", "value2", "value3" }, int.MaxValue );
-            Assert.IsNull( output );
+            Assert.That.IsNull( output );
         }
 
         #endregion
@@ -875,7 +875,7 @@ a comment --> sit amet</p>";
             var input = JsonConvert.DeserializeObject<List<ExpandoObject>>( json, converter );
             var output = ( List<object> ) StandardFilters.Sort( input, "Order" );
             var sortedTitles = output.Cast<dynamic>().Select( x => x.Title );
-            Assert.AreEqual( expected, sortedTitles );
+            Assert.That.AreEqual( expected, sortedTitles );
         }
 
         /// <summary>
@@ -904,7 +904,7 @@ a comment --> sit amet</p>";
             object input = null;
             input = JsonConvert.DeserializeObject<List<ExpandoObject>>( json, converter );
             var output = ( List<object> ) StandardFilters.Sort( input, "StartDateTime" );
-            Assert.AreEqual( "Test new sermon (5/29/16)", ( ( IDictionary<string, object> ) output.First() )["Title"] );
+            Assert.That.AreEqual( "Test new sermon (5/29/16)", ( ( IDictionary<string, object> ) output.First() )["Title"] );
         }
 
         /// <summary>
@@ -933,7 +933,7 @@ a comment --> sit amet</p>";
             object input = null;
             input = JsonConvert.DeserializeObject<List<ExpandoObject>>( json, converter );
             var output = ( List<object> ) StandardFilters.Sort( input, "StartDateTime", "desc" );
-            Assert.AreEqual( "Test new sermon (7/3/16)", ( ( IDictionary<string, object> ) output.First() )["Title"] );
+            Assert.That.AreEqual( "Test new sermon (7/3/16)", ( ( IDictionary<string, object> ) output.First() )["Title"] );
         }
 
         /// <summary>
@@ -948,7 +948,7 @@ a comment --> sit amet</p>";
                 new DateTime()
             };
             var output = ( List<object> ) StandardFilters.Sort( input, null );
-            Assert.AreEqual( new DateTime(), output[0] );
+            Assert.That.AreEqual( new DateTime(), output[0] );
         }
 
         /// <summary>
@@ -963,7 +963,7 @@ a comment --> sit amet</p>";
                 new DateTime().AddDays(1),
             };
             var output = ( List<object> ) StandardFilters.Sort( input, null, "desc" );
-            Assert.AreEqual( new DateTime().AddDays( 1 ), output[0] );
+            Assert.That.AreEqual( new DateTime().AddDays( 1 ), output[0] );
         }
 
         /// <summary>
@@ -974,7 +974,7 @@ a comment --> sit amet</p>";
         {
             var input = new List<int> { 2, 1 };
             var output = ( List<object> ) StandardFilters.Sort( input, null );
-            Assert.AreEqual( 1, output[0] );
+            Assert.That.AreEqual( 1, output[0] );
         }
 
         /// <summary>
@@ -985,7 +985,7 @@ a comment --> sit amet</p>";
         {
             var input = new List<int> { 1, 2 };
             var output = ( List<object> ) StandardFilters.Sort( input, null, "desc" );
-            Assert.AreEqual( 2, output[0] );
+            Assert.That.AreEqual( 2, output[0] );
         }
 
 
@@ -997,7 +997,7 @@ a comment --> sit amet</p>";
         {
             var input = new List<string> { "A", "B" };
             var output = ( List<object> ) StandardFilters.Sort( input, null, "desc" );
-            Assert.AreEqual( "B", output[0] );
+            Assert.That.AreEqual( "B", output[0] );
         }
 
         /// <summary>
@@ -1008,7 +1008,7 @@ a comment --> sit amet</p>";
         {
             var input = new List<string> { "B", "A" };
             var output = ( List<object> ) StandardFilters.Sort( input, null );
-            Assert.AreEqual( "A", output[0] );
+            Assert.That.AreEqual( "A", output[0] );
         }
 
         /// <summary>
@@ -1023,7 +1023,7 @@ a comment --> sit amet</p>";
                new Dictionary<string, object> { { "Id", new DateTime() }, { "Value", "1" } }
             };
             var output = ( List<object> ) StandardFilters.Sort( input, "Id" );
-            Assert.AreEqual( "1", ( ( Dictionary<string, object> ) output[0] )["Value"] );
+            Assert.That.AreEqual( "1", ( ( Dictionary<string, object> ) output[0] )["Value"] );
         }
 
         /// <summary>
@@ -1038,7 +1038,7 @@ a comment --> sit amet</p>";
                new Dictionary<string, object> { { "Id", new DateTime().AddDays(1) }, { "Value", "2" } }
             };
             var output = ( List<object> ) StandardFilters.Sort( input, "Id", "desc" );
-            Assert.AreEqual( "2", ( ( Dictionary<string, object> ) output[0] )["Value"] );
+            Assert.That.AreEqual( "2", ( ( Dictionary<string, object> ) output[0] )["Value"] );
         }
 
         /// <summary>
@@ -1053,7 +1053,7 @@ a comment --> sit amet</p>";
                new Dictionary<string, object> { { "Id", 1 }, { "Value", "1" } }
             };
             var output = ( List<object> ) StandardFilters.Sort( input, "Id" );
-            Assert.AreEqual( "1", ( ( Dictionary<string, object> ) output[0] )["Value"] );
+            Assert.That.AreEqual( "1", ( ( Dictionary<string, object> ) output[0] )["Value"] );
         }
 
         /// <summary>
@@ -1068,7 +1068,7 @@ a comment --> sit amet</p>";
                new Dictionary<string, object> { { "Id", 2 }, { "Value", "2" } }
             };
             var output = ( List<object> ) StandardFilters.Sort( input, "Id", "desc" );
-            Assert.AreEqual( "2", ( ( Dictionary<string, object> ) output[0] )["Value"] );
+            Assert.That.AreEqual( "2", ( ( Dictionary<string, object> ) output[0] )["Value"] );
         }
 
         /// <summary>
@@ -1083,7 +1083,7 @@ a comment --> sit amet</p>";
                new Dictionary<string, object> { { "Id", "A" }, { "Value", "1" } }
             };
             var output = ( List<object> ) StandardFilters.Sort( input, "Id" );
-            Assert.AreEqual( "1", ( ( Dictionary<string, object> ) output[0] )["Value"] );
+            Assert.That.AreEqual( "1", ( ( Dictionary<string, object> ) output[0] )["Value"] );
         }
 
         /// <summary>
@@ -1098,7 +1098,7 @@ a comment --> sit amet</p>";
                new Dictionary<string, object> { { "Id", "B"}, { "Value", "2" } },
             };
             var output = ( List<object> ) StandardFilters.Sort( input, "Id", "desc" );
-            Assert.AreEqual( "2", ( ( Dictionary<string, object> ) output[0] )["Value"] );
+            Assert.That.AreEqual( "2", ( ( Dictionary<string, object> ) output[0] )["Value"] );
         }
 
         /// <summary>
@@ -1113,7 +1113,7 @@ a comment --> sit amet</p>";
                 new Person(){ AnniversaryDate = new DateTime(), NickName="1" }
             };
             var output = ( List<object> ) StandardFilters.Sort( input, "AnniversaryDate" );
-            Assert.AreEqual( "1", ( ( Person ) output[0] ).NickName );
+            Assert.That.AreEqual( "1", ( ( Person ) output[0] ).NickName );
         }
 
         /// <summary>
@@ -1128,7 +1128,7 @@ a comment --> sit amet</p>";
                new Person(){ AnniversaryDate = new DateTime().AddDays(1), NickName="2" }
             };
             var output = ( List<object> ) StandardFilters.Sort( input, "AnniversaryDate", "desc" );
-            Assert.AreEqual( "2", ( ( Person ) output[0] ).NickName );
+            Assert.That.AreEqual( "2", ( ( Person ) output[0] ).NickName );
         }
 
         /// <summary>
@@ -1143,7 +1143,7 @@ a comment --> sit amet</p>";
                 new Person(){ Id = 1, NickName="1" }
             };
             var output = ( List<object> ) StandardFilters.Sort( input, "Id" );
-            Assert.AreEqual( "1", ( ( Person ) output[0] ).NickName );
+            Assert.That.AreEqual( "1", ( ( Person ) output[0] ).NickName );
         }
 
 
@@ -1159,7 +1159,7 @@ a comment --> sit amet</p>";
                new Person(){ Id = 2, NickName="2" }
             };
             var output = ( List<object> ) StandardFilters.Sort( input, "Id", "desc" );
-            Assert.AreEqual( "2", ( ( Person ) output[0] ).NickName );
+            Assert.That.AreEqual( "2", ( ( Person ) output[0] ).NickName );
         }
 
         /// <summary>
@@ -1174,7 +1174,7 @@ a comment --> sit amet</p>";
                 new Person(){ NickName="1" },
             };
             var output = ( List<object> ) StandardFilters.Sort( input, "NickName" );
-            Assert.AreEqual( "1", ( ( Person ) output[0] ).NickName );
+            Assert.That.AreEqual( "1", ( ( Person ) output[0] ).NickName );
         }
 
         /// <summary>
@@ -1189,7 +1189,7 @@ a comment --> sit amet</p>";
                 new Person(){ NickName="2" },
             };
             var output = ( List<object> ) StandardFilters.Sort( input, "NickName", "desc" );
-            Assert.AreEqual( "2", ( ( Person ) output[0] ).NickName );
+            Assert.That.AreEqual( "2", ( ( Person ) output[0] ).NickName );
         }
 
         #region Where
@@ -1206,7 +1206,7 @@ a comment --> sit amet</p>";
                new Dictionary<string, object> { { "Id", (int)2 } }
             };
             var output = RockFilters.Where( input, "Id", 1 );
-            Assert.IsTrue( ( ( List<object> ) output ).Count() == 1 );
+            Assert.That.IsTrue( ( ( List<object> ) output ).Count() == 1 );
         }
 
         /// <summary>
@@ -1221,7 +1221,7 @@ a comment --> sit amet</p>";
                new Dictionary<string, object> { { "Id", (long)2 } }
             };
             var output = RockFilters.Where( input, "Id", ( int ) 1 );
-            Assert.IsTrue( ( ( List<object> ) output ).Count == 1 );
+            Assert.That.IsTrue( ( ( List<object> ) output ).Count == 1 );
         }
 
         /// <summary>
@@ -1237,7 +1237,7 @@ a comment --> sit amet</p>";
             };
 
             var output = RockFilters.Where( input, "Id", "1" );
-            Assert.IsTrue( ( ( List<object> ) output ).Count == 1 );
+            Assert.That.IsTrue( ( ( List<object> ) output ).Count == 1 );
         }
 
         #endregion
@@ -1726,7 +1726,7 @@ a comment --> sit amet</p>";
 
             var output = RockFilters.DatesFromICal( iCalStringSaturday430, 1 );
 
-            Assert.AreEqual( expected, output );
+            Assert.That.AreEqual( expected, output );
         }
 
         /// <summary>
@@ -1748,7 +1748,7 @@ a comment --> sit amet</p>";
             var output = RockFilters.DatesFromICal( iCalStringSaturday430, "all" );
 
             // Test if the output exists in the list of dates, because it may be entry 52 or 53 in the sequence.
-            Assert.IsTrue( output.Contains( expected ) );
+            Assert.That.IsTrue( output.Contains( expected ) );
         }
 
         /// <summary>
@@ -1783,7 +1783,7 @@ a comment --> sit amet</p>";
 
             // Get the end datetime of the 13th event in the "First Saturday of the Month" schedule.
             var output = RockFilters.DatesFromICal( iCalStringFirstSaturdayOfMonth, 13, "enddatetime" ).LastOrDefault();
-            Assert.AreEqual( expected, output );
+            Assert.That.AreEqual( expected, output );
         }
 
         #endregion
@@ -1804,7 +1804,7 @@ a comment --> sit amet</p>";
         public void Url_Host()
         {
             var output = RockFilters.Url( _urlValidHttps, "host" );
-            Assert.AreEqual( "www.rockrms.com", output );
+            Assert.That.AreEqual( "www.rockrms.com", output );
         }
 
         /// <summary>
@@ -1814,7 +1814,7 @@ a comment --> sit amet</p>";
         public void Url_Port()
         {
             var output = RockFilters.Url( _urlValidHttps, "port" );
-            Assert.AreEqual( 443, output );
+            Assert.That.AreEqual( 443, output );
         }
 
         /// <summary>
@@ -1824,11 +1824,11 @@ a comment --> sit amet</p>";
         public void Url_Segments()
         {
             var output = RockFilters.Url( _urlValidHttps, "segments" ) as string[];
-            Assert.IsNotNull( output );
-            Assert.AreEqual( 3, output.Length );
-            Assert.AreEqual( "/", output[0] );
-            Assert.AreEqual( "WorkflowEntry/", output[1] );
-            Assert.AreEqual( "35", output[2] );
+            Assert.That.IsNotNull( output );
+            Assert.That.AreEqual( 3, output.Length );
+            Assert.That.AreEqual( "/", output[0] );
+            Assert.That.AreEqual( "WorkflowEntry/", output[1] );
+            Assert.That.AreEqual( "35", output[2] );
         }
 
         /// <summary>
@@ -1838,7 +1838,7 @@ a comment --> sit amet</p>";
         public void Url_Scheme()
         {
             var output = RockFilters.Url( _urlValidHttps, "scheme" );
-            Assert.AreEqual( "https", output );
+            Assert.That.AreEqual( "https", output );
         }
 
         /// <summary>
@@ -1848,7 +1848,7 @@ a comment --> sit amet</p>";
         public void Url_Protocol()
         {
             var output = RockFilters.Url( _urlValidHttps, "protocol" );
-            Assert.AreEqual( "https", output );
+            Assert.That.AreEqual( "https", output );
         }
 
         /// <summary>
@@ -1858,7 +1858,7 @@ a comment --> sit amet</p>";
         public void Url_LocalPath()
         {
             var output = RockFilters.Url( _urlValidHttps, "localpath" );
-            Assert.AreEqual( "/WorkflowEntry/35", output );
+            Assert.That.AreEqual( "/WorkflowEntry/35", output );
         }
 
         /// <summary>
@@ -1868,7 +1868,7 @@ a comment --> sit amet</p>";
         public void Url_PathAndQuery()
         {
             var output = RockFilters.Url( _urlValidHttps, "pathandquery" );
-            Assert.AreEqual( "/WorkflowEntry/35?PersonId=2", output );
+            Assert.That.AreEqual( "/WorkflowEntry/35?PersonId=2", output );
         }
 
         /// <summary>
@@ -1878,7 +1878,7 @@ a comment --> sit amet</p>";
         public void Url_QueryParameter()
         {
             var output = RockFilters.Url( _urlValidHttps, "queryparameter", "PersonId" );
-            Assert.AreEqual( "2", output );
+            Assert.That.AreEqual( "2", output );
         }
 
         /// <summary>
@@ -1888,7 +1888,7 @@ a comment --> sit amet</p>";
         public void Url_Url()
         {
             var output = RockFilters.Url( _urlValidHttps, "url" );
-            Assert.AreEqual( output, _urlValidHttps );
+            Assert.That.AreEqual( output, _urlValidHttps );
         }
 
         /// <summary>
@@ -1898,7 +1898,7 @@ a comment --> sit amet</p>";
         public void Url_UrlStdPort()
         {
             var output = RockFilters.Url( _urlValidHttpsPort, "url" );
-            Assert.AreEqual( output, _urlValidHttpsPort.Replace( ":443", string.Empty ) );
+            Assert.That.AreEqual( output, _urlValidHttpsPort.Replace( ":443", string.Empty ) );
         }
 
         /// <summary>
@@ -1908,7 +1908,7 @@ a comment --> sit amet</p>";
         public void Url_UrlNonStdPort()
         {
             var output = RockFilters.Url( _urlValidHttpNonStdPort, "url" );
-            Assert.AreEqual( output, _urlValidHttpNonStdPort );
+            Assert.That.AreEqual( output, _urlValidHttpNonStdPort );
         }
 
         /// <summary>
@@ -1918,7 +1918,7 @@ a comment --> sit amet</p>";
         public void Url_InvalidUrl()
         {
             var output = RockFilters.Url( _urlInvalid, "host" );
-            Assert.AreEqual( output, string.Empty );
+            Assert.That.AreEqual( output, string.Empty );
         }
 
         #endregion
@@ -1946,9 +1946,7 @@ a comment --> sit amet</p>";
 
         private static void AssertTemplateResult( string expected, string template, Hash localVariables )
         {
-            var rockAssert = new RockAssert();
-
-            rockAssert.AreEqual( expected, Template.Parse( template ).Render( localVariables ) );
+            Assert.That.AreEqual( expected, Template.Parse( template ).Render( localVariables ) );
         }
         #endregion
     }

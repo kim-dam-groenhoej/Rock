@@ -16,7 +16,7 @@ namespace Rock.Tests.Rock.Model
         {
             var pageRoute = new PageRoute { Guid = Guid.NewGuid() };
             var result = pageRoute.Clone( false );
-            Assert.AreEqual( result.Guid, pageRoute.Guid );
+            Assert.That.AreEqual( result.Guid, pageRoute.Guid );
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Rock.Tests.Rock.Model
         {
             var pageRoute = new PageRoute { Guid = Guid.NewGuid() };
             dynamic result = pageRoute.ToJson();
-            Assert.IsNotEmpty( result as string );
+            Assert.That.IsNotEmpty( result as string );
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Rock.Tests.Rock.Model
 
             var result = pageRoute.ToJson();
             var key = string.Format( "\"Guid\":\"{0}\"", guid );
-            Assert.AreNotEqual( result.IndexOf( key ), -1 );
+            Assert.That.AreNotEqual( result.IndexOf( key ), -1 );
         }
 
         /// <summary>
@@ -61,8 +61,8 @@ namespace Rock.Tests.Rock.Model
 
             var json = obj.ToJson();
             var pageRoute = PageRoute.FromJson( json );
-            Assert.AreEqual( obj.Route, pageRoute.Route );
-            Assert.AreEqual( obj.IsSystem, pageRoute.IsSystem );
+            Assert.That.AreEqual( obj.Route, pageRoute.Route );
+            Assert.That.AreEqual( obj.IsSystem, pageRoute.IsSystem );
         }
     }
 }

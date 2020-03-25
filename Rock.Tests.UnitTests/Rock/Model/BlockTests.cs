@@ -1,5 +1,5 @@
-﻿using Rock.Model;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rock.Model;
 using Rock.Tests.Shared;
 
 namespace Rock.Tests.Rock.Model
@@ -15,7 +15,7 @@ namespace Rock.Tests.Rock.Model
         {
             var block = new Block { Name = "Foo" };
             var result = block.Clone( false );
-            Assert.AreEqual( result.Name, block.Name );
+            Assert.That.AreEqual( result.Name, block.Name );
         }
 
         /// <summary>
@@ -26,8 +26,8 @@ namespace Rock.Tests.Rock.Model
         {
             var block = new Block { BlockType = new BlockType() };
             var result = block.Clone() as Block;
-            Assert.IsNotNull( result );
-            Assert.IsNotNull( result.BlockType );
+            Assert.That.IsNotNull( result );
+            Assert.That.IsNotNull( result.BlockType );
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Rock.Tests.Rock.Model
         {
             var block = new Block { Name = "Foo" };
             var result = block.ToJson();
-            Assert.IsNotEmpty( result );
+            Assert.That.IsNotEmpty( result );
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Rock.Tests.Rock.Model
 
             var result = block.ToJson();
             const string key = "\"Name\":\"Foo\"";
-            Assert.AreNotEqual( result.IndexOf( key ), -1 );
+            Assert.That.AreNotEqual( result.IndexOf( key ), -1 );
         }
 
         /// <summary>
@@ -84,8 +84,8 @@ namespace Rock.Tests.Rock.Model
             var json = obj.ToJson();
             var block = Block.FromJson( json );
             var blockType = block.BlockType;
-            Assert.IsNotNull( blockType );
-            Assert.AreEqual( blockType.Name, obj.BlockType.Name );
+            Assert.That.IsNotNull( blockType );
+            Assert.That.AreEqual( blockType.Name, obj.BlockType.Name );
         }
     }
 }

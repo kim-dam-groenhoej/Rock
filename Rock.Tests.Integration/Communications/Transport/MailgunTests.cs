@@ -36,8 +36,8 @@ namespace Rock.Tests.Integration.Communications
             var mailgunHttp = new MailgunHttp();
             mailgunHttp.Send( rockEmailMessage, 0, null, out errorMessages );
 
-            Assert.True( !errorMessages.Any() );
-            Assert.Equal( System.Net.HttpStatusCode.OK, mailgunHttp.Response.StatusCode );
+            Assert.That.True( !errorMessages.Any() );
+            Assert.That.Equal( System.Net.HttpStatusCode.OK, mailgunHttp.Response.StatusCode );
         }
     }
 }

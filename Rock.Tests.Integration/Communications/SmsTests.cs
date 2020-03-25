@@ -57,10 +57,10 @@ namespace Rock.Tests.Integration.Communications.Sms
             var unnamedPersonRecordValueId = DefinedValueCache.Get( SystemGuid.DefinedValue.PERSON_RECORD_TYPE_NAMELESS ).Id;
 
             // Verify that the Record Type is "Unnamed".
-            Assert.AreEqual( unnamedPersonRecordValueId, unnamedPerson.RecordTypeValueId, "Person Type for Unnamed Person record is invalid." );
+            Assert.That.AreEqual( unnamedPersonRecordValueId, unnamedPerson.RecordTypeValueId, "Person Type for Unnamed Person record is invalid." );
 
             // Verify that the correct Phone Number has been recorded.
-            Assert.IsNotNull( unnamedPerson.PhoneNumbers.FirstOrDefault( x => x.Number == TestGuids.Communications.UnknownPerson1MobileNumber ) );
+            Assert.That.IsNotNull( unnamedPerson.PhoneNumbers.FirstOrDefault( x => x.Number == TestGuids.Communications.UnknownPerson1MobileNumber ) );
 
             //var outcomes = SmsActionService.ProcessIncomingMessage(message);
 
@@ -93,7 +93,7 @@ namespace Rock.Tests.Integration.Communications.Sms
             var unnamedPerson2 = personService.GetPersonFromMobilePhoneNumber( message.FromNumber, true );
 
             // Verify that the same record has been retrieved both times.
-            Assert.AreEqual( unnamedPerson1.Id, unnamedPerson2.Id, "Multiple Unnamed Person records created for the same mobile number." );
+            Assert.That.AreEqual( unnamedPerson1.Id, unnamedPerson2.Id, "Multiple Unnamed Person records created for the same mobile number." );
 
             // Delete the newly-created unnamed person record.
             DeleteNamelessPersonRecord( dataContext, TestGuids.Communications.UnknownPerson1MobileNumber );
@@ -118,7 +118,7 @@ namespace Rock.Tests.Integration.Communications.Sms
             var namedPerson1 = personService.GetPersonFromMobilePhoneNumber( message.FromNumber, createNamelessPersonIfNotFound: false );
 
             // Verify that the correct record has been retrieved.
-            Assert.AreEqual( namedPerson1.Guid, TestGuids.Communications.TedDeckerPersonGuid.AsGuid(), "Incorrect Person record retrieved by mobile phone number." );
+            Assert.That.AreEqual( namedPerson1.Guid, TestGuids.Communications.TedDeckerPersonGuid.AsGuid(), "Incorrect Person record retrieved by mobile phone number." );
         }
         [TestMethod]
         [TestProperty( "Feature", TestFeatures.Communications )]
@@ -136,12 +136,12 @@ namespace Rock.Tests.Integration.Communications.Sms
             var unfilteredQuery = personService.Queryable( personQueryOptions );
 
 
-            Assert.IsTrue( this.PersonQueryContainsNamelessPersonRecordType( unfilteredQuery ),
+            Assert.That.IsTrue( this.PersonQueryContainsNamelessPersonRecordType( unfilteredQuery ),
                            "Test data set must contain at least one Person record with a Record Type of \"Nameless Person\"." );
 
             var defaultQuery = personService.Queryable();
 
-            Assert.IsFalse( this.PersonQueryContainsNamelessPersonRecordType( defaultQuery ),
+            Assert.That.IsFalse( this.PersonQueryContainsNamelessPersonRecordType( defaultQuery ),
                             "Base Person Queryable incorrectly includes a Person record with Record Type of \"Nameless Person\"." );
         }
 
