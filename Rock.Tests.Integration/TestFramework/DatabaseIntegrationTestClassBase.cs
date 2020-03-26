@@ -22,7 +22,7 @@ namespace Rock.Tests.Integration
     /// <summary>
     /// Provides basic functions for a test class that requires access to a Rock database.
     /// </summary>
-    public abstract class DatabaseIntegrationTestClassBase : TestClassBase
+    public abstract class DatabaseIntegrationTestClassBase
     {
         public RockContext GetDataContext()
         {

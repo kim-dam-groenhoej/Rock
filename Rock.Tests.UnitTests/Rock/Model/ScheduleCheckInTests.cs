@@ -6,7 +6,7 @@ using Rock.Tests.Shared;
 namespace Rock.Tests.Rock.Model
 {
     [TestClass]
-    public class ScheduleCheckInTests : TestClassBase
+    public class ScheduleCheckInTests
     {
         /// <summary>
         /// Checks for valid CheckOut condition involving a schedule that has a start time at 11PM

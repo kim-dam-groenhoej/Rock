@@ -9,7 +9,7 @@ using Rock.Tests.Shared;
 namespace Rock.Tests.Rock.Model
 {
     [TestClass]
-    public class PageTests : TestClassBase
+    public class PageTests
     {
         /// <summary>
         /// Should perform a shallow copy of a Page object, resulting in a new Page.

@@ -6,7 +6,7 @@ using Rock.Web.UI.Controls;
 namespace Rock.Tests.Rock.Reporting
 {
     [TestClass]
-    public class ValueFilterTests : TestClassBase
+    public class ValueFilterTests
     {
         private readonly SampleData Sample = new SampleData
         {

@@ -6,7 +6,7 @@ using Rock.Tests.Shared;
 namespace Rock.Tests.Rock.Utility.ExtensionMethods
 {
     [TestClass]
-    public class TypeExtensionsTests : TestClassBase
+    public class TypeExtensionsTests
     {
         #region IsDescendentOf
 

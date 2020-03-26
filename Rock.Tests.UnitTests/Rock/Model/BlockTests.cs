@@ -5,7 +5,7 @@ using Rock.Tests.Shared;
 namespace Rock.Tests.Rock.Model
 {
     [TestClass]
-    public class BlockTests : TestClassBase
+    public class BlockTests
     {
         /// <summary>
         /// Should perform a shallow copy of a Block object, resulting in a new Block.

@@ -5,7 +5,7 @@ using Rock.Tests.Shared;
 namespace Rock.Tests.Rock.Model
 {
     [TestClass]
-    public class HtmlContentTests : TestClassBase
+    public class HtmlContentTests
     {
         /// <summary>
         /// Should perform a shallow copy of a HtmlContent object, resulting in a new HtmlContent.

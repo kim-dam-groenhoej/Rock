@@ -8,7 +8,7 @@ using Rock.Tests.Shared;
 namespace Rock.Tests.Integration.DotLiquidTests
 {
     [TestClass]
-    public class TemplateTests : TestClassBase
+    public class TemplateTests
     {
         [TestMethod]
         [Ignore( "Outcome dependent upon system resources" )]

@@ -11,7 +11,7 @@ using Rock.Tests.Shared;
 
 namespace Rock.Tests.Integration.Communications
 {
-    public class TwilioTests : TestClassBase
+    public class TwilioTests
     {
         [TestMethod]
         [Ignore("Dependant on a DB. Useful for debugging and adding data.")]

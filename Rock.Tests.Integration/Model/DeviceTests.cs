@@ -6,7 +6,7 @@ using Rock.Tests.Shared;
 
 namespace Rock.Tests.Integration.Model
 {
-    public class DeviceTests : TestClassBase
+    public class DeviceTests
     {
         /* These DbGeography calls require the SqlServerTypes package on machines without full SQL Server.
          * However, none of them will actually find the SqlServerSpatial110.dll in the /bin folder. */

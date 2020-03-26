@@ -9,7 +9,7 @@ using Rock.Tests.Shared;
 namespace Rock.Tests.Integration.Lava
 {
     [TestClass]
-    public class LegacyLavaUpdaterTest : TestClassBase
+    public class LegacyLavaUpdaterTest
     {
         [TestMethod] [Ignore( "need way of mocking RockContext" )]
         public void UpdateLegacyLava()

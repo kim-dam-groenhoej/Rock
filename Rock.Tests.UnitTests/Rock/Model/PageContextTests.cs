@@ -6,7 +6,7 @@ using Rock.Tests.Shared;
 namespace Rock.Tests.Rock.Model
 {
     [TestClass]
-    public class PageContextTests : TestClassBase
+    public class PageContextTests
     {
         /// <summary>
         /// Should perform a shallow copy of a PageContext object, resulting in a new PageContext.

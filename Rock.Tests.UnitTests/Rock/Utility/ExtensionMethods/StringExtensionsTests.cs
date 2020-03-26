@@ -5,7 +5,7 @@ using Rock.Tests.Shared;
 namespace Rock.Tests.Utility.ExtensionMethods
 {
     [TestClass]
-    public class StringExtensionsTest : TestClassBase
+    public class StringExtensionsTest
     {
         #region AsDoubleOrNull
 

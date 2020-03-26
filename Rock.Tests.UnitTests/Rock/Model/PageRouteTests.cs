@@ -6,7 +6,7 @@ using Rock.Tests.Shared;
 namespace Rock.Tests.Rock.Model
 {
     [TestClass]
-    public class PageRouteTests : TestClassBase
+    public class PageRouteTests
     {
         /// <summary>
         /// Should perform a shallow copy of a PageRoute object, resulting in a new PageRoute.

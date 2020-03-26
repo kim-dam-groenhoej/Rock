@@ -8,7 +8,7 @@ namespace Rock.Tests.Rock.Lava
     /// A test class for testing any Rock Shortcode Lava.
     /// </summary>
     [TestClass]
-    public class ShortcodeTests : TestClassBase
+    public class ShortcodeTests
     {
         #region Scripturize Tests
         /// <summary>

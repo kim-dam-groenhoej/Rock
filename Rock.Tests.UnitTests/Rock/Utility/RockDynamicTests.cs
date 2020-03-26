@@ -7,7 +7,7 @@ using Rock.Utility;
 namespace Rock.Tests.Rock.Utility
 {
     [TestClass]
-    public class RockDynamicTests: TestClassBase
+    public class RockDynamicTests
     {
         [TestMethod]
         public void StoreKeyGetKeyValueMatches()

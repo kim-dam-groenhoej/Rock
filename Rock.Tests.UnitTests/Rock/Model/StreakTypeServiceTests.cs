@@ -8,7 +8,7 @@ namespace Rock.Tests.Rock.Model
     /// Tests for the Streak Type Service methods
     /// </summary>
     [TestClass]
-    public class StreakTypeServiceTests : TestClassBase
+    public class StreakTypeServiceTests
     {
         #region GetMapFromHexDigitString
 

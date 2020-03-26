@@ -8,7 +8,7 @@ using Rock.Tests.Shared;
 
 namespace Rock.Tests.Workflow.Action
 {
-    public class BackgroundCheckRequestTests : TestClassBase
+    public class BackgroundCheckRequestTests
     {
         [TestMethod]
         public void CanBeInstantiated()

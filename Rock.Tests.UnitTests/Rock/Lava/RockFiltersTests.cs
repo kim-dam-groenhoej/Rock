@@ -16,7 +16,7 @@ using Rock.Tests.Shared;
 namespace Rock.Tests.Rock.Lava
 {
     [TestClass]
-    public class RockFiltersTest : TestClassBase
+    public class RockFiltersTest
     {
         // A fake web-root Content folder for any tests that use the HTTP Context simulator
         private static string webContentFolder = string.Empty;

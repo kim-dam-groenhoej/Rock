@@ -18,7 +18,7 @@ namespace Rock.Tests.Integration.Attendance
     /// want to break other teams CI environments that are running these tests w/o a db.
     /// </summary>
     /// <seealso cref="System.IDisposable" />
-    public class AttendanceCodeTests : TestClassBase
+    public class AttendanceCodeTests
     {
         private static List<string> noGood = new List<string> {
             "4NL", "4SS", "5CK", "5HT", "5LT", "5NM", "5TD", "5XX", "666", "BCH", "CLT", "CNT", "D4M", "D5H", "DCK", "DMN", "DSH", "F4G", "FCK", "FGT", "G4Y", "GZZ", "H8R",
