@@ -124,16 +124,16 @@ namespace RockWeb.Blocks.Cms
                 browseMode = "doc";
             }
 
-            iframeUrl += "?rootFolder=" + HttpUtility.UrlEncode( Encryption.EncryptString( rootFolder ) );
-            iframeUrl += "&browseMode=" + browseMode;
-            iframeUrl += "&fileTypeBlackList=" + HttpUtility.UrlEncode( fileTypeBlackList );
-            iframeUrl += "&fileTypeWhiteList=" + HttpUtility.UrlEncode( fileTypeWhiteList );
-            iframeUrl += "&editFilePage=" + HttpUtility.UrlEncode( url );
+            iframeUrl += "?RootFolder=" + HttpUtility.UrlEncode( Encryption.EncryptString( rootFolder ) );
+            iframeUrl += "&BrowseMode=" + browseMode;
+            iframeUrl += "&FileTypeBlackList=" + HttpUtility.UrlEncode( fileTypeBlackList );
+            iframeUrl += "&FileTypeWhiteList=" + HttpUtility.UrlEncode( fileTypeWhiteList );
+            iframeUrl += "&EditFilePage=" + HttpUtility.UrlEncode( url );
             if ( browseMode == "image" )
             {
-                iframeUrl += "&imageFileTypeWhiteList=" + HttpUtility.UrlEncode( imageFileTypeWhiteList );
+                iframeUrl += "&ImageFileTypeWhiteList=" + HttpUtility.UrlEncode( imageFileTypeWhiteList );
             }
-            iframeUrl += "&theme=" + this.RockPage.Site.Theme;
+            iframeUrl += "&Theme=" + this.RockPage.Site.Theme;
 
             iframeFileBrowser.Src = iframeUrl;
         }
