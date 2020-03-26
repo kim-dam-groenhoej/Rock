@@ -718,7 +718,7 @@ namespace Rock.Web.UI
             // If the logout parameter was entered, delete the user's forms authentication cookie and redirect them
             // back to the same page.
             Page.Trace.Warn( "Checking for logout request" );
-            if ( PageParameter( "logout" ) != string.Empty )
+            if ( PageParameter( "Logout" ) != string.Empty )
             {
                 if ( CurrentUser != null )
                 {
@@ -741,7 +741,7 @@ namespace Rock.Web.UI
                         var pageReference = new PageReference( PageReference.PageId, PageReference.RouteId, PageReference.Parameters );
                         foreach ( string key in PageReference.QueryString )
                         {
-                            if ( key != null && !key.Equals( "logout", StringComparison.OrdinalIgnoreCase ) )
+                            if ( key != null && !key.Equals( "Logout", StringComparison.OrdinalIgnoreCase ) )
                             {
                                 pageReference.Parameters.Add( key, PageReference.QueryString[key] );
                             }
