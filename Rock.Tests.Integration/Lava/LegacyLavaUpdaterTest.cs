@@ -11,7 +11,8 @@ namespace Rock.Tests.Integration.Lava
     [TestClass]
     public class LegacyLavaUpdaterTest
     {
-        [TestMethod] [Ignore( "need way of mocking RockContext" )]
+        [TestMethod]
+        [Ignore( "Rewrite. Needs to be written without writing to hard-coded location." )]
         public void UpdateLegacyLava()
         {
             LegacyLavaUpdater legacyLavaUpdater = new LegacyLavaUpdater();
@@ -24,7 +25,7 @@ namespace Rock.Tests.Integration.Lava
         /// <summary>
         /// This test is to confirm that the _url string is not replaced if it isn't in a lava tag
         /// </summary>
-        [TestMethod] [Ignore( "need way of mocking RockContext" )]
+        [TestMethod]
         public void ReplaceUrlOnNonLavaString()
         {
             LegacyLavaUpdater legacyLavaUpdater = new LegacyLavaUpdater();
@@ -38,7 +39,7 @@ namespace Rock.Tests.Integration.Lava
         /// <summary>
         /// Confirms that the _url string is replaced if it is in a lava tag
         /// </summary>
-        [TestMethod] [Ignore( "need way of mocking RockContext" )]
+        [TestMethod]
         public void ReplaceUrlOnLavaString()
         {
             LegacyLavaUpdater legacyLavaUpdater = new LegacyLavaUpdater();
@@ -54,7 +55,7 @@ namespace Rock.Tests.Integration.Lava
         /// <summary>
         /// Confirms that the URL replacer will loop through the entire string.
         /// </summary>
-        [TestMethod] [Ignore( "need way of mocking RockContext" )]
+        [TestMethod]
         public void ReplaceMultipleUrlOnLavaString()
         {
             LegacyLavaUpdater legacyLavaUpdater = new LegacyLavaUpdater();
@@ -67,14 +68,14 @@ namespace Rock.Tests.Integration.Lava
             Assert.That.Equal( expectedText, afterText );
         }
 
-        [TestMethod] [Ignore( "need way of mocking RockContext" )]
+        [TestMethod]
         public void CheckSystemEmail()
         {
             LegacyLavaUpdater legacyLavaUpdater = new LegacyLavaUpdater();
             legacyLavaUpdater.CheckSystemEmail();
         }
 
-        [TestMethod] [Ignore( "need way of mocking RockContext" )]
+        [TestMethod]
         public void CheckDotNotation()
         {
             bool isUpdated = false;
@@ -85,18 +86,20 @@ namespace Rock.Tests.Integration.Lava
             Assert.That.Equal( expectedText, afterText );
         }
 
-        [TestMethod] [Ignore( "need way of mocking RockContext" )]
+        [TestMethod]
+        [Ignore( "Rewrite. Needs to be written without writing to hard-coded location." )]
         public void UpdateLegacyLavaFiles()
         {
             LegacyLavaUpdater legacyLavaUpdater = new LegacyLavaUpdater();
             legacyLavaUpdater.FindLegacyLavaInFiles();
 
+            Assert.That.Empty( legacyLavaUpdater.SQLUpdateScripts );
         }
 
         /// <summary>
         /// Make sure we don't match the Report attribute and output Attribute:'Report'edBy
         /// </summary>
-        [TestMethod] [Ignore( "need way of mocking RockContext" )]
+        [TestMethod]
         public void CheckDotNotationPartialMatches()
         {
             bool isUpdated = false;
