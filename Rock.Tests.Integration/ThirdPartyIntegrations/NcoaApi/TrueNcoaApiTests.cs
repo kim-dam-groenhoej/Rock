@@ -30,39 +30,47 @@ namespace Rock.Tests.Integration.Utility.NcoaApi
         [ClassInitialize]
         public static void InitializeTrueNcoaApiTests( TestContext context )
         {
+            /*
+                3/26/2020 - NA 
+                These tests are now defunct because TrueNCOA removed the test document that it was using
+                They also asked that we turn it this off since it's calling out to their test system
+                each time someone runs these tests.
+                Reason: Comment out but don't lose the intellectual idea.
+            */
+
             _ResponseColumns = new List<string>();
 
-            string NCOA_SERVER = "https://app.testing.truencoa.com";
-            string exportfileid = "4c58fba3-8ee9-4644-893a-e3903ad0f91b";
+            //string NCOA_SERVER = "https://app.testing.truencoa.com";
+            //string exportfileid = "4c58fba3-8ee9-4644-893a-e3903ad0f91b";
 
-            var _client = new RestClient( NCOA_SERVER );
-            _client.AddDefaultHeader( "user_name", "gerhard@sparkdevnetwork.org" );
-            _client.AddDefaultHeader( "password", "TrueNCOA_password" );
-            _client.AddDefaultHeader( "Content-Type", "application/x-www-form-urlencoded" );
+            //var _client = new RestClient( NCOA_SERVER );
+            //_client.AddDefaultHeader( "user_name", "gerhard@sparkdevnetwork.org" );
+            //_client.AddDefaultHeader( "password", "TBD" );
+            //_client.AddDefaultHeader( "Content-Type", "application/x-www-form-urlencoded" );
 
-            var request = new RestRequest( $"api/files/{exportfileid}/records", Method.GET );
-            request.AddParameter( "application/x-www-form-urlencoded", "status=submit", ParameterType.RequestBody );
-            IRestResponse response = _client.Execute( request );
-            if ( response.StatusCode != HttpStatusCode.OK )
-            {
-                return;
-            }
+            //var request = new RestRequest( $"api/files/{exportfileid}/records", Method.GET );
+            //request.AddParameter( "application/x-www-form-urlencoded", "status=submit", ParameterType.RequestBody );
+            //IRestResponse response = _client.Execute( request );
+            //if ( response.StatusCode != HttpStatusCode.OK )
+            //{
+            //    return;
+            //}
 
-            dynamic obj = null;
-            try
-            {
-                obj = JObject.Parse( response.Content );
-                foreach ( var o in obj.Records[0] )
-                {
-                    _ResponseColumns.Add( o.Name );
-                }
+            //dynamic obj = null;
+            //try
+            //{
+            //    obj = JObject.Parse( response.Content );
+            //    foreach ( var o in obj.Records[0] )
+            //    {
+            //        _ResponseColumns.Add( o.Name );
+            //    }
 
-                return;
-            }
-            catch
-            {
-                return;
-            }
+            //    return;
+            //}
+            //catch
+            //{
+            //    return;
+            //}
         }
 
         #endregion
@@ -459,7 +467,8 @@ namespace Rock.Tests.Integration.Utility.NcoaApi
             Assert.That.IsTrue( output );
         }
 
-        [TestMethod] //[Ignore( "Needs seeded data in TrueNcoa" )]
+        [TestMethod]
+        [Ignore( "Needs seeded data in TrueNcoa" )]
         public void Records_Contains_ANK()
         {
             bool output = _ResponseColumns.Contains( "ANK" );
