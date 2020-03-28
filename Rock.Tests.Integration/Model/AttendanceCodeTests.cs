@@ -154,7 +154,6 @@ namespace Rock.Tests.Integration.Model
         /// exception is acceptable to let the administrator know there is a
         /// configuration problem.
         /// </summary>
-        [Ignore( "Known issue in v8 and earlier. Remove this ignore when fixed." )]
         [TestMethod]
         public void NumericCodeWithLengthOf2ShouldNotGoBeyond99()
         {
@@ -345,7 +344,6 @@ namespace Rock.Tests.Integration.Model
         /// individually each part has no bad codes.  For example, "A6" + "66" should
         /// not appear since combined it would be "A666".
         /// </summary>
-        [Ignore( "Known issue in v8 and earlier. Remove this ignore when fixed." )]
         [TestMethod]
         public void AlphaNumericWithNumericCodesShouldSkipBadCodes()
         {
@@ -380,7 +378,7 @@ namespace Rock.Tests.Integration.Model
         #region Alpha only + numeric only codes
 
         /// <summary>
-        /// This is the configuration that churches like Central Christian Church use for thier
+        /// This is the configuration that churches like Central Christian Church use for their
         /// Children's check-in.
         /// </summary>
         [TestMethod]
@@ -411,7 +409,7 @@ namespace Rock.Tests.Integration.Model
         /// Codes containing parts combined into noGood codes, such as "P" + "55",
         /// should not occur.
         /// </summary>
-        [Ignore("Known issue in v8 and earlier. Remove this ignore when fixed.")]
+        [Ignore("Known issue in v10 and earlier. Remove this ignore when fixed.")]
         [TestMethod]
         public void AlphaOnlyWithNumericOnlyCodesShouldSkipBadCodes()
         {
