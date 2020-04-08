@@ -320,6 +320,43 @@ namespace Rock.Tests.Shared
 
         #endregion
 
+        #region DateTime Assertions
+
+        /// <summary>
+        /// Asserts that the two dates can be considered equivalent because they only vary within a specified tolerance.
+        /// </summary>
+        /// <param name="expectedDate">The expected date.</param>
+        /// <param name="actualDate">The actual date.</param>
+        /// <param name="maximumDelta">The maximum delta.</param>
+        public static void AreProximate( this Assert assert, DateTime? expectedDate, DateTime? actualDate, TimeSpan maximumDelta )
+        {
+            if ( expectedDate == null && actualDate == null )
+            {
+                return;
+            }
+            else if ( expectedDate == null )
+            {
+                throw new NullReferenceException( "The expected date was null" );
+            }
+            else if ( actualDate == null )
+            {
+                throw new NullReferenceException( "The actual date was null" );
+            }
+
+            double totalSecondsDifference = Math.Abs( ( ( DateTime ) actualDate - ( DateTime ) expectedDate ).TotalSeconds );
+
+            if ( totalSecondsDifference > maximumDelta.TotalSeconds )
+            {
+                throw new Exception( string.Format( "\nExpected Date: {0}\nActual Date: {1}\nExpected Delta: {2}\nActual Delta in seconds: {3}",
+                                                expectedDate,
+                                                actualDate,
+                                                maximumDelta,
+                                                totalSecondsDifference ) );
+            }
+        }
+
+        #endregion
+
         #region xUnit Aliases
         public static void Equal<T>( this Assert assert, T expected, T actual )
         {
