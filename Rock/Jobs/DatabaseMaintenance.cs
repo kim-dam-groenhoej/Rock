@@ -75,7 +75,8 @@ namespace Rock.Jobs
 
             int commandTimeout = dataMap.GetString( "CommandTimeout" ).AsInteger();
             StringBuilder resultsMessage = new StringBuilder();
-            bool hasIntegrityCheckPassed = false;
+            bool integrityCheckPassed = false;
+            bool integrityCheckIgnored = false;
 
             // run integrity check
             if ( runIntegrityCheck )
@@ -83,7 +84,7 @@ namespace Rock.Jobs
                 try
                 {
                     string alertEmail = dataMap.GetString( "AlertEmail" );
-                    hasIntegrityCheckPassed = IntegrityCheck( commandTimeout, alertEmail, resultsMessage );
+                    integrityCheckPassed = IntegrityCheck( commandTimeout, alertEmail, resultsMessage );
 
                 }
                 catch ( Exception ex )
@@ -93,8 +94,12 @@ namespace Rock.Jobs
                     throw;
                 }
             }
+            else
+            {
+                integrityCheckIgnored = true;
+            }
 
-            if ( hasIntegrityCheckPassed )
+            if ( integrityCheckPassed || integrityCheckIgnored )
             {
                 // rebuild fragmented indexes
                 if ( runIndexRebuild )
