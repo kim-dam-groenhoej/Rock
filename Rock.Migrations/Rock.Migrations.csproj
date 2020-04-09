@@ -61,6 +61,10 @@
     <Compile Include="..\Rock.Version\AssemblySharedInfo.cs">
       <Link>AssemblySharedInfo.cs</Link>
     </Compile>
+    <Compile Include="Migrations\202004082054497_PhoneFullNumber.cs" />
+    <Compile Include="Migrations\202004082054497_PhoneFullNumber.Designer.cs">
+      <DependentUpon>202004082054497_PhoneFullNumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Version 10.0\Version 1.10.2\202002042011136_Rollup_0220.cs" />
     <Compile Include="Migrations\Version 10.0\Version 1.10.2\202002042011136_Rollup_0220.Designer.cs">
       <DependentUpon>202002042011136_Rollup_0220.cs</DependentUpon>
@@ -1035,6 +1039,9 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\202004082054497_PhoneFullNumber.resx">
+      <DependentUpon>202004082054497_PhoneFullNumber.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\Version 10.0\Version 1.10.2\202002042011136_Rollup_0220.resx">
       <DependentUpon>202002042011136_Rollup_0220.cs</DependentUpon>
     </EmbeddedResource>

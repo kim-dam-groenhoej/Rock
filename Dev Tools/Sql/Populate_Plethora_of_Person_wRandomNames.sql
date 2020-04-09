@@ -1,8 +1,9 @@
 SET NOCOUNT ON
 
 -- NOTE: Set @maxPerson to the number of people you want to add. Setting it as high as 99999 might take a minute or so
-DECLARE @maxPerson INT = 9999
+DECLARE @maxPerson INT = 99999
     ,@genderInt INT
+    ,@countryCode varchar(4000) = null
     ,@personRecordType INT = (
         SELECT id
         FROM DefinedValue
@@ -12094,6 +12095,7 @@ BEGIN
         INSERT INTO [PhoneNumber] (
             IsSystem
             ,PersonId
+            ,CountryCode
             ,Number
             ,NumberFormatted
             ,IsMessagingEnabled
@@ -12104,6 +12106,7 @@ BEGIN
         VALUES (
             0
             ,@personId
+            ,@countryCode
             ,@phoneNumber
             ,@phoneNumberFormatted
             ,0
@@ -12118,6 +12121,7 @@ BEGIN
         INSERT INTO [PhoneNumber] (
             IsSystem
             ,PersonId
+            ,CountryCode
             ,Number
             ,NumberFormatted
             ,IsMessagingEnabled
@@ -12128,6 +12132,7 @@ BEGIN
         VALUES (
             0
             ,@personId
+            ,@countryCode
             ,@phoneNumber
             ,@phoneNumberFormatted
             ,1
@@ -12217,6 +12222,7 @@ BEGIN
         INSERT INTO [PhoneNumber] (
             IsSystem
             ,PersonId
+            ,CountryCode
             ,Number
             ,NumberFormatted
             ,IsMessagingEnabled
@@ -12227,6 +12233,7 @@ BEGIN
         VALUES (
             0
             ,@spousePersonId
+            ,@countryCode
             ,@phoneNumber
             ,@phoneNumberFormatted
             ,0
@@ -12242,6 +12249,7 @@ BEGIN
         INSERT INTO [PhoneNumber] (
             IsSystem
             ,PersonId
+            ,CountryCode
             ,Number
             ,NumberFormatted
             ,IsMessagingEnabled
@@ -12252,6 +12260,7 @@ BEGIN
         VALUES (
             0
             ,@spousePersonId
+            ,@countryCode
             ,@phoneNumber
             ,@phoneNumberFormatted
             ,1
@@ -12592,5 +12601,8 @@ BEGIN
         DROP TABLE #firstNames
 
     SELECT COUNT(*) [Total Person Count]
-    FROM PERSON
+    FROM [Person]
+
+    SELECT COUNT(*) [Total PhoneNumber Count]
+    FROM PhoneNumber
 END

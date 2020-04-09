@@ -119,7 +119,9 @@ namespace Rock.Utility
                 using ( var rockContext = new RockContext() )
                 {
                     fromPerson = GetPerson( fromPhone, rockContext );
+
                     LaunchWorkflow( workflowType, nameTemplate, fromPerson, fromPhone, toPhone, message, matchGroups, null, workflowAttributesSettings, out response );
+                    response = ( fromPerson != null ).ToString();
                 }
                 // once we find one match stop processing
                 break;
@@ -233,9 +235,10 @@ namespace Rock.Utility
         /// <returns></returns>
         private static Person GetPerson( string fromPhone, RockContext rockContext )
         {
-            Person fromPerson = null;
-
             var personService = new PersonService( rockContext );
+
+            return personService.GetPersonFromMobilePhoneNumber( fromPhone, false );
+            /*
             var phoneNumberService = new PhoneNumberService( rockContext );
 
             var phoneNumber = fromPhone.Replace( "+", "" );
@@ -287,6 +290,7 @@ namespace Rock.Utility
             }
 
             return fromPerson;
+            */
         }
     }
 }

@@ -2245,28 +2245,24 @@ namespace Rock.Model
             var recordTypeValueIdNameless = DefinedValueCache.GetId( Rock.SystemGuid.DefinedValue.PERSON_RECORD_TYPE_NAMELESS.AsGuid() );
 
             int numberTypeMobileValueId = DefinedValueCache.Get( SystemGuid.DefinedValue.PERSON_PHONE_TYPE_MOBILE ).Id;
-
+           
             // cleanup phone
             phoneNumber = PhoneNumber.CleanNumber( phoneNumber );
-
-            // Just in case PhoneNUmber.CountryCode is NULL, also check if there is a matching phone number that doesn't have a country code
-            string fromPhoneNoCountryCode = phoneNumber;
-            if ( phoneNumber.Length > 10 )
-            {
-                fromPhoneNoCountryCode = phoneNumber.Right( 10 );
-            }
 
             // order so that non-nameless person with an SMS number with messaging enabled are listed first
             // then sort by the oldest person record in case there are multiple people with the same number
 
+            
             var person = new PhoneNumberService( this.Context as RockContext ).Queryable()
-                .Where( pn => ( pn.CountryCode + pn.Number ) == phoneNumber || pn.Number == fromPhoneNoCountryCode )
+                .Where( pn => pn.FullNumber == phoneNumber )
+            //.Where( pn => pn.CountryCode == "1" && pn.Number == phoneNumber.Substring(1))
                 .OrderByDescending( pn => pn.IsMessagingEnabled )
                 .ThenByDescending( pn => pn.NumberTypeValueId == numberTypeMobileValueId )
                 .ThenByDescending( p => p.Person.RecordTypeValueId != recordTypeValueIdNameless )
                 .ThenBy( pn => pn.PersonId )
                 .Select( a => a.Person )
                 .FirstOrDefault();
+                
 
             if ( createNamelessPersonIfNotFound && person == null )
             {
