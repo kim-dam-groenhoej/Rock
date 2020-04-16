@@ -33,7 +33,11 @@ namespace Rock.Tests.Integration.Utility
         #region Configuration
 
         /*
+         * 2020-04-17 [DL]
+         * These integration tests use hard-coded values to verify the RockInstanceConfigurationService against known database instances.
          * The configuration settings below should mirror the connection string and settings for the test database.
+         *
+         * In the future, these tests should be improved to use dynamic methods of verification that do not require any hard-coded test values.
          */
 
         /* SQL Server Test Settings */

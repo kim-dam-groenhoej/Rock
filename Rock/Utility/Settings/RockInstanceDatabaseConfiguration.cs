@@ -578,22 +578,29 @@ WHERE d.name = '<db_name>';
         /// <returns></returns>
         private IDataReader GetDataReader( string query, CommandType commandType, Dictionary<string, object> parameters )
         {
+            /* [2020-04-17] DL
+             * This replicates the functionality of DbService.GetDataReader(), but removes the dependency
+             * on the application configuration file connection string to make the class more test-friendly.
+             * Entity Framework data access methods are intentionally avoided here, because attempting to retrieve
+             * database properties may fail in situations where the data model does not match the target database.
+             */
+
             if ( string.IsNullOrWhiteSpace( this.ConnectionString ) )
             {
                 return null;
             }
 
-            SqlConnection con = new SqlConnection( this.ConnectionString );
+            var con = new SqlConnection( this.ConnectionString );
             con.Open();
 
-            SqlCommand sqlCommand = new SqlCommand( query, con );
+            var sqlCommand = new SqlCommand( query, con );
             sqlCommand.CommandType = commandType;
 
             if ( parameters != null )
             {
                 foreach ( var parameter in parameters )
                 {
-                    SqlParameter sqlParam = new SqlParameter();
+                    var sqlParam = new SqlParameter();
                     sqlParam.ParameterName = parameter.Key.StartsWith( "@" ) ? parameter.Key : "@" + parameter.Key;
                     sqlParam.Value = parameter.Value;
                     sqlCommand.Parameters.Add( sqlParam );
