@@ -15,17 +15,12 @@
 // </copyright>
 //
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Rock;
 using Rock.Attribute;
 using Rock.Data;
 using Rock.Model;
-using Rock.Security;
 using Rock.Web.Cache;
 using Rock.Web.UI;
 using Rock.Web.UI.Controls;
@@ -38,25 +33,52 @@ namespace RockWeb.Blocks.Core
     [DisplayName( "Campus Context Setter - Device" )]
     [Category( "Core" )]
     [Description( "Block that can be used to set the campus context for the site based on the location of the device." )]
-    [CodeEditorField( "Display Lava", "The Lava template to use when displaying the current campus.", CodeEditorMode.Lava, CodeEditorTheme.Rock, 300, true, @"{% if Device %}
-
-    {% if Campus %}
-        Campus: {{Campus.Name}}
-    {% else %}
-        Could not determine the campus from the device {{ Device.Name }}.
-    {% endif %}
+    [CodeEditorField( "Display Lava",
+        Description = "The Lava template to use when displaying the current campus.",
+        EditorMode = CodeEditorMode.Lava,
+        EditorTheme = CodeEditorTheme.Rock,
+        EditorHeight = 300,
+        IsRequired = true,
+        DefaultValue = @"{% if Device %}
+                            {% if Campus %}
+                                Campus: {{Campus.Name}}
+                            {% else %}
+                                Could not determine the campus from the device {{ Device.Name }}.
+                            {% endif %}
     
-{% else %}
-    <div class='alert alert-danger'>
-        Unable to determine the device. Please check the device settings.
-        <br/>
-        IP Address: {{ ClientIp }}
-    </div>
-{% endif %}" )]
-    [DefinedValueField( Rock.SystemGuid.DefinedType.DEVICE_TYPE, "Device Type", "Optional filter to limit to specific device types.", false )]
-    [CustomRadioListField("Context Scope", "The scope of context to set", "Site,Page", true, "Site")]
+                        {% else %}
+                            <div class='alert alert-danger'>
+                                Unable to determine the device. Please check the device settings.
+                                <br/>
+                                IP Address: {{ ClientIp }}
+                            </div>
+                        {% endif %}",
+        Key = AttributeKey.DisplayLava )]
+
+    [DefinedValueField( "Device Type",
+        Description = "Optional filter to limit to specific device types.",
+        DefinedTypeGuid = Rock.SystemGuid.DefinedType.DEVICE_TYPE,
+        IsRequired = false,
+        Key = AttributeKey.DeviceType )]
+
+    [CustomRadioListField( "Context Scope",
+        Description = "The scope of context to set",
+        ListSource = "Site,Page",
+        IsRequired = true,
+        DefaultValue = "Site",
+        Key = AttributeKey.ContextScope )]
     public partial class CampusContextSetter : RockBlock
     {
+        /// <summary>
+        /// Keys for attributes
+        /// </summary>
+        private static class AttributeKey
+        {
+            public const string DisplayLava = "DisplayLava";
+            public const string DeviceType = "DeviceType";
+            public const string ContextScope = "ContextScope";
+        }
+
         #region Base Control Methods
 
         /// <summary>
@@ -107,18 +129,19 @@ namespace RockWeb.Blocks.Core
         {
             RockContext rockContext = new RockContext();
             Campus campus = null;
-            
+
             // get device
             string deviceIp = GetIPAddress();
-            DeviceService deviceService = new DeviceService(rockContext);
-            
+            DeviceService deviceService = new DeviceService( rockContext );
+
             var deviceQry = deviceService.Queryable( "Location" )
                     .Where( d => d.IPAddress == deviceIp );
-            
+
             // add device type filter
-            if (!string.IsNullOrWhiteSpace(GetAttributeValue("DeviceType"))) {
-                Guid givingKioskGuid = new Guid( GetAttributeValue("DeviceType"));
-                deviceQry = deviceQry.Where( d => d.DeviceType.Guid == givingKioskGuid);
+            if ( !string.IsNullOrWhiteSpace( GetAttributeValue( AttributeKey.DeviceType ) ) )
+            {
+                Guid givingKioskGuid = new Guid( GetAttributeValue( AttributeKey.DeviceType ) );
+                deviceQry = deviceQry.Where( d => d.DeviceType.Guid == givingKioskGuid );
             }
 
             var device = deviceQry.FirstOrDefault();
@@ -137,7 +160,7 @@ namespace RockWeb.Blocks.Core
 
                         if ( currentCampus == null || currentCampus.Id != campus.Id )
                         {
-                            bool pageScope = GetAttributeValue( "ContextScope" ) == "Page";
+                            bool pageScope = GetAttributeValue( AttributeKey.ContextScope ) == "Page";
                             RockPage.SetContextCookie( campus, pageScope, true );
                         }
                     }
@@ -150,7 +173,7 @@ namespace RockWeb.Blocks.Core
             mergeFields.Add( "Device", device );
             mergeFields.Add( "Campus", campus );
 
-            lOutput.Text = GetAttributeValue( "DisplayLava" ).ResolveMergeFields( mergeFields );
+            lOutput.Text = GetAttributeValue( AttributeKey.DisplayLava ).ResolveMergeFields( mergeFields );
 
         }
 

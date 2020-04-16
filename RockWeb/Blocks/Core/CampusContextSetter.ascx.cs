@@ -107,9 +107,6 @@ namespace RockWeb.Blocks.Core
         /// </summary>
         private static class AttributeKey
         {
-            /// <summary>
-            /// Detail Page
-            /// </summary>
             public const string ContextScope = "ContextScope";
             public const string CurrentItemTemplate = "CurrentItemTemplate";
             public const string DropdownItemTemplate = "DropdownItemTemplate";
@@ -119,6 +116,17 @@ namespace RockWeb.Blocks.Core
             public const string IncludeInactiveCampuses = "IncludeInactiveCampuses";
             public const string DefaultToCurrentUser = "DefaultToCurrentUser";
             public const string Alignment = "Alignment";
+        }
+
+        /// <summary>
+        /// Page Parameter Keys
+        /// </summary>
+        private static class PageParameterKey
+        {
+            /// <summary>
+            /// The asset storage provider identifier
+            /// </summary>
+            public const string CampusId = "CampusId";
         }
 
         #region Base Control Methods
@@ -264,10 +272,10 @@ namespace RockWeb.Blocks.Core
             // Only redirect if refreshPage is true
             if ( refreshPage )
             {
-                if ( !string.IsNullOrWhiteSpace( PageParameter( "CampusId" ) ) || GetAttributeValue( AttributeKey.DisplayQueryStrings ).AsBoolean() )
+                if ( !string.IsNullOrWhiteSpace( PageParameter( PageParameterKey.CampusId ) ) || GetAttributeValue( AttributeKey.DisplayQueryStrings ).AsBoolean() )
                 {
                     var queryString = HttpUtility.ParseQueryString( Request.QueryString.ToStringSafe() );
-                    queryString.Set( "CampusId", campusId.ToString() );
+                    queryString.Set( PageParameterKey.CampusId, campusId.ToString() );
                     Response.Redirect( string.Format( "{0}?{1}", Request.Url.AbsolutePath, queryString ), false );
                 }
                 else
