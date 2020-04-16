@@ -35,9 +35,28 @@ namespace RockWeb.Blocks.Core
     [Category( "Core" )]
     [Description( "Lists all the block types registered in Rock." )]
 
-    [LinkedPage( "Detail Page" )]
+    [LinkedPage( "Detail Page",
+        Key = AttributeKey.DetailPage )]
     public partial class BlockTypeList : RockBlock, ICustomGridColumns
     {
+        /// <summary>
+        /// Keys for attributes
+        /// </summary>
+        private static class AttributeKey
+        {
+            /// <summary>
+            /// Detail Page
+            /// </summary>
+            public const string DetailPage = "DetailPage";
+        }
+
+        /// <summary>
+        /// Page Parameter Keys
+        /// </summary>
+        private static class PageParameterKey
+        {
+            public const string BlockTypeId = "BlockTypeId";
+        }
 
         #region Base Control Methods
 
@@ -110,7 +129,7 @@ namespace RockWeb.Blocks.Core
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void gBlockTypes_Add( object sender, EventArgs e )
         {
-            NavigateToLinkedPage( "DetailPage", "BlockTypeId", 0 );
+            NavigateToLinkedPage( AttributeKey.DetailPage, PageParameterKey.BlockTypeId, 0 );
         }
 
         /// <summary>
@@ -120,7 +139,7 @@ namespace RockWeb.Blocks.Core
         /// <param name="e">The <see cref="RowEventArgs" /> instance containing the event data.</param>
         protected void gBlockTypes_Edit( object sender, RowEventArgs e )
         {
-            NavigateToLinkedPage( "DetailPage", "BlockTypeId", e.RowKeyId );
+            NavigateToLinkedPage( AttributeKey.DetailPage, PageParameterKey.BlockTypeId, e.RowKeyId );
         }
 
         /// <summary>
@@ -170,7 +189,7 @@ namespace RockWeb.Blocks.Core
             if ( blockTypeInfoRow != null )
             {
                 if ( blockTypeInfoRow.Path.IsNotNullOrWhiteSpace() )
-                { 
+                {
                     string blockPath = Request.MapPath( blockTypeInfoRow.Path );
                     if ( !System.IO.File.Exists( blockPath ) )
                     {

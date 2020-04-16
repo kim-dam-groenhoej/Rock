@@ -34,9 +34,32 @@ namespace RockWeb.Blocks.Core
     [DisplayName( "Asset Storage Provider List" )]
     [Category( "Core" )]
     [Description( "Block for viewing list of asset storage providers." )]
-    [LinkedPage( "Detail Page" )]
+    [LinkedPage( "Detail Page",
+        Key = AttributeKey.DetailPage )]
     public partial class AssetStorageProviderList : RockBlock, ICustomGridColumns
     {
+        /// <summary>
+        /// Keys for attributes
+        /// </summary>
+        private static class AttributeKey
+        {
+            /// <summary>
+            /// Detail Page
+            /// </summary>
+            public const string DetailPage = "DetailPage";
+        }
+
+        /// <summary>
+        /// Page Parameter Keys
+        /// </summary>
+        private static class PageParameterKey
+        {
+            /// <summary>
+            /// The asset storage provider identifier
+            /// </summary>
+            public const string AssetStorageProviderId = "assetStorageProviderId";
+        }
+
         /// <summary>
         /// Raises the <see cref="E:System.Web.UI.Control.Init" /> event.
         /// </summary>
@@ -75,7 +98,7 @@ namespace RockWeb.Blocks.Core
         /// <param name="e">The <see cref="RowEventArgs"/> instance containing the event data.</param>
         protected void rGridAssetStorageProvider_RowSelected( object sender, RowEventArgs e )
         {
-            NavigateToLinkedPage( "DetailPage", new Dictionary<string, string> { { "assetStorageProviderId", e.RowKeyValue.ToString() } } );
+            NavigateToLinkedPage( AttributeKey.DetailPage, new Dictionary<string, string> { { PageParameterKey.AssetStorageProviderId, e.RowKeyValue.ToString() } } );
         }
 
         /// <summary>
@@ -105,7 +128,7 @@ namespace RockWeb.Blocks.Core
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void rGridAssetStorageProvider_AddClick( object sender, EventArgs e )
         {
-            NavigateToLinkedPage( "DetailPage", new Dictionary<string, string> { { "assetStorageProviderId", "0" } } );
+            NavigateToLinkedPage( AttributeKey.DetailPage, new Dictionary<string, string> { { PageParameterKey.AssetStorageProviderId, "0" } } );
         }
 
         /// <summary>

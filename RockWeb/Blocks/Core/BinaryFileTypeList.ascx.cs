@@ -33,9 +33,29 @@ namespace RockWeb.Blocks.Administration
     [Category( "Core" )]
     [Description( "Displays a list of all binary file types." )]
 
-    [LinkedPage( "Detail Page" )]
+    [LinkedPage( "Detail Page",
+        Key = AttributeKey.DetailPage )]
     public partial class BinaryFileTypeList : RockBlock, ICustomGridColumns
     {
+        /// <summary>
+        /// Keys for attributes
+        /// </summary>
+        private static class AttributeKey
+        {
+            /// <summary>
+            /// Detail Page
+            /// </summary>
+            public const string DetailPage = "DetailPage";
+        }
+
+        /// <summary>
+        /// Page Parameter Keys
+        /// </summary>
+        private static class PageParameterKey
+        {
+            public const string BinaryFileTypeId = "BinaryFileTypeId";
+        }
+
         #region Control Methods
 
         /// <summary>
@@ -85,7 +105,7 @@ namespace RockWeb.Blocks.Administration
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void gBinaryFileType_Add( object sender, EventArgs e )
         {
-            NavigateToLinkedPage( "DetailPage", "BinaryFileTypeId", 0 );
+            NavigateToLinkedPage( AttributeKey.DetailPage, PageParameterKey.BinaryFileTypeId, 0 );
         }
 
         /// <summary>
@@ -95,7 +115,7 @@ namespace RockWeb.Blocks.Administration
         /// <param name="e">The <see cref="RowEventArgs" /> instance containing the event data.</param>
         protected void gBinaryFileType_Edit( object sender, RowEventArgs e )
         {
-            NavigateToLinkedPage( "DetailPage", "BinaryFileTypeId", e.RowKeyId );
+            NavigateToLinkedPage( AttributeKey.DetailPage, PageParameterKey.BinaryFileTypeId, e.RowKeyId );
         }
 
         /// <summary>
