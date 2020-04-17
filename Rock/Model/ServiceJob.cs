@@ -334,7 +334,12 @@ namespace Rock.Model
         /// <summary>
         /// Notifications should not be sent when this job completes with any status.
         /// </summary>
-        None = 4
+        None = 4,
+
+        /// <summary>
+        /// Notification should be sent when the job has completed with a warning status.
+        /// </summary>
+        Warning = 5
     }
 
     #endregion
