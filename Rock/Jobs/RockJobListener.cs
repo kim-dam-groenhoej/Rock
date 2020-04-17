@@ -189,23 +189,19 @@ namespace Rock.Jobs
                     {
                         job.LastStatusMessage = exceptionToLog.Message;
                     }
-
-                    if ( job.NotificationStatus == JobNotificationStatus.Error )
-                    {
-                        sendMessage = true;
-                    }
                 }
                 else
                 {
                     // put the exception into the status
                     job.LastStatus = "Warning";
                     job.LastStatusMessage = warningException.Message;
-
-                    if ( job.NotificationStatus == JobNotificationStatus.Warning )
-                    {
-                        sendMessage = true;
-                    }
                 }
+
+                if ( job.NotificationStatus == JobNotificationStatus.Error )
+                {
+                    sendMessage = true;
+                }
+
             }
 
             rockContext.SaveChanges();
